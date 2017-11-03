@@ -1,0 +1,1012 @@
+import { Component } from '@angular/core';
+import { NavController, NavParams,LoadingController ,AlertController, PopoverController,ViewController,ToastController,
+ActionSheetController,ModalController,Platform, Events} from 'ionic-angular';
+import { PhotoViewer ,LaunchNavigator,SocialSharing} from 'ionic-native';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+// import { PhotoViewer ,LaunchNavigator,SocialSharing,ScreenOrientation } from 'ionic-native';
+// import { Transfer} from 'ionic-native';
+
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+
+import { File } from '@ionic-native/file';
+import { Transfer, TransferObject } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
+import { VideoEditor, TranscodeOptions, CreateThumbnailOptions } from '@ionic-native/video-editor';
+import { VideoPlayer } from '@ionic-native/video-player';
+// import {StreamingMedia, StreamingVideoOptions} from 'ionic-native';
+// import { MediaCapture, MediaFile, CaptureError } from 'ionic-native';
+import { DeviceOrientation, DeviceOrientationCompassHeading } from 'ionic-native';
+import{Servercon} from '../../providers/servercon';
+import{GalleryPage} from '../gallery/gallery';
+import{BannersPage} from '../banners/banners';
+import { GalleryModal } from 'ionic-gallery-modal';
+import { UpdatecontentPage } from '../updatecontent/updatecontent';
+import { UpdategalleryPage } from '../updategallery/updategallery';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
+
+@Component({
+  template: `
+    <ion-list color="light">
+      <button ion-item (click)="addme(1)">Malaysia</button>
+      <button ion-item (click)="addme(2)">Asia Pacific</button>
+      <button ion-item (click)="addme(3)">World</button>
+     <!-- <button ion-item (click)="addme(3)">Remove</button>
+     -->
+      </ion-list>
+  `
+})
+
+export class PopoverPage {
+  id:any;
+
+constructor(public viewCtrl: ViewController,
+  public navParams: NavParams,
+  public loadingCtrl: LoadingController,
+   public ss:Servercon,
+   public toastCtrl: ToastController,
+   public camera: Camera,
+   public transfer: Transfer,
+   public file: File,
+   public filePath: FilePath,
+ ) {
+
+this.id = this.navParams.get("id");
+
+  }
+
+
+
+ presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'added successfully',
+      duration: 3000
+    });
+    toast.present();
+  }
+
+
+
+
+
+addme(seg:string)
+
+{
+
+
+let param ="id="+this.id+"&segment="+seg;
+
+//alert(param);
+
+
+
+let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+loading.present();
+this.ss.dataList(param,"updateContentSegments.php").then((response)=>{
+loading.dismiss();
+ this.presentToast();
+  }).catch((Error)=>{
+//console.log("Connection Error"+Error);
+loading.dismiss();
+    });
+
+  this.viewCtrl.dismiss();
+}
+
+
+}
+
+// Popoveredit component
+@Component({
+  template: `
+    <ion-list>
+      <ion-list-header>Admin</ion-list-header>
+      <button ion-item (click)="close()">Edit</button>
+      <button ion-item (click)="deleteItem()">Delete</button>
+    </ion-list>
+  `
+})
+export class PopoverEdit {
+  public getDetailItem: any;
+
+  constructor(
+    public viewCtrl: ViewController,
+    public ss: Servercon,
+    public events: Events,
+    public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    public navParams: NavParams
+  ) {
+    this.getDetailItem = this.navParams.get('detailItem');
+  }
+
+  deleteItem()
+  {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm delete?',
+      message: 'Do you really want to delete this item?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.delContent();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+delContent()
+{
+  let newparam = "content_id=" + this.getDetailItem.id + "&category_id=" + this.getDetailItem.category_id;
+  this.ss.dataList(newparam,"deleteContent.php")
+  .then((response)=>{
+    alert("Item successfully deleted!")
+    this.events.publish("deletion", "true");
+  })
+  .catch((Error)=>{
+    // alert("Insert Data Error");
+  })
+}
+
+  close() {
+    this.viewCtrl.dismiss().then(()=> {
+      this.navCtrl.push(UpdatecontentPage, {
+        detailItem: this.getDetailItem
+      });
+    });
+  }
+}
+// End of popoveredit component
+
+@Component({
+  selector: 'page-detail',
+  templateUrl: 'detail.html'
+})
+export class DetailPage {
+image_path :any;
+item:any;
+obj:any;
+items:any
+title:string;
+param:string;
+storeitem:any[];
+tt:string;
+gallery:any;
+gallerypage:any;
+public base64Image: string;
+image_path1 :any;
+desc:string;
+banner:any;
+vgallery:any;
+photos:any[];
+video_path:any;
+deleteRes: any;
+
+compressed: any;
+thumburi: any;
+thumbs_path: any;
+oriname: any;
+loading:any;
+
+isDelete: boolean = false;
+
+  constructor(
+  private mediaCapture: MediaCapture,
+  private transfer: FileTransfer,
+  public navCtrl: NavController,
+  public navParams: NavParams,
+  public Photoviewer:PhotoViewer,
+  public loadingCtrl: LoadingController,
+  public ss:Servercon,
+  public popoverCtrl: PopoverController,
+  public toastCtrl: ToastController,
+  public modalCtrl: ModalController,
+  public events: Events,
+  public screenOrientation:ScreenOrientation,
+  public actionSheetCtrl: ActionSheetController,
+  public platform: Platform,
+  public streamingMedia: StreamingMedia,
+  public videoPlayer: VideoPlayer,
+  public camera: Camera,
+  public iab: InAppBrowser,
+  public videoEditor: VideoEditor,
+  public alertCtrl: AlertController){
+this.gallerypage= GalleryPage;
+this.banner=BannersPage;
+this.items ={
+  categoryName: "",
+    id: "",
+    name: "",
+    description: "",
+    type: "",
+    address: "",
+    phone_office: "",
+    phone_mobile: "",
+    business_hour: "",
+    weekday_business_hour: "",
+    weekend_business_hour: "",
+    website_url: "",
+    image_path: "",
+    latitude: "",
+    longitude: "",
+    category_id: "",
+    timestamp: "",
+    segment: ""
+};
+this.tt="details";
+//ScreenOrientation.lockOrientation('portrait');
+  }
+
+
+  ionViewDidLoad() {
+this.item=this.navParams.data;
+this.image_path=this.navParams.get("image_path");
+this.title=this.navParams.get("content_name");
+console.log(this.item)
+if(this.item.content_id)
+this.param="category_id="+this.item.category_id+"&content_id="+this.item.content_id;
+else
+this.param="category_id="+this.item.category_id+"&content_id="+this.item.id;
+this.listitem(this.param);
+
+DeviceOrientation.getCurrentHeading().then(
+  (data: DeviceOrientationCompassHeading) => console.log(JSON.stringify(data)),
+  (error: any) => console.log("err"+JSON.stringify(error))
+);
+
+this.events.subscribe('deletion', (data) => {
+    this.navCtrl.pop();
+});
+}
+
+toggleDelete()
+{
+  if(this.isDelete == true)
+  {
+    this.isDelete = false;
+    let toast = this.toastCtrl.create({
+      message: 'Delete mode deactivated',
+      duration: 1500,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+  else
+  {
+    this.isDelete = true;
+    const toast = this.toastCtrl.create({
+      message: 'Delete mode: Select item to delete',
+      duration: 1500,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+}
+
+deleteGal(gal)
+{
+  // console.log(item);
+  const alert = this.alertCtrl.create({
+    title: 'Confirm delete?',
+    message: 'Do you really want to delete this photo?',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Delete',
+        handler: () => {
+          this.deleteImage(gal);
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
+
+deleteVid(vid)
+{
+  // console.log(item);
+  const alert = this.alertCtrl.create({
+    title: 'Confirm delete?',
+    message: 'Do you really want to delete this video?',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Delete',
+        handler: () => {
+          this.delVid(vid);
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
+delVid(item)
+{
+let newparam = "play_id=" + item.play_id + "&content_id=" + item.content_id + "&category_id=" + item.category_id;
+this.ss.dataList(newparam,"deleteContentPlay.php")
+.then((response)=>{
+  alert("Video successfully deleted!");
+  this.getVGallery(this.param);
+})
+.catch((Error)=>{
+  // alert("Insert Data Error");
+})
+}
+
+
+
+deleteImage(galleryItem){
+  let param = this.param + "&image_id="+galleryItem.id;
+
+  let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+  loading.present();
+
+  this.ss.deleteGallery(param, 'deleteContentImage.php')
+    .then((res) => {
+      loading.dismiss();
+      this.deleteRes = res;
+
+      alert("Image successfully deleted!")
+
+      // let alert = this.alertCtrl.create({
+      //     subTitle: this.deleteRes.Response.responseMessage,
+      //     buttons: ['OK']
+      // });
+      // alert.present();
+
+      this.getGallery(this.param);
+
+      console.log('deletesuccess', res);
+    })
+    .catch((err) => {
+      this.deleteRes = err;
+      loading.dismiss();
+
+      let alert = this.alertCtrl.create({
+          subTitle: this.deleteRes.Response.responseMessage,
+          buttons: ['OK']
+      });
+      alert.present();
+
+      console.log('deleteerr', err);
+    });
+}
+
+openEdit(galleryItem){
+  // if(this.adminonly()){
+    let actionSheet = this.actionSheetCtrl.create({
+      buttons: [
+        {
+          text: 'Edit',
+          handler: () => {
+            this.navCtrl.push(UpdategalleryPage, {
+              galleryItem: galleryItem
+            });
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.deleteImage(galleryItem);
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
+  // }else{
+  //
+  // }
+}
+
+/* detail of item */
+
+popOverEdit(myEvent){
+  let popover = this.popoverCtrl.create(PopoverEdit, {
+    detailItem: this.items
+  });
+  popover.present({
+    ev: myEvent
+  });
+}
+
+listitem(param:string)
+{
+
+let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+loading.present();
+this.ss.dataList(param,"getContentDetail.php").then((response)=>{
+this.obj =response;
+this.items=this.obj.Data;
+console.log(this.items);
+loading.dismiss();
+  }).catch((Error)=>{
+console.log("Connection Error"+Error);
+loading.dismiss();
+    });
+//ScreenOrientation.lockOrientation('portrait');
+}
+
+
+
+
+
+
+view_photo(image_path:string,title:string)
+{
+PhotoViewer.show(image_path,title);
+
+}
+
+navigater(address:string)
+{
+
+LaunchNavigator.navigate(address)
+  .then(
+    success => console.log('Launched navigator'),
+    error => console.log('Error launching navigator', error)
+ );
+}
+
+
+navigaterll(address:string)
+{
+
+LaunchNavigator.navigate(address)
+  .then(
+    success => console.log('Launched navigator'),
+    error => console.log('Error launching navigator', error)
+ );
+}
+
+
+
+presentPopover(myEvent,itemid) {
+    let popover = this.popoverCtrl.create(PopoverPage, {id:itemid});
+    popover.present({
+      ev: myEvent
+
+    });
+  }
+
+// sharing link
+
+sharelink(category_id:string,content_id:string)
+{
+  let link = this.ss.ServerURL+"content.php?id="+category_id+"&content_id="+content_id;
+//alert(link);
+
+
+SocialSharing.share(this.title, 'Betweenlifestyle',this.image_path, link).then(() => {
+  // Success!
+}).catch(() => {
+  // Error!
+});
+
+
+
+}
+
+ presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'favourite added successfully',
+      duration: 3000
+    });
+    toast.present();
+  }
+
+
+// favourite save
+
+favo(item:any)
+{
+this.ss.saveDataset(item.id,item);
+this.presentToast();
+if(this.ss.readData("record"))
+{
+let a =this.ss.readData("record")+","+item.id;
+this.ss.addRecordIdentdity("record",a);
+}
+else
+{
+this.ss.addRecordIdentdity("record",item.id);
+}
+console.log(this.dataIdenti())
+}
+
+removfavo(id)
+{
+this.dataidneti_remove(id);
+}
+
+checkfavo(id)
+{
+ if(this.ss.readData(id))
+ {
+return 1;
+ }
+ else
+ {
+return 2;
+ }
+
+}
+
+
+dataIdenti()
+{
+let records:string;
+records=this.ss.readRecordIdentdity("record");
+let ids =records.split(",");
+return ids;
+}
+
+dataidneti_remove(id)
+{
+  let list =this.dataIdenti();
+
+for (var i = 0; i <list.length; i++) {
+
+    if (list[i] === id) {
+      list.splice(i,1);
+
+    }
+}
+this.ss.addRecordIdentdity("record",list.toString());
+this.ss.deleteData(id);
+}
+
+/* detail of item  end*/
+
+/* Image Gallery */
+
+ getGallery(param:string)
+{
+
+  console.log('ppp', param);
+
+let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+
+loading.present();
+this.ss.dataList(param,"getContentGallery.php").then((response)=>{
+this.obj =response;
+console.log('galleryres', response);
+this.gallery=this.obj.Data;
+console.log(this.gallery);
+loading.dismiss();
+  }).catch((Error)=>{
+console.log("Connection Error"+Error);
+loading.dismiss();
+    });
+
+}
+
+getGallery2(){
+
+if(this.item.content_id)
+this.param="category_id="+this.item.category_id+"&content_id="+this.item.content_id;
+else
+this.param="category_id="+this.item.category_id+"&content_id="+this.item.id;
+
+let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+
+loading.present();
+this.ss.dataList(this.param,"getContentGallery.php").then((response)=>{
+this.obj =response;
+console.log('galleryres', response);
+this.gallery=this.obj.Data;
+console.log(this.gallery);
+loading.dismiss();
+  }).catch((Error)=>{
+console.log("Connection Error"+Error);
+loading.dismiss();
+    });
+}
+
+ getVGallery(param:string)
+{
+
+let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+
+loading.present();
+this.ss.dataList(param,"getContentPlay.php").then((response)=>{
+this.obj =response;
+this.vgallery=response;
+this.vgallery=this.obj.Data;
+//console.log(JSON.stringify(this.vgallery));
+loading.dismiss();
+  }).catch((Error)=>{
+console.log("Connection Error"+Error);
+loading.dismiss();
+    });
+
+}
+
+openVideo(v:string)
+{
+  // alert(v);
+  // let test = "http://betweenlifestyle.com/android/upload/fe4373a2273641b4-20160229014152.mp4";
+
+  const browser = this.iab.create(v);
+  // let options: StreamingVideoOptions = {
+  //   successCallback: () => { alert('Video played') },
+  //   errorCallback: (e) => { alert('Error streaming') },
+  //   orientation: 'landscape'
+  // };
+
+  // this.streamingMedia.playVideo(v, options);
+
+  // Playing a video.
+  // this.videoPlayer.play(v).then(() => {
+  //  alert('video completed');
+  // }).catch(err => {
+  //  alert(err);
+  // });
+
+}
+
+openGallery(index:any)
+{
+  this.photos=[];
+for (var key in this.gallery) { this.photos.push(
+{
+  url:this.gallery[key]['src'],
+  // title: "Testing caption with very very very long caption and description and something outside there to test this thing very long sentence i think its okay by nw can already enough long gua"
+  title:this.gallery[key]['sub']
+}
+
+  ) }
+
+//ScreenOrientation.unlockOrientation();
+//ScreenOrientation.unlockOrientation();
+//console.log( this.photos);
+// let profileModal = this.modalCtrl.create(this.gallerypage,{cindex:index,gallery:this.gallery})
+
+console.log(this.photos);
+
+ let profileModal= this.modalCtrl.create(GalleryModal, {
+  photos: this.photos,
+  initialSlide: index,
+   closeIcon: "close",
+
+});
+
+profileModal.present();
+
+ profileModal.onDidDismiss(data => {
+   });
+
+}
+
+
+/* Image Gallery End */
+
+openBanner()
+{
+let profileModal = this.modalCtrl.create(this.banner,{param:"content_id="+this.item.content_id+"&name_list="+this.items.name,page:"insertContentImageBatch.php"})
+profileModal.onDidDismiss(() => {
+  this.getGallery(this.param);
+});
+profileModal.present();
+}
+
+adminonly()
+{
+ if(this.ss.readData("loginSts"))
+ return true;
+ else
+ return false;
+}
+
+// // takeVideo()
+// // {
+// //   let options: CaptureImageOptions = { limit: 1 };
+// //
+// //   this.mediaCapture.captureVideo(options)
+// //   .then((data: MediaFile[]) => {
+// //         let datasource = data[0];
+// //         this.oriname = datasource.name;
+// //
+// //         let toptions: TranscodeOptions = {
+//           fileUri: datasource.fullPath,
+//           outputFileName: "output_" + datasource.name,
+//           outputFileType: this.videoEditor.OutputFileType.MPEG4,
+//           maintainAspectRatio: true,
+//           width: 640,
+//           height: 640,
+//         }
+//
+//         this.videoEditor.transcodeVideo(toptions)
+//         .then((fileUri) => {
+//           alert("Success transcoding " + fileUri);
+//           this.compressed = fileUri;
+//
+//           //cretae thumbsnail
+//           let coptions: CreateThumbnailOptions = {
+//             fileUri: this.compressed,
+//             outputFileName: "thumbsnail_" + this.oriname,
+//             atTime: 2,
+//           }
+//
+//           this.videoEditor.createThumbnail(coptions)
+//           .then((thumburi) => {
+//             this.thumburi = thumburi;
+//
+//             //upload Thumbsnail
+//             let fileTransfer: FileTransferObject = this.transfer.create();
+//             let noptions: FileUploadOptions;
+//             noptions = {
+//               fileName: 'bwls.jpg',
+//               mimeType: 'image/jpeg',
+//               chunkedMode: false,
+//             }
+//
+//             let jpguploadPHP = this.ss.ServerURL + "videoupload.php"
+//             // let loading = this.loadingCtrl.create({
+//             //   content: 'Uploading Thumbsnail...'
+//             // });
+//             // loading.present();
+//
+//             fileTransfer.upload(this.thumburi,encodeURI(jpguploadPHP), noptions)
+//             .then((data) => {
+//               // loading.dismiss();
+//               let datas=JSON.parse(JSON.stringify(data));
+//               this.thumbs_path = datas.response;
+//
+//               //upload video
+//               let fileTransfer: FileTransferObject = this.transfer.create();
+//               let foptions: FileUploadOptions;
+//               foptions = {
+//                 fileName: 'bwls.mp4',
+//                 mimeType: 'video/mp4',
+//                 chunkedMode: false,
+//               }
+//
+//               let videouploadPHP = this.ss.ServerURL + "videoupload.php"
+//               // let loading = this.loadingCtrl.create({
+//               //   content: 'Uploading Video...'
+//               // });
+//               // loading.present();
+//
+//               fileTransfer.upload(this.compressed,encodeURI(videouploadPHP), foptions)
+//               .then((data) => {
+//                 // loading.dismiss();
+//                 let datas=JSON.parse(JSON.stringify(data));
+//                 this.video_path = datas.response;
+//
+//                 let param="id=6&content_id="+this.item.content_id+"&videofile="+this.video_path+"&description=nospacehere";
+//                 // alert(param);
+//
+//                 let newparam = this.param + "&image_path=" + this.thumbs_path + "&video_path=" + this.video_path + "&datetime=&name=&description="
+//
+//                 this.ss.dataList(newparam,"videoaddtest.php")
+//                 .then((response)=>{
+//                   alert("Video successfully uploaded!\n" + this.video_path)
+//                 })
+//                 .catch((Error)=>{
+//                   alert("Connection Error"+Error);
+//                 })
+//                 // success
+//               })
+//               .catch((err) => {
+//                 // loading.dismiss();
+//                 alert("File Transfer\nError Code: " + err.code + "\nError Source: " + err.source + "\n Error Target: " + err.target + "\n Error Exception: " + err.exception);
+//                 // error
+//               })
+//               // success
+//             })
+//             .catch((err) => {
+//               // loading.dismiss();
+//               alert("File Transfer\nError Code: " + err.code + "\nError Source: " + err.source + "\n Error Target: " + err.target + "\n Error Exception: " + err.exception);
+//               // error
+//             })
+//           })
+//           .catch((error) => {
+//             alert("Error!\n" + error);
+//           })
+//         })
+//         .catch((error: any) => {
+//           alert('video transcode error\n' + error)
+//         })
+//     })
+//   .catch((err: CaptureError) => {
+//       alert("Capture Error: " + err);
+//     })
+// }
+
+takeVideo()
+{
+  let options: CaptureImageOptions = { limit: 1 };
+
+  this.mediaCapture.captureVideo(options)
+  .then((data: MediaFile[]) => {
+    let datasource = data[0];
+    this.oriname = datasource.name;
+
+    // alert(datasource);
+    this.compressVideo(datasource);
+  })
+  .catch((err) => {
+    console.log("Capture Error");
+    return;
+  })
+}
+
+compressVideo(datasource)
+{
+  this.loading = this.loadingCtrl.create({
+    content: 'Uploading Video...'
+  });
+  this.loading.present();
+
+  let options: TranscodeOptions = {
+  fileUri: datasource.fullPath,
+  outputFileName: "output_" + datasource.name,
+  outputFileType: this.videoEditor.OutputFileType.MPEG4,
+  maintainAspectRatio: true,
+  width: 640,
+  height: 640,
+  }
+
+  this.videoEditor.transcodeVideo(options)
+  .then((fileUri) => {
+    // alert(fileUri);
+    this.createThumb(fileUri);
+  })
+  .catch((err) => {
+    alert("Compress Error");
+  })
+}
+
+createThumb(fileUri)
+{
+  let options: CreateThumbnailOptions = {
+    fileUri: fileUri,
+    outputFileName: "thumbsnail_" + this.oriname,
+    atTime: 2,
+  }
+
+  this.videoEditor.createThumbnail(options)
+  .then((thumbUri) => {
+    // alert(thumbUri);
+    this.uploadThumb(fileUri, thumbUri);
+  })
+  .catch((err) => {
+    alert("Create Thumb Error!");
+  })
+}
+
+uploadThumb(fileUri, thumbUri)
+{
+  //upload Thumbsnail
+  let fileTransfer: FileTransferObject = this.transfer.create();
+  let options: FileUploadOptions;
+  options = {
+  fileName: 'bwls.jpg',
+  mimeType: 'image/jpeg',
+  chunkedMode: false,
+  }
+
+  let uploadPHP = this.ss.ServerURL + "videoupload.php"
+
+  fileTransfer.upload(thumbUri,encodeURI(uploadPHP), options)
+  .then((data) => {
+  let datas=JSON.parse(JSON.stringify(data));
+  let thumbPath = datas.response;
+
+  // alert(thumbPath);
+  this.uploadVideo(fileUri, thumbPath);
+  })
+  .catch((err) => {
+    alert("Upload Thumb Error!");
+  })
+}
+
+uploadVideo(fileUri, thumbPath)
+{
+  let fileTransfer: FileTransferObject = this.transfer.create();
+  let options: FileUploadOptions;
+  options = {
+    fileName: 'bwls.mp4',
+    mimeType: 'video/mp4',
+    chunkedMode: false,
+  }
+
+  let uploadPHP = this.ss.ServerURL + "videoupload.php"
+
+  fileTransfer.upload(fileUri,encodeURI(uploadPHP), options)
+  .then((data) => {
+  let datas=JSON.parse(JSON.stringify(data));
+  let videoPath = datas.response;
+
+  // alert(videoPath);
+  this.insertData(videoPath, thumbPath);
+})
+  .catch((err) => {
+    alert("Upload Video Error!");
+  })
+}
+
+insertData(videoPath, thumbPath)
+{
+  let newparam = this.param + "&image_path=" + thumbPath + "&video_path=" + videoPath + "&datetime=&name=&description="
+
+  this.ss.dataList(newparam,"videoaddtest.php")
+  .then((response)=>{
+    this.loading.dismiss();
+    alert("Video successfully uploaded!\n")
+  })
+  .catch((Error)=>{
+    alert("Insert Data Error");
+  })
+}
+
+
+
+
+checkme(sts:string)
+{
+if( sts=="" || sts=="-1.0000000" || sts == "0.0000000"){
+  return false;
+}else{
+  return true;
+}
+}
+
+open_url(link)
+{
+  let url = "http://" + link;
+  window.open(url);
+}
+
+}

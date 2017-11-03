@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-video-player",
+        "scope": null,
+        "escapedName": "cordova-plugin-video-player",
+        "name": "cordova-plugin-video-player",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\131216\\Crappy\\BLS\\node_modules"
+    ]
+  ],
+  "_from": "cordova-plugin-video-player@latest",
+  "_id": "cordova-plugin-video-player@1.0.1",
+  "_inCache": true,
+  "_location": "/cordova-plugin-video-player",
+  "_nodeVersion": "6.10.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-video-player-1.0.1.tgz_1499789147525_0.036127605475485325"
+  },
+  "_npmUser": {
+    "name": "moust",
+    "email": "qaupetit@gmail.com"
+  },
+  "_npmVersion": "5.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-video-player",
+    "scope": null,
+    "escapedName": "cordova-plugin-video-player",
+    "name": "cordova-plugin-video-player",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-video-player/-/cordova-plugin-video-player-1.0.1.tgz",
+  "_shasum": "3dbc2a14e60eadb1b35e491f94ead2fea068d059",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-video-player",
+  "_where": "C:\\Users\\131216\\Crappy\\BLS\\node_modules",
+  "author": {
+    "name": "Quentin Aupetit"
+  },
+  "bugs": {
+    "url": "https://github.com/moust/cordova-plugin-videoplayer/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-video-player",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "dependencies": {},
+  "description": "A Codova plugin that simply allows you to immediately play a video in fullscreen mode.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-cK9oTa/N/kp+I1W6BYTW/N0h1dNuWT/m+PpwDG6K2UpeUCOsy2ynrzz9e6fOn1vCQ85koQzL6Pve0XNzupAVew==",
+    "shasum": "3dbc2a14e60eadb1b35e491f94ead2fea068d059",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-video-player/-/cordova-plugin-video-player-1.0.1.tgz"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "gitHead": "c25b83bc95346741f65923e15060c4516267622b",
+  "homepage": "https://github.com/moust/cordova-plugin-videoplayer#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova",
+    "video",
+    "player",
+    "fullscreen"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "moust",
+      "email": "qaupetit@gmail.com"
+    }
+  ],
+  "name": "cordova-plugin-video-player",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moust/cordova-plugin-videoplayer.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1"
+}
