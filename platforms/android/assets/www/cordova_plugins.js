@@ -17,14 +17,6 @@ module.exports = [
         ]
     },
     {
-        "id": "com.moust.cordova.videoplayer.VideoPlayer",
-        "file": "plugins/com.moust.cordova.videoplayer/www/videoplayer.js",
-        "pluginId": "com.moust.cordova.videoplayer",
-        "clobbers": [
-            "VideoPlayer"
-        ]
-    },
-    {
         "id": "cordova-base64-to-gallery.object.assign-polyfill",
         "file": "plugins/cordova-base64-to-gallery/www/object.assign-polyfill.js",
         "pluginId": "cordova-base64-to-gallery"
@@ -524,14 +516,12 @@ module.exports.metadata =
 {
     "com-sarriaroman-photoviewer": "1.1.10",
     "com.hutchind.cordova.plugins.streamingmedia": "0.1.4",
-    "com.moust.cordova.videoplayer": "1.0.1",
     "cordova-base64-to-gallery": "4.1.2",
     "cordova-plugin-actionsheet": "2.3.3",
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-browsertab": "0.1.0",
     "cordova-plugin-camera": "2.3.1",
     "cordova-plugin-console": "1.0.5",
-    "cordova-plugin-crosswalk-webview": "2.3.0",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-device-orientation": "1.0.5",
     "cordova-plugin-file": "4.3.1",

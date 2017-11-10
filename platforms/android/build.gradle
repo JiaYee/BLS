@@ -89,7 +89,6 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "com-sarriaroman-photoviewer/placediary-photoviewer.gradle"
-apply from: "cordova-plugin-crosswalk-webview/placediary-xwalk.gradle"
 apply from: "cordova-plugin-video-editor/placediary-build.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 

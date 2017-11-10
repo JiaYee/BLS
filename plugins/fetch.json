@@ -127,14 +127,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "com.moust.cordova.videoplayer": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-video-player"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "com.hutchind.cordova.plugins.streamingmedia": {
     "source": {
       "type": "registry",
@@ -211,14 +203,6 @@
     "source": {
       "type": "registry",
       "id": "info.protonet.imageresizer"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-crosswalk-webview": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-crosswalk-webview@2.3.0"
     },
     "is_top_level": true,
     "variables": {}

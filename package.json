@@ -37,11 +37,9 @@
     "ajv": "5.0.0",
     "com-sarriaroman-photoviewer": "~1.1.10",
     "com.hutchind.cordova.plugins.streamingmedia": "~0.1.4",
-    "com.moust.cordova.videoplayer": "~1.0.1",
     "cordova-android": "^6.2.3",
     "cordova-plugin-camera": "~2.3.1",
     "cordova-plugin-console": "1.0.5",
-    "cordova-plugin-crosswalk-webview": "^2.3.0",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-file": "~4.3.1",
     "cordova-plugin-file-transfer": "~1.6.1",
@@ -72,7 +70,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
-    "ionic": "3.16.0",
+    "ionic": "3.18.0",
     "typescript": "2.4.0"
   },
   "cordovaPlugins": [
@@ -105,14 +103,6 @@
       "cordova-plugin-media-capture": {},
       "cordova-plugin-camera": {},
       "com.hutchind.cordova.plugins.streamingmedia": {},
-      "com.moust.cordova.videoplayer": {},
-      "cordova-plugin-crosswalk-webview": {
-        "XWALK_VERSION": "23+",
-        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-        "XWALK_MODE": "embedded",
-        "XWALK_MULTIPLEAPK": "true"
-      },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-video-editor": {}
     },
