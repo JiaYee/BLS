@@ -37,8 +37,6 @@ import { FilePath } from '@ionic-native/file-path';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { VideoEditor } from '@ionic-native/video-editor';
-// import { GalleryModal } from 'ionic-gallery-modal';
-// import { ZoomableImage } from 'ionic-gallery-modal';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { AddcategoryPage } from '../pages/addcategory/addcategory';
 import { AddcontentPage } from '../pages/addcontent/addcontent';
@@ -126,10 +124,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     UpdategalleryPage
   ],
   providers: [
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: ionicGalleryModal.GalleryModalHammerConfig,
-    },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Servercon,
     PhotoViewer,

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {  ViewController, PopoverController, NavController, NavParams,LoadingController, Events, AlertController } from 'ionic-angular';
+import {  ViewController, PopoverController, NavController, NavParams,LoadingController, Events, AlertController, ActionSheetController } from 'ionic-angular';
 import{Servercon} from '../../providers/servercon'
 import{DetailPage} from '../detail/detail'
+import { UpdatecontentPage } from '../updatecontent/updatecontent';
 
 @Component({
   template: `
@@ -49,7 +50,9 @@ showme:boolean;
 limititem:any;
 papa:any;
 code:number = 0;
-  constructor(public alertCtrl: AlertController, public events: Events, public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public ss:Servercon) {
+
+locations: any;
+  constructor(public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, public events: Events, public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public ss:Servercon) {
 
     this.showme=false;
     this.start=10;
@@ -65,47 +68,95 @@ this.title=this.navParams.get("name");
 console.log(this.navParams.data);
 this.listitem(param);
 this.subFilter();
+// this.getLocation();
 
   }
 
-//   deleteItem(item)
-//   {
-//     const alert = this.alertCtrl.create({
-//       title: 'Confirm delete?',
-//       message: 'Do you really want to delete this item?',
-//       buttons: [
-//         {
-//           text: 'Cancel',
-//           role: 'cancel',
-//           handler: () => {
-//             console.log('Cancel clicked');
-//           }
-//         },
-//         {
-//           text: 'Delete',
-//           handler: () => {
-//             this.delContent(item);
-//           }
-//         }
-//       ]
-//     });
-//     alert.present();
-//   }
-//
-// delContent(item)
-// {
-//   console.log(item.content_id);
-//   console.log(item.category_id);
-//   let newparam = "content_id=" + item.content_id + "&category_id=" + item.category_id;
-//   this.ss.dataList(newparam,"deleteContent.php")
-//   .then((response)=>{
-//     alert("Item successfully deleted!")
-//     this.ionViewDidLoad();
-//   })
-//   .catch((Error)=>{
-//     // alert("Insert Data Error");
-//   })
-// }
+  presentAS(item)
+  {
+    let actionSheet = this.actionSheetCtrl.create({
+      buttons: [
+        {
+          text: 'Edit',
+          handler: () => {
+            this.editSublist(item);
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.delSublist(item);
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
+  }
+
+  delSublist(item)
+  {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm delete?',
+      message: 'Do you really want to delete this item?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.delContent(item);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+
+delContent(item)
+{
+  console.log(item);
+  let newparam = "content_id=" + item.content_id + "&category_id=" + item.category_id;
+  this.ss.dataList(newparam,"deleteContent.php")
+  .then((response)=>{
+    alert("Item successfully deleted!");
+    this.ionViewDidLoad();
+  })
+  .catch((Error)=>{
+    // alert("Insert Data Error");
+  })
+}
+
+  editSublist(item) {
+    this.navCtrl.push(UpdatecontentPage, {
+      detailItem: item
+    });
+  }
+
+  getLocation()
+  {
+    let param = "main_category_id=" + this.navParams.get("id");
+    console.log("Sending" + param)
+    let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+    loading.present();
+     this.ss.dataList(param,"getSubDatabyMainID.php").then((response)=>{
+       this.locations = response;
+       this.locations = this.locations.Data;
+    loading.dismiss();
+      }).catch((Error)=>{
+    console.log("Connection Error"+Error);
+    loading.dismiss();
+        });
+  }
+
 
   subFilter()
   {
@@ -237,8 +288,6 @@ return myStyles;
 
 openPage(item)
 {
-
-
   this.navCtrl.push(DetailPage,item);
 }
 

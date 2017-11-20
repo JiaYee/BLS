@@ -9,20 +9,20 @@
       </button>
  </ion-buttons>
 -->
-    <ion-buttons *ngIf="adminonly()" end>
+    <!-- <ion-buttons *ngIf="adminonly()" end>
       <button *ngIf="!isDelete" ion-button (click)="toggleDelete()">
         <ion-icon name="trash"></ion-icon>
       </button>
       <button *ngIf="isDelete" ion-button (click)="toggleDelete()">
         <ion-icon color="danger" name="trash"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
 
-    <ion-buttons end>
+    <!-- <ion-buttons end>
       <button *ngIf="adminonly()" ion-button (click)="popOverEdit($event)">
         <ion-icon name="more"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
  <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="tt" mode="ios">
@@ -42,6 +42,11 @@
 
 
 <ion-content class="bgcolor">
+
+<!-- <ion-fab left bottom>
+  <button *ngIf="!isDelete" (click)="toggleDelete()" ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>
+  <button *ngIf="isDelete" (click)="toggleDelete()" ion-fab color="light"><ion-icon name="trash"></ion-icon></button>
+</ion-fab> -->
 
 <div [ngSwitch]="tt">
 
@@ -132,18 +137,18 @@
 
     <ion-list *ngSwitchCase="'gallery'" >
 
-<ion-grid *ngIf="!isDelete">
+<!-- <ion-grid *ngIf="!isDelete">
   <ion-row wrap>
     <ion-col col-4 *ngFor="let pic of gallery ; let i = index">
         <img [src]="pic.tmp" width="400px" height="75px" (click)="openGallery(i)">
     </ion-col>
   </ion-row>
-</ion-grid>
+</ion-grid> -->
 
-<ion-grid *ngIf="isDelete">
+<ion-grid>
   <ion-row wrap>
     <ion-col col-4 *ngFor="let pic of gallery ; let i = index">
-        <img [src]="pic.tmp" width="400px" height="75px" (click)="deleteGal(pic)">
+        <img [src]="pic.tmp" width="400px" height="75px" (press)="openEdit(pic)" (click)="openGallery(i)">
     </ion-col>
   </ion-row>
 </ion-grid>
@@ -158,24 +163,11 @@
        </ion-list>
 
     <ion-list *ngSwitchCase="'Videos'" >
-      <ion-grid *ngIf="isDelete">
+      <ion-grid>
         <ion-row wrap>
           <ion-col col-4 *ngFor="let vid of vgallery" >
       <div >
-      <img [src]="vid.image_path" width="400px" height="75px"  (click)="deleteVid(vid)">
-      </div>
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-
-
-      <ion-grid *ngIf="!isDelete">
-        <ion-row wrap>
-          <ion-col col-4 *ngFor="let vid of vgallery" >
-      <div >
-      <img [src]="vid.image_path" width="400px" height="75px" (click)="openVideo(vid.video_path)">
+      <img [src]="vid.image_path" width="400px" height="75px" (click)="openVideo(vid.video_path)" (press)="deleteVid(vid)">
       </div>
 
           </ion-col>
@@ -204,7 +196,7 @@
 <button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>
     <ion-fab-list side="top">
        <button *ngIf="adminonly()"  ion-fab color="light" (click)="openBanner()"><ion-icon name="image"></ion-icon></button>
-     <button *ngIf="adminonly()"  ion-fab color="light" (click)="takeVideo()"><ion-icon name="videocam"></ion-icon></button>
+     <button *ngIf="adminonly()"  ion-fab color="light" (click)="promptVideo()"><ion-icon name="videocam"></ion-icon></button>
 
      <button ion-fab color="light" (click)="sharelink(items.category_id,items.id)"><ion-icon name="share"></ion-icon></button>
 

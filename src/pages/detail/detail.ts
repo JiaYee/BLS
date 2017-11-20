@@ -3,8 +3,6 @@ import { NavController, NavParams,LoadingController ,AlertController, PopoverCon
 ActionSheetController,ModalController,Platform, Events} from 'ionic-angular';
 import { PhotoViewer ,LaunchNavigator,SocialSharing} from 'ionic-native';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-// import { PhotoViewer ,LaunchNavigator,SocialSharing,ScreenOrientation } from 'ionic-native';
-// import { Transfer} from 'ionic-native';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
@@ -64,7 +62,7 @@ this.id = this.navParams.get("id");
 
  presentToast() {
     let toast = this.toastCtrl.create({
-      message: 'added successfully',
+      message: 'Added Successfully',
       duration: 3000
     });
     toast.present();
@@ -127,50 +125,7 @@ export class PopoverEdit {
     this.getDetailItem = this.navParams.get('detailItem');
   }
 
-  deleteItem()
-  {
-    const alert = this.alertCtrl.create({
-      title: 'Confirm delete?',
-      message: 'Do you really want to delete this item?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Delete',
-          handler: () => {
-            this.delContent();
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
 
-delContent()
-{
-  let newparam = "content_id=" + this.getDetailItem.id + "&category_id=" + this.getDetailItem.category_id;
-  this.ss.dataList(newparam,"deleteContent.php")
-  .then((response)=>{
-    alert("Item successfully deleted!")
-    this.events.publish("deletion", "true");
-  })
-  .catch((Error)=>{
-    // alert("Insert Data Error");
-  })
-}
-
-  close() {
-    this.viewCtrl.dismiss().then(()=> {
-      this.navCtrl.push(UpdatecontentPage, {
-        detailItem: this.getDetailItem
-      });
-    });
-  }
 }
 // End of popoveredit component
 
@@ -269,44 +224,6 @@ DeviceOrientation.getCurrentHeading().then(
   (data: DeviceOrientationCompassHeading) => console.log(JSON.stringify(data)),
   (error: any) => console.log("err"+JSON.stringify(error))
 );
-
-this.events.subscribe('deletion', (data) => {
-    this.navCtrl.pop();
-});
-}
-
-toggleDelete()
-{
-  if(this.isDelete == true)
-  {
-    this.isDelete = false;
-    let toast = this.toastCtrl.create({
-      message: 'Delete mode deactivated',
-      duration: 1500,
-      position: 'top'
-    });
-
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-
-    toast.present();
-  }
-  else
-  {
-    this.isDelete = true;
-    const toast = this.toastCtrl.create({
-      message: 'Delete mode: Select item to delete',
-      duration: 1500,
-      position: 'top'
-    });
-
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-
-    toast.present();
-  }
 }
 
 deleteGal(gal)
@@ -389,13 +306,6 @@ deleteImage(galleryItem){
       this.deleteRes = res;
 
       alert("Image successfully deleted!")
-
-      // let alert = this.alertCtrl.create({
-      //     subTitle: this.deleteRes.Response.responseMessage,
-      //     buttons: ['OK']
-      // });
-      // alert.present();
-
       this.getGallery(this.param);
 
       console.log('deletesuccess', res);
@@ -436,9 +346,6 @@ openEdit(galleryItem){
     });
 
     actionSheet.present();
-  // }else{
-  //
-  // }
 }
 
 /* detail of item */
@@ -748,121 +655,48 @@ adminonly()
  return false;
 }
 
-// // takeVideo()
-// // {
-// //   let options: CaptureImageOptions = { limit: 1 };
-// //
-// //   this.mediaCapture.captureVideo(options)
-// //   .then((data: MediaFile[]) => {
-// //         let datasource = data[0];
-// //         this.oriname = datasource.name;
-// //
-// //         let toptions: TranscodeOptions = {
-//           fileUri: datasource.fullPath,
-//           outputFileName: "output_" + datasource.name,
-//           outputFileType: this.videoEditor.OutputFileType.MPEG4,
-//           maintainAspectRatio: true,
-//           width: 640,
-//           height: 640,
-//         }
-//
-//         this.videoEditor.transcodeVideo(toptions)
-//         .then((fileUri) => {
-//           alert("Success transcoding " + fileUri);
-//           this.compressed = fileUri;
-//
-//           //cretae thumbsnail
-//           let coptions: CreateThumbnailOptions = {
-//             fileUri: this.compressed,
-//             outputFileName: "thumbsnail_" + this.oriname,
-//             atTime: 2,
-//           }
-//
-//           this.videoEditor.createThumbnail(coptions)
-//           .then((thumburi) => {
-//             this.thumburi = thumburi;
-//
-//             //upload Thumbsnail
-//             let fileTransfer: FileTransferObject = this.transfer.create();
-//             let noptions: FileUploadOptions;
-//             noptions = {
-//               fileName: 'bwls.jpg',
-//               mimeType: 'image/jpeg',
-//               chunkedMode: false,
-//             }
-//
-//             let jpguploadPHP = this.ss.ServerURL + "videoupload.php"
-//             // let loading = this.loadingCtrl.create({
-//             //   content: 'Uploading Thumbsnail...'
-//             // });
-//             // loading.present();
-//
-//             fileTransfer.upload(this.thumburi,encodeURI(jpguploadPHP), noptions)
-//             .then((data) => {
-//               // loading.dismiss();
-//               let datas=JSON.parse(JSON.stringify(data));
-//               this.thumbs_path = datas.response;
-//
-//               //upload video
-//               let fileTransfer: FileTransferObject = this.transfer.create();
-//               let foptions: FileUploadOptions;
-//               foptions = {
-//                 fileName: 'bwls.mp4',
-//                 mimeType: 'video/mp4',
-//                 chunkedMode: false,
-//               }
-//
-//               let videouploadPHP = this.ss.ServerURL + "videoupload.php"
-//               // let loading = this.loadingCtrl.create({
-//               //   content: 'Uploading Video...'
-//               // });
-//               // loading.present();
-//
-//               fileTransfer.upload(this.compressed,encodeURI(videouploadPHP), foptions)
-//               .then((data) => {
-//                 // loading.dismiss();
-//                 let datas=JSON.parse(JSON.stringify(data));
-//                 this.video_path = datas.response;
-//
-//                 let param="id=6&content_id="+this.item.content_id+"&videofile="+this.video_path+"&description=nospacehere";
-//                 // alert(param);
-//
-//                 let newparam = this.param + "&image_path=" + this.thumbs_path + "&video_path=" + this.video_path + "&datetime=&name=&description="
-//
-//                 this.ss.dataList(newparam,"videoaddtest.php")
-//                 .then((response)=>{
-//                   alert("Video successfully uploaded!\n" + this.video_path)
-//                 })
-//                 .catch((Error)=>{
-//                   alert("Connection Error"+Error);
-//                 })
-//                 // success
-//               })
-//               .catch((err) => {
-//                 // loading.dismiss();
-//                 alert("File Transfer\nError Code: " + err.code + "\nError Source: " + err.source + "\n Error Target: " + err.target + "\n Error Exception: " + err.exception);
-//                 // error
-//               })
-//               // success
-//             })
-//             .catch((err) => {
-//               // loading.dismiss();
-//               alert("File Transfer\nError Code: " + err.code + "\nError Source: " + err.source + "\n Error Target: " + err.target + "\n Error Exception: " + err.exception);
-//               // error
-//             })
-//           })
-//           .catch((error) => {
-//             alert("Error!\n" + error);
-//           })
-//         })
-//         .catch((error: any) => {
-//           alert('video transcode error\n' + error)
-//         })
-//     })
-//   .catch((err: CaptureError) => {
-//       alert("Capture Error: " + err);
-//     })
-// }
+promptVideo()
+{
+  let actionSheet = this.actionSheetCtrl.create({
+    title: 'Upload Video',
+    buttons: [
+      {
+        text: 'Camera',
+        icon: 'camera',
+        handler: () => {
+        this.takeVideo();
+        }
+      },
+      {
+        text: 'Browser',
+       icon:'image',
+        handler: () => {
+          this.browseVideo();
+        }
+      },
+    ]
+  });
+
+  actionSheet.present();
+}
+
+browseVideo()
+{
+  let options: CameraOptions = {
+    quality: 100,
+    destinationType: 1,
+    sourceType: 2,
+    mediaType: 1,
+  }
+
+  this.camera.getPicture(options).then((imageData) => {
+    let fullPath = "file://" + imageData;
+    this.oriname = imageData.split(/[/ ]+/).pop();
+    this.compressVideo(fullPath);
+  }, (err) => {
+   // Handle error
+  });
+}
 
 takeVideo()
 {
@@ -872,9 +706,7 @@ takeVideo()
   .then((data: MediaFile[]) => {
     let datasource = data[0];
     this.oriname = datasource.name;
-
-    // alert(datasource);
-    this.compressVideo(datasource);
+    this.compressVideo(datasource.fullPath);
   })
   .catch((err) => {
     console.log("Capture Error");
@@ -882,7 +714,7 @@ takeVideo()
   })
 }
 
-compressVideo(datasource)
+compressVideo(fullPath)
 {
   this.loading = this.loadingCtrl.create({
     content: 'Uploading Video...'
@@ -890,8 +722,8 @@ compressVideo(datasource)
   this.loading.present();
 
   let options: TranscodeOptions = {
-  fileUri: datasource.fullPath,
-  outputFileName: "output_" + datasource.name,
+  fileUri: fullPath,
+  outputFileName: "output_" + this.oriname,
   outputFileType: this.videoEditor.OutputFileType.MPEG4,
   maintainAspectRatio: true,
   width: 640,
@@ -985,6 +817,7 @@ insertData(videoPath, thumbPath)
   .then((response)=>{
     this.loading.dismiss();
     alert("Video successfully uploaded!\n")
+    this.getVGallery(this.param);
   })
   .catch((Error)=>{
     alert("Insert Data Error");

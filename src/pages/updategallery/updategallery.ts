@@ -27,7 +27,7 @@ export class UpdategalleryPage {
   imageId: any;
 
   constructor(
-      public navCtrl: NavController, 
+      public navCtrl: NavController,
       public navParams: NavParams,
       public actionSheetCtrl: ActionSheetController,
       public ss:Servercon,
@@ -57,8 +57,8 @@ this.param=this.navParams.get("param")+"&";
  this.status=false;
 
  console.log('getparam', this.param);
-} 
- 
+}
+
 }
 
 
@@ -67,7 +67,7 @@ this.param=this.navParams.get("param")+"&";
         this.imgFileURL = this.ss.fileURL + imgName;
 
         let param = "image_id="+this.imageId+"&name="+''+"&description="+this.desc+"&image_path="+this.imgFileURL;
-        
+
         let loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
@@ -135,7 +135,7 @@ this.param=this.navParams.get("param")+"&";
     loading.present();
     this.ss.dataList(this.param,this.page).then((response)=>{
         console.log('res', response);
-        loading.dismiss();    
+        loading.dismiss();
         this.presentToast("uploaded successfully");
 
       }).catch((Error)=>{
@@ -143,7 +143,7 @@ this.param=this.navParams.get("param")+"&";
           this.presentToast(Error);
 
           loading.dismiss();
-        }); 
+        });
   }
 
   uploadFile(imgurl){
@@ -176,7 +176,7 @@ this.param=this.navParams.get("param")+"&";
               loading.dismiss();
               console.log('aaa', data);
               this.updateContentImg(imgurl);
-          }, 
+          },
           (err) => {
               loading.dismiss();
               console.log('err', err);
@@ -200,7 +200,7 @@ this.param=this.navParams.get("param")+"&";
     }, (err) => {
         console.log(err);
     });
-  
+
 }
 
 
@@ -217,7 +217,7 @@ browsePicture()
 
             let imageSplit = imageData;
             imageSplit = imageSplit.substring(0, imageSplit.indexOf('?'));
-            
+
             this.imageUrl = imageSplit.replace('file://','');
             this.imageName = imageSplit.substring(imageData.lastIndexOf("/") + 1);
 
@@ -225,7 +225,6 @@ browsePicture()
             console.log('2', this.imageUrl);
             console.log('3', this.imageName);
         // this.camer_upload();
-
         }, (err) => {
             console.log(err);
         });
@@ -251,7 +250,6 @@ upload(){
         console.log("err"+ JSON.stringify(err)+this.ss.ServerURL+"upload.php")
    })
 //fileTransfer.abort();
-
 }
 
 camer_upload(){
@@ -262,7 +260,7 @@ camer_upload(){
   options = {
      fileKey: 'file',
      fileName: 'bwlf.jpg',
-    
+
   }
   fileTransfer.upload(this.image_path,this.ss.ServerURL+"upload.php" , options)
    .then((data) => {
@@ -273,7 +271,6 @@ camer_upload(){
         console.log("err"+ JSON.stringify(err)+this.ss.ServerURL+"upload.php")
    })
 //fileTransfer.abort();
-
 }
 
  presentToast(info:string) {
@@ -311,7 +308,7 @@ presentActionSheet() {
        },
        {
          text: 'Browser',
-        icon:'image', 
+        icon:'image',
          handler: () => {
            this.browsePicture();
          }
@@ -334,7 +331,7 @@ cancel()
 {
   if(this.status)
   {
- this.navCtrl.setRoot(this.retrunPage); 
+ this.navCtrl.setRoot(this.retrunPage);
 }
 else
 {
