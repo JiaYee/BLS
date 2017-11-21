@@ -7,16 +7,20 @@ import { UpdatecontentPage } from '../updatecontent/updatecontent';
 @Component({
   template: `
      <ion-list color="light">
+     <ion-item (click)="filterSub(99)">
+     <img src="assets/eye.png" item-left width="20%" height="20%"/>
+             所有
+    </ion-item>
        <ion-item (click)="filterSub(0)">
-       <img src="assets/foodicon.png" item-left width="27px" height="27px"/>
+       <img src="assets/foodicon1.png" item-left width="27px" height="27px"/>
                食尚
       </ion-item>
       <ion-item (click)="filterSub(2)">
-      <img src="assets/familyicon.png" item-left width="27px" height="27px"/>
+      <img src="assets/familyicon1.png" item-left width="27px" height="27px"/>
       親子活动
       </ion-item>
       <ion-item (click)="filterSub(1)">
-      <img src="assets/globe.png" item-left width="27px" height="27px"/>
+      <img src="assets/globe1.png" item-left width="27px" height="27px"/>
               發現之旅
      </ion-item>
      </ion-list>
@@ -50,6 +54,8 @@ showme:boolean;
 limititem:any;
 papa:any;
 code:number = 0;
+
+obj: any;
 
 locations: any;
   constructor(public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, public events: Events, public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public ss:Servercon) {
@@ -134,9 +140,21 @@ delContent(item)
 }
 
   editSublist(item) {
-    this.navCtrl.push(UpdatecontentPage, {
-      detailItem: item
-    });
+    let param = "category_id="+item.category_id+"&content_id="+item.content_id;
+    let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+    loading.present();
+    this.ss.dataList(param,"getContentDetail.php").then((response)=>{
+        this.obj = response;
+        let detailItem = this.obj.Data;
+        loading.dismiss();
+        this.navCtrl.push(UpdatecontentPage, {detailItem});
+      }).catch((Error)=>{
+        console.log("Connection Error"+Error);
+        loading.dismiss();
+        });
+
   }
 
   getLocation()
@@ -161,9 +179,16 @@ delContent(item)
   subFilter()
   {
     this.events.subscribe("filtercode", (code) => {
-      this.code = code;
-      this.papa = "id="+this.navParams.get("id")+"&subid=0&start=0&end=10&type=" + code;
-      this.filteritem(this.papa);
+      if(code == 99)
+      {
+        this.ionViewDidLoad();
+      }
+      else
+      {
+        this.code = code;
+        this.papa = "id="+this.navParams.get("id")+"&subid=0&start=0&end=10&type=" + code;
+        this.filteritem(this.papa);
+      }
     })
 
     this.events.subscribe("deletion", (data) => {

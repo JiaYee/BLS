@@ -177,13 +177,11 @@ export class UpdatecontentPage {
         });
 
         //fileTransfer.abort();
-
         // this.ss.uploadFile(imgurl, 'uploadFile.php').then(
         //     (res) => {
         //         console.log('res', res);
         //         this.uploadRes = res;
         //         let responseCode = this.uploadRes.Response.responseCode;
-
         //         if(responseCode == 200){
         //             this.insertContent(this.imageUrl, this.retrieveForm);
         //         }
@@ -257,10 +255,8 @@ export class UpdatecontentPage {
             // console.log('qqq', this.image_path);
             // this.imageUrl = imageData.replace('file://','');
             // this.imageName = imageData.substring(imageData.lastIndexOf("/") + 1);
-
             // console.log('222', imageData.replace('file://',''));
             // console.log('sub', imageData.substring(imageData.lastIndexOf("/") + 1));
-
             if (this.platform.is('android') && sourceType === Camera.PictureSourceType.CAMERA) {
             FilePath.resolveNativePath(imageData)
                 .then(filePath => {
@@ -280,66 +276,6 @@ export class UpdatecontentPage {
         }, (err) => {
             console.log(err);
         });
-    }
-
-    imgPick(){
-
-      let options: ImagePickerOptions = {
-        maximumImagesCount: 1
-      }
-
-      this.imagePicker.getPictures(options).then((results) => {
-            let res = results[0];
-            if (this.platform.is('android')) {
-              FilePath.resolveNativePath(res)
-              .then(filePath => {
-                console.log('filepath', filePath);
-                this.resizeImage(filePath);
-                this.resolvePath = filePath;
-                let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-                console.log('currentfilename', currentName );
-                console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-                this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-              });
-            } else {
-              var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-              var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-              this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-            }
-      }, (err) => { });
-
-    }
-
-
-
-    chooseFile(sourceType){
-        FileChooser.open().then(
-            (res) => {
-                console.log('choosepath', res);
-
-                if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
-                FilePath.resolveNativePath(res)
-                    .then(filePath => {
-                        console.log('filepath', filePath);
-                        this.resizeImage(filePath);
-                        this.resolvePath = filePath;
-                        let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                        let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-                        console.log('currentfilename', currentName );
-                        console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-                        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-                    });
-                } else {
-                    var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-                    var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-                    this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-                }
-            },
-            (err) => {
-                console.log('choosepatherr', err);
-            }
-        );
     }
 
     resizeImage(uri){
@@ -376,14 +312,11 @@ export class UpdatecontentPage {
 
             // let imageSplit = imageData;
             // imageSplit = imageSplit.substring(0, imageSplit.indexOf('?'));
-
             // this.imageUrl = imageSplit.replace('file://','');
             // this.imageName = imageSplit.substring(imageData.lastIndexOf("/") + 1);
-
             // console.log('1', imageSplit);
             // console.log('2', this.imageUrl);
             // console.log('3', this.imageName);
-
             if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
             FilePath.resolveNativePath(imageData)
                 .then(filePath => {
@@ -425,8 +358,7 @@ export class UpdatecontentPage {
                     text: 'Browser',
                     icon:'image',
                     handler: () => {
-                      this.imgPick();
-                    // this.chooseFile(Camera.PictureSourceType.PHOTOLIBRARY);
+                    this.browsePicture(Camera.PictureSourceType.PHOTOLIBRARY);
                     }
                 },
                 {
@@ -448,6 +380,7 @@ export class UpdatecontentPage {
     }
 
     updateExistContent(imageUrl, form){
+
         this.imgFileURL = imageUrl
 
         console.log('sub', this.imgFileURL);

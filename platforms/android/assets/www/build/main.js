@@ -83,7 +83,7 @@ var BannersPage = (function () {
     BannersPage.prototype.uploadFile = function (imgurl) {
         var _this = this;
         console.log('enter');
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* Transfer */]();
         console.log('enter', imgurl);
         // File for Upload
         var targetPath = this.pathForImage(this.lastImage);
@@ -158,7 +158,7 @@ var BannersPage = (function () {
             // console.log('222', imageData.replace('file://',''));
             // console.log('sub', imageData.substring(imageData.lastIndexOf("/") + 1));
             if (_this.platform.is('android') && sourceType === _this.camera.PictureSourceType.CAMERA) {
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -185,7 +185,7 @@ var BannersPage = (function () {
             width: 800,
             height: 800
         };
-        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["g" /* ImageResizer */].resize(options).then(function (res) {
+        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["f" /* ImageResizer */].resize(options).then(function (res) {
             console.log('resizepath', res);
             _this.image_path = res;
         }, function (err) {
@@ -205,7 +205,7 @@ var BannersPage = (function () {
         this.camera.getPicture(options).then(function (imageData) {
             _this.image_path = imageData;
             if (_this.platform.is('android') && sourceType === _this.camera.PictureSourceType.PHOTOLIBRARY) {
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -228,7 +228,7 @@ var BannersPage = (function () {
     };
     BannersPage.prototype.upload = function () {
         var _this = this;
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* Transfer */]();
         var options;
         options = {
             fileKey: 'file',
@@ -247,7 +247,7 @@ var BannersPage = (function () {
     };
     BannersPage.prototype.camer_upload = function () {
         var _this = this;
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* Transfer */]();
         var options;
         options = {
             fileKey: 'file',
@@ -1340,7 +1340,7 @@ var HomePage = (function () {
             this.showme = false;
     };
     HomePage.prototype.view_photo = function (image_path, title) {
-        __WEBPACK_IMPORTED_MODULE_3_ionic_native__["i" /* PhotoViewer */].show(image_path, title);
+        __WEBPACK_IMPORTED_MODULE_3_ionic_native__["h" /* PhotoViewer */].show(image_path, title);
     };
     HomePage.prototype.presentPopover = function (myEvent) {
         var popover = this.popoverCtrl.create(MorePage);
@@ -1503,7 +1503,7 @@ var UpdategalleryPage = (function () {
     UpdategalleryPage.prototype.uploadFile = function (imgurl) {
         var _this = this;
         console.log('enter');
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* Transfer */]();
         console.log('enter', imgurl);
         var options = {
             fileKey: 'file',
@@ -1570,7 +1570,7 @@ var UpdategalleryPage = (function () {
     };
     UpdategalleryPage.prototype.upload = function () {
         var _this = this;
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* Transfer */]();
         var options;
         options = {
             fileKey: 'file',
@@ -1589,7 +1589,7 @@ var UpdategalleryPage = (function () {
     };
     UpdategalleryPage.prototype.camer_upload = function () {
         var _this = this;
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* Transfer */]();
         var options;
         options = {
             fileKey: 'file',
@@ -1754,7 +1754,7 @@ var UpdatecontentPage = (function () {
             console.log(err);
         });
         // get current location coordinates
-        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["f" /* Geolocation */].getCurrentPosition()
+        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* Geolocation */].getCurrentPosition()
             .then(function (res) {
             console.log('location', res);
             _this.coordinates = res.coords;
@@ -1788,7 +1788,7 @@ var UpdatecontentPage = (function () {
     UpdatecontentPage.prototype.upload = function (imgurl) {
         var _this = this;
         console.log('enter');
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["l" /* Transfer */]();
         console.log('enter', imgurl);
         // File for Upload
         var targetPath = this.pathForImage(this.lastImage);
@@ -1837,7 +1837,7 @@ var UpdatecontentPage = (function () {
     };
     UpdatecontentPage.prototype.camer_upload = function () {
         var _this = this;
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["l" /* Transfer */]();
         var options;
         options = {
             fileKey: 'file',
@@ -1896,7 +1896,7 @@ var UpdatecontentPage = (function () {
             // console.log('222', imageData.replace('file://',''));
             // console.log('sub', imageData.substring(imageData.lastIndexOf("/") + 1));
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.CAMERA) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -1915,59 +1915,6 @@ var UpdatecontentPage = (function () {
             console.log(err);
         });
     };
-    UpdatecontentPage.prototype.imgPick = function () {
-        var _this = this;
-        var options = {
-            maximumImagesCount: 1
-        };
-        this.imagePicker.getPictures(options).then(function (results) {
-            var res = results[0];
-            if (_this.platform.is('android')) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(res)
-                    .then(function (filePath) {
-                    console.log('filepath', filePath);
-                    _this.resizeImage(filePath);
-                    _this.resolvePath = filePath;
-                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                    var currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-                    console.log('currentfilename', currentName);
-                    console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1));
-                    _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-                });
-            }
-            else {
-                var currentName = _this.resolvePath.substr(_this.resolvePath.lastIndexOf('/') + 1);
-                var correctPath = _this.resolvePath.substr(0, _this.resolvePath.lastIndexOf('/') + 1);
-                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-            }
-        }, function (err) { });
-    };
-    UpdatecontentPage.prototype.chooseFile = function (sourceType) {
-        var _this = this;
-        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FileChooser */].open().then(function (res) {
-            console.log('choosepath', res);
-            if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(res)
-                    .then(function (filePath) {
-                    console.log('filepath', filePath);
-                    _this.resizeImage(filePath);
-                    _this.resolvePath = filePath;
-                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                    var currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-                    console.log('currentfilename', currentName);
-                    console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1));
-                    _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-                });
-            }
-            else {
-                var currentName = _this.resolvePath.substr(_this.resolvePath.lastIndexOf('/') + 1);
-                var correctPath = _this.resolvePath.substr(0, _this.resolvePath.lastIndexOf('/') + 1);
-                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-            }
-        }, function (err) {
-            console.log('choosepatherr', err);
-        });
-    };
     UpdatecontentPage.prototype.resizeImage = function (uri) {
         var _this = this;
         var options = {
@@ -1976,7 +1923,7 @@ var UpdatecontentPage = (function () {
             width: 800,
             height: 800
         };
-        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["g" /* ImageResizer */].resize(options).then(function (res) {
+        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["f" /* ImageResizer */].resize(options).then(function (res) {
             console.log('resizepath', res);
             _this.image_path = res;
         }, function (err) {
@@ -2004,7 +1951,7 @@ var UpdatecontentPage = (function () {
             // console.log('2', this.imageUrl);
             // console.log('3', this.imageName);
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -2041,8 +1988,7 @@ var UpdatecontentPage = (function () {
                     text: 'Browser',
                     icon: 'image',
                     handler: function () {
-                        _this.imgPick();
-                        // this.chooseFile(Camera.PictureSourceType.PHOTOLIBRARY);
+                        _this.browsePicture(__WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY);
                     }
                 },
                 {
@@ -2131,7 +2077,7 @@ var UpdatecontentPage = (function () {
     };
     UpdatecontentPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-updatecontent',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n    <ion-title>Create Category</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]="createContent">\n        <ion-list>\n\n            <ion-item>\n                <div>\n                    <img [src]="image_path"  (click) ="presentActionSheet()"/>\n                </div>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines>\n                Main Category\n            </ion-label>\n\n            <ion-item>\n                <ion-select no-padding no-margin formControlName="mainCat">\n                    <ion-option *ngFor="let cat of mainCatList" value="{{cat.id}}">{{cat.name}}</ion-option>\n                </ion-select>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Name:</ion-label>\n                <ion-textarea rows="5" type="text" placeholder="Name" formControlName="name"></ion-textarea>\n            </ion-item>\n\n            <!--<ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-input type="text" placeholder="Description" formControlName="desc"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-input type="text" placeholder="Address" formControlName="address"></ion-input>\n            </ion-item>-->\n\n            <ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-textarea rows="10" type="text" placeholder="Description" formControlName="desc"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-textarea rows="5"  type="text" placeholder="Address" formControlName="address"></ion-textarea>\n            </ion-item>\n\n            <ion-list radio-group formControlName="type" (ionChange)="selectType()" no-lines>\n              <ion-list-header>\n                Type\n              </ion-list-header>\n              <ion-item>\n                <ion-label>食尚</ion-label>\n                <img src="assets/foodicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="0"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>親子活动</ion-label>\n                <img src="assets/familyicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="2"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>發現之旅</ion-label>\n                <img src="assets/globe.png" item-left width="27px" height="27px"/>\n                <ion-radio value="1"></ion-radio>\n              </ion-item>\n            </ion-list>            \n\n            <!-- <ion-item>\n                <ion-label>Type</ion-label>\n                <ion-select formControlName="type" (ionChange)="selectType()">\n                    <ion-option value="0">Food</ion-option>\n                    <ion-option value="1">Discovery</ion-option>\n                </ion-select>\n            </ion-item> -->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Phone:</ion-label>\n                <ion-input type="text" placeholder="Phone" formControlName="phoneNo"></ion-input>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines [hidden]="infoFlag">\n                Business Hour\n            </ion-label>\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-input type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-input type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-input>\n            </ion-item>-->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-textarea>\n            </ion-item>\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Website:</ion-label>\n                <ion-input type="text" placeholder="Website" formControlName="website"></ion-input>\n            </ion-item>\n\n            <ion-item [hidden]="locationFlag">\n                <ion-label>\n                    GPS: {{latitude}}, {{longitude}}\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n\n        <button ion-button full color="secondary" [hidden]="locationFlag" (click)="removeLoc()">Remove Location</button>\n        <button ion-button full color="secondary" [hidden]="!locationFlag" (click)="addLoc()">Add Location</button>\n        <button ion-button full color="secondary" (click)="submitForm()">Save</button>\n        <button ion-button full color="danger" (click)="onCancelClick()">Cancel</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/
+            selector: 'page-updatecontent',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n    <ion-title>Create Category</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]="createContent">\n        <ion-list>\n\n            <ion-item>\n                <div>\n                    <img [src]="image_path"  (click) ="presentActionSheet()"/>\n                </div>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines>\n                Main Category\n            </ion-label>\n\n            <ion-item>\n                <ion-select no-padding no-margin formControlName="mainCat">\n                    <ion-option *ngFor="let cat of mainCatList" value="{{cat.id}}">{{cat.name}}</ion-option>\n                </ion-select>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Name:</ion-label>\n                <ion-textarea rows="5" type="text" placeholder="Name" formControlName="name"></ion-textarea>\n            </ion-item>\n\n            <!--<ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-input type="text" placeholder="Description" formControlName="desc"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-input type="text" placeholder="Address" formControlName="address"></ion-input>\n            </ion-item>-->\n\n            <ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-textarea rows="10" type="text" placeholder="Description" formControlName="desc"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-textarea rows="5"  type="text" placeholder="Address" formControlName="address"></ion-textarea>\n            </ion-item>\n\n            <ion-list radio-group formControlName="type" (ionChange)="selectType()" no-lines>\n              <ion-list-header>\n                Type\n              </ion-list-header>\n              <ion-item>\n                <ion-label>食尚</ion-label>\n                <img src="assets/foodicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="0"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>親子活动</ion-label>\n                <img src="assets/familyicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="2"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>發現之旅</ion-label>\n                <img src="assets/globe.png" item-left width="27px" height="27px"/>\n                <ion-radio value="1"></ion-radio>\n              </ion-item>\n            </ion-list>\n\n            <!-- <ion-item>\n                <ion-label>Type</ion-label>\n                <ion-select formControlName="type" (ionChange)="selectType()">\n                    <ion-option value="0">Food</ion-option>\n                    <ion-option value="1">Discovery</ion-option>\n                </ion-select>\n            </ion-item> -->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Phone:</ion-label>\n                <ion-input type="text" placeholder="Phone" formControlName="phoneNo"></ion-input>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines [hidden]="infoFlag">\n                Business Hour\n            </ion-label>\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-input type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-input type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-input>\n            </ion-item>-->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-textarea>\n            </ion-item>\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Website:</ion-label>\n                <ion-input type="text" placeholder="Website" formControlName="website"></ion-input>\n            </ion-item>\n\n            <ion-item [hidden]="locationFlag">\n                <ion-label>\n                    GPS: {{latitude}}, {{longitude}}\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n\n        <button ion-button full color="secondary" [hidden]="locationFlag" (click)="removeLoc()">Remove Location</button>\n        <button ion-button full color="secondary" [hidden]="!locationFlag" (click)="addLoc()">Add Location</button>\n        <button ion-button full color="secondary" (click)="submitForm()">Save</button>\n        <button ion-button full color="danger" (click)="onCancelClick()">Cancel</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__["a" /* ImagePicker */],
             __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* Platform */],
@@ -2218,7 +2164,7 @@ var AddcontentPage = (function () {
             console.log(err);
         });
         // get current location coordinates
-        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["f" /* Geolocation */].getCurrentPosition()
+        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* Geolocation */].getCurrentPosition()
             .then(function (res) {
             _this.coordinates = res.coords;
             _this.latitude = res.coords.latitude;
@@ -2252,7 +2198,7 @@ var AddcontentPage = (function () {
     AddcontentPage.prototype.upload = function (imgurl) {
         var _this = this;
         console.log('enter');
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["l" /* Transfer */]();
         console.log('enter', imgurl);
         var url = "http://yoururl/upload.php";
         // File for Upload
@@ -2313,7 +2259,7 @@ var AddcontentPage = (function () {
     };
     AddcontentPage.prototype.camer_upload = function () {
         var _this = this;
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["l" /* Transfer */]();
         var options;
         options = {
             fileKey: 'file',
@@ -2371,7 +2317,7 @@ var AddcontentPage = (function () {
             // console.log('222', imageData.replace('file://',''));
             // console.log('sub', imageData.substring(imageData.lastIndexOf("/") + 1));
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.CAMERA) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -2398,7 +2344,7 @@ var AddcontentPage = (function () {
         this.imagePicker.getPictures(options).then(function (results) {
             var res = results[0];
             if (_this.platform.is('android')) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(res)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(res)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     _this.resizeImage(filePath);
@@ -2454,7 +2400,7 @@ var AddcontentPage = (function () {
             width: 800,
             height: 800
         };
-        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["g" /* ImageResizer */].resize(options).then(function (res) {
+        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["f" /* ImageResizer */].resize(options).then(function (res) {
             console.log('resizepath', res);
             _this.image_path = res;
         }, function (err) {
@@ -2473,7 +2419,7 @@ var AddcontentPage = (function () {
                 _this.image_path = res[i];
             }
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     console.log('photo');
@@ -2515,7 +2461,7 @@ var AddcontentPage = (function () {
             // console.log('2', this.imageUrl);
             // console.log('3', this.imageName);
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -2746,7 +2692,7 @@ var UpdatecategoryPage = (function () {
             // this.imageUrl = imageData.replace('file://','');
             // this.imageName = imageData.substring(imageData.lastIndexOf("/") + 1);
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.CAMERA) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -2773,7 +2719,7 @@ var UpdatecategoryPage = (function () {
         this.imagePicker.getPictures(options).then(function (results) {
             var res = results[0];
             if (_this.platform.is('android')) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(res)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(res)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     _this.resizeImage(filePath);
@@ -2828,7 +2774,7 @@ var UpdatecategoryPage = (function () {
             width: 800,
             height: 800
         };
-        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["g" /* ImageResizer */].resize(options).then(function (res) {
+        __WEBPACK_IMPORTED_MODULE_1_ionic_native__["f" /* ImageResizer */].resize(options).then(function (res) {
             console.log('resizepath', res);
             _this.image_path = res;
         }, function (err) {
@@ -2856,7 +2802,7 @@ var UpdatecategoryPage = (function () {
             // console.log('2', this.imageUrl);
             // console.log('3', this.imageName);
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -2880,7 +2826,7 @@ var UpdatecategoryPage = (function () {
     UpdatecategoryPage.prototype.upload = function (imgurl) {
         var _this = this;
         console.log('enter');
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["l" /* Transfer */]();
         console.log('enter', imgurl);
         var targetPath = this.pathForImage(this.lastImage);
         targetPath = targetPath.replace('file://', '');
@@ -2978,7 +2924,7 @@ var UpdatecategoryPage = (function () {
     UpdatecategoryPage.prototype.camer_upload = function () {
         var _this = this;
         console.log('camupload');
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_1_ionic_native__["l" /* Transfer */]();
         var options;
         options = {
             fileKey: 'file',
@@ -3249,9 +3195,9 @@ var AppModule = (function () {
             providers: [
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_18__providers_servercon__["a" /* Servercon */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["i" /* PhotoViewer */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["h" /* LaunchNavigator */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["j" /* SocialSharing */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["h" /* PhotoViewer */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["g" /* LaunchNavigator */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["i" /* SocialSharing */],
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
                 __WEBPACK_IMPORTED_MODULE_21__ionic_native_file_transfer__["a" /* FileTransfer */],
                 __WEBPACK_IMPORTED_MODULE_22__ionic_native_media_capture__["a" /* MediaCapture */],
@@ -3607,14 +3553,14 @@ var DetailPage = (function () {
         //ScreenOrientation.lockOrientation('portrait');
     };
     DetailPage.prototype.view_photo = function (image_path, title) {
-        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["i" /* PhotoViewer */].show(image_path, title);
+        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["h" /* PhotoViewer */].show(image_path, title);
     };
     DetailPage.prototype.navigater = function (address) {
-        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["h" /* LaunchNavigator */].navigate(address)
+        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["g" /* LaunchNavigator */].navigate(address)
             .then(function (success) { return console.log('Launched navigator'); }, function (error) { return console.log('Error launching navigator', error); });
     };
     DetailPage.prototype.navigaterll = function (address) {
-        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["h" /* LaunchNavigator */].navigate(address)
+        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["g" /* LaunchNavigator */].navigate(address)
             .then(function (success) { return console.log('Launched navigator'); }, function (error) { return console.log('Error launching navigator', error); });
     };
     DetailPage.prototype.presentPopover = function (myEvent, itemid) {
@@ -3627,7 +3573,7 @@ var DetailPage = (function () {
     DetailPage.prototype.sharelink = function (category_id, content_id) {
         var link = this.ss.ServerURL + "content.php?id=" + category_id + "&content_id=" + content_id;
         //alert(link);
-        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["j" /* SocialSharing */].share(this.title, 'Betweenlifestyle', this.image_path, link).then(function () {
+        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["i" /* SocialSharing */].share(this.title, 'Betweenlifestyle', this.image_path, link).then(function () {
             // Success!
         }).catch(function () {
             // Error!
@@ -3961,7 +3907,7 @@ var DetailPage = (function () {
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_native__["i" /* PhotoViewer */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_native__["h" /* PhotoViewer */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_13__providers_servercon__["a" /* Servercon */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */],
@@ -4022,7 +3968,7 @@ var FilterPage = (function () {
     };
     FilterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            template: "\n     <ion-list color=\"light\">\n       <ion-item (click)=\"filterSub(0)\">\n       <img src=\"assets/foodicon.png\" item-left width=\"27px\" height=\"27px\"/>\n               \u98DF\u5C1A\n      </ion-item>\n      <ion-item (click)=\"filterSub(2)\">\n      <img src=\"assets/familyicon.png\" item-left width=\"27px\" height=\"27px\"/>\n      \u89AA\u5B50\u6D3B\u52A8\n      </ion-item>\n      <ion-item (click)=\"filterSub(1)\">\n      <img src=\"assets/globe.png\" item-left width=\"27px\" height=\"27px\"/>\n              \u767C\u73FE\u4E4B\u65C5\n     </ion-item>\n     </ion-list>\n      "
+            template: "\n     <ion-list color=\"light\">\n     <ion-item (click)=\"filterSub(99)\">\n     <img src=\"assets/eye.png\" item-left width=\"20%\" height=\"20%\"/>\n             \u6240\u6709\n    </ion-item>\n       <ion-item (click)=\"filterSub(0)\">\n       <img src=\"assets/foodicon1.png\" item-left width=\"27px\" height=\"27px\"/>\n               \u98DF\u5C1A\n      </ion-item>\n      <ion-item (click)=\"filterSub(2)\">\n      <img src=\"assets/familyicon1.png\" item-left width=\"27px\" height=\"27px\"/>\n      \u89AA\u5B50\u6D3B\u52A8\n      </ion-item>\n      <ion-item (click)=\"filterSub(1)\">\n      <img src=\"assets/globe1.png\" item-left width=\"27px\" height=\"27px\"/>\n              \u767C\u73FE\u4E4B\u65C5\n     </ion-item>\n     </ion-list>\n      "
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
     ], FilterPage);
@@ -4112,8 +4058,20 @@ var SublistPage = (function () {
         });
     };
     SublistPage.prototype.editSublist = function (item) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__updatecontent_updatecontent__["a" /* UpdatecontentPage */], {
-            detailItem: item
+        var _this = this;
+        var param = "category_id=" + item.category_id + "&content_id=" + item.content_id;
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "getContentDetail.php").then(function (response) {
+            _this.obj = response;
+            var detailItem = _this.obj.Data;
+            loading.dismiss();
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__updatecontent_updatecontent__["a" /* UpdatecontentPage */], { detailItem: detailItem });
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
         });
     };
     SublistPage.prototype.getLocation = function () {
@@ -4136,9 +4094,14 @@ var SublistPage = (function () {
     SublistPage.prototype.subFilter = function () {
         var _this = this;
         this.events.subscribe("filtercode", function (code) {
-            _this.code = code;
-            _this.papa = "id=" + _this.navParams.get("id") + "&subid=0&start=0&end=10&type=" + code;
-            _this.filteritem(_this.papa);
+            if (code == 99) {
+                _this.ionViewDidLoad();
+            }
+            else {
+                _this.code = code;
+                _this.papa = "id=" + _this.navParams.get("id") + "&subid=0&start=0&end=10&type=" + code;
+                _this.filteritem(_this.papa);
+            }
         });
         this.events.subscribe("deletion", function (data) {
             if (_this.papa == undefined) {
@@ -4565,8 +4528,8 @@ var MyApp = (function () {
     }
     MyApp.prototype.initializeApp = function () {
         this.platform.ready().then(function () {
-            __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* StatusBar */].styleDefault();
-            __WEBPACK_IMPORTED_MODULE_2_ionic_native__["k" /* Splashscreen */].hide();
+            __WEBPACK_IMPORTED_MODULE_2_ionic_native__["k" /* StatusBar */].styleDefault();
+            __WEBPACK_IMPORTED_MODULE_2_ionic_native__["j" /* Splashscreen */].hide();
         });
     };
     MyApp.prototype.openPage = function (page) {
@@ -4890,7 +4853,7 @@ var AddcategoryPage = (function () {
             // this.imageUrl = imageData.replace('file://','');
             // this.imageName = imageData.substring(imageData.lastIndexOf("/") + 1);
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_2_ionic_native__["a" /* Camera */].PictureSourceType.CAMERA) {
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -4917,7 +4880,7 @@ var AddcategoryPage = (function () {
         this.imagePicker.getPictures(options).then(function (results) {
             var res = results[0];
             if (_this.platform.is('android')) {
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["e" /* FilePath */].resolveNativePath(res)
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["d" /* FilePath */].resolveNativePath(res)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     _this.resizeImage(filePath);
@@ -4975,7 +4938,7 @@ var AddcategoryPage = (function () {
             width: 800,
             height: 800
         };
-        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["g" /* ImageResizer */].resize(options).then(function (res) {
+        __WEBPACK_IMPORTED_MODULE_2_ionic_native__["f" /* ImageResizer */].resize(options).then(function (res) {
             console.log('resizepath', res);
             _this.image_path = res;
         }, function (err) {
@@ -5005,7 +4968,7 @@ var AddcategoryPage = (function () {
             // console.log('3', this.imageName);
             // this.camer_upload();
             if (_this.platform.is('android') && sourceType === __WEBPACK_IMPORTED_MODULE_2_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY) {
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["e" /* FilePath */].resolveNativePath(imageData)
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["d" /* FilePath */].resolveNativePath(imageData)
                     .then(function (filePath) {
                     console.log('filepath', filePath);
                     var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
@@ -5029,7 +4992,7 @@ var AddcategoryPage = (function () {
     AddcategoryPage.prototype.upload = function (imgurl) {
         var _this = this;
         console.log('enter');
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* Transfer */]();
         console.log('enter', imgurl);
         // File for Upload
         var targetPath = this.pathForImage(this.lastImage);
@@ -5121,7 +5084,7 @@ var AddcategoryPage = (function () {
     AddcategoryPage.prototype.camer_upload = function () {
         var _this = this;
         console.log('camupload');
-        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["m" /* Transfer */]();
+        var fileTransfer = new __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* Transfer */]();
         var options;
         options = {
             fileKey: 'file',
