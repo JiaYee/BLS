@@ -50,8 +50,8 @@
 
 <div class="items_top">
 
-  <!-- <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (tap)="openPage(item)" (press)="promptActionSheet(item)"> -->
-    <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)">
+  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (tap)="openPage(item)" (press)="promptActionSheet(item)">
+    <!-- <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)"> -->
  <ion-badge *ngIf="item.count"  color ="danger" item-right style="margin:0px; width: 40px;">{{item.count}}</ion-badge>
    <div class="bottom_txt">
    <p> {{item.name}} </p>

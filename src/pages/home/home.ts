@@ -351,9 +351,7 @@ export class HomePage {
           {
             text: 'Edit',
             handler: () => {
-              this.navCtrl.push(UpdatecategoryPage, {
-                catItem: catItem
-              });
+              this.navCtrl.push(UpdatecategoryPage, {catItem});
             }
           }
         ]

@@ -74,7 +74,7 @@ this.title=this.navParams.get("name");
 console.log(this.navParams.data);
 this.listitem(param);
 this.subFilter();
-// this.getLocation();
+this.getLocation();
 
   }
 
@@ -157,6 +157,32 @@ delContent(item)
 
   }
 
+  washData(loc)
+  {
+    let param = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
+    console.log(param);
+    let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+    loading.present();
+     this.ss.dataList(param,"washDatabyLocation.php").then((response)=>{
+
+
+    this.items =response;
+    // this.total= this.items.total;
+    //this.start=this.items.start;
+    //this.end=this.items.end;
+    this.items=this.items.Data;
+    console.log(this.items);
+    this.backup_items=this.items;
+
+    loading.dismiss();
+      }).catch((Error)=>{
+    console.log("Connection Error"+Error);
+    loading.dismiss();
+        });
+  }
+
   getLocation()
   {
     let param = "main_category_id=" + this.navParams.get("id");
@@ -165,7 +191,7 @@ delContent(item)
         content: 'Please wait...'
       });
     loading.present();
-     this.ss.dataList(param,"getSubDatabyMainID.php").then((response)=>{
+     this.ss.dataList(param,"getMain_Location.php").then((response)=>{
        this.locations = response;
        this.locations = this.locations.Data;
     loading.dismiss();

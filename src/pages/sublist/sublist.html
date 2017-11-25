@@ -9,9 +9,9 @@
     </ion-buttons>
   </ion-navbar>
  <ion-searchbar class="sb" *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>
-   <!-- <ion-select class="sbl" *ngIf="showme" [(ngModel)]="gender">
-     <ion-option *ngFor="let location of locations" value="{{location.id}}">{{location.name}}</ion-option>
-   </ion-select> -->
+   <ion-select class="sbl" *ngIf="showme" [(ngModel)]="loc" (ionChange)="washData(loc)">
+     <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>
+   </ion-select>
 </ion-header>
 
 

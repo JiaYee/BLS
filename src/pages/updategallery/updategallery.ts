@@ -329,14 +329,15 @@ presentActionSheet() {
 
 cancel()
 {
-  if(this.status)
-  {
- this.navCtrl.setRoot(this.retrunPage);
-}
-else
-{
-  this.viewCtrl.dismiss();
-}
+  this.navCtrl.pop();
+//   if(this.status)
+//   {
+//  this.navCtrl.setRoot(this.retrunPage);
+// }
+// else
+// {
+//   this.viewCtrl.dismiss();
+// }
 }
 
 }

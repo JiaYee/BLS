@@ -11,7 +11,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gallery_gallery__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gallery_gallery__ = __webpack_require__(86);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -577,7 +577,7 @@ var FavePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__detail_detail__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__aboutus_aboutus__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__aboutus_aboutus__ = __webpack_require__(63);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -944,10 +944,10 @@ var Servercon = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sublist_sublist__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__earth_earth__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__event_event__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__event_event__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fave_fave__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__topten_topten__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__aboutus_aboutus__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__aboutus_aboutus__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__addcategory_addcategory__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__addcontent_addcontent__ = __webpack_require__(409);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__updatecategory_updatecategory__ = __webpack_require__(410);
@@ -1224,9 +1224,7 @@ var HomePage = (function () {
                     {
                         text: 'Edit',
                         handler: function () {
-                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_13__updatecategory_updatecategory__["a" /* UpdatecategoryPage */], {
-                                catItem: catItem
-                            });
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_13__updatecategory_updatecategory__["a" /* UpdatecategoryPage */], { catItem: catItem });
                         }
                     }
                 ]
@@ -1356,7 +1354,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n      <a tappable ion-button  clear menuToggle >\n        <ion-icon name="menu"></ion-icon>\n <!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n      </a>\n\n <ion-buttons end>\n        <button ion-button  (click)="presentPopover($event)">\n      <ion-icon name="more"></ion-icon>\n      </button>\n </ion-buttons>\n\n    <ion-title>Between Lifestyle</ion-title>\n\n  </ion-navbar>\n <ion-searchbar *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n\n</ion-header>\n\n<ion-content>\n  <!-- slider area -->\n  <!--<div class="slideshow">-->\n\n<ion-slides class="slideshow">\n  <ion-slide *ngFor="let slide of slides">\n    <img [src]="slide.Image_Path" class="slideimg" (click)="view_photo(slide.Image_Path,slide.name)"/>\n  </ion-slide>\n</ion-slides>\n\n<!--</div>-->\n\n<!-- end slide -->\n\n<!-- Side 3 icons area -->\n\n\n<div  class="social_blk">\n\n  <img class="sb1" src="assets/earth45.png"  [navPush]="earthpage" />\n\n<img class="sb2" src="assets/mark45.png" [navPush]="eventpage" />\n\n<img class="sb3" src="assets/BLS_50.png" (click)="goBLS()" />\n  </div>\n\n<!-- end icons -->\n\n<!-- items scrolling part  -->\n\n<div class="items_top">\n\n  <!-- <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (tap)="openPage(item)" (press)="promptActionSheet(item)"> -->\n    <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)">\n <ion-badge *ngIf="item.count"  color ="danger" item-right style="margin:0px; width: 40px;">{{item.count}}</ion-badge>\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n</div>\n<ion-fab right bottom>\n\n\n\n\n\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n       <button *ngIf="adminonly()" ion-fab color="light"  [navPush]="addcategorypage"><ion-icon name="add"></ion-icon></button>\n    </ion-fab-list>\n\n\n</ion-fab>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n      <a tappable ion-button  clear menuToggle >\n        <ion-icon name="menu"></ion-icon>\n <!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n      </a>\n\n <ion-buttons end>\n        <button ion-button  (click)="presentPopover($event)">\n      <ion-icon name="more"></ion-icon>\n      </button>\n </ion-buttons>\n\n    <ion-title>Between Lifestyle</ion-title>\n\n  </ion-navbar>\n <ion-searchbar *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n\n</ion-header>\n\n<ion-content>\n  <!-- slider area -->\n  <!--<div class="slideshow">-->\n\n<ion-slides class="slideshow">\n  <ion-slide *ngFor="let slide of slides">\n    <img [src]="slide.Image_Path" class="slideimg" (click)="view_photo(slide.Image_Path,slide.name)"/>\n  </ion-slide>\n</ion-slides>\n\n<!--</div>-->\n\n<!-- end slide -->\n\n<!-- Side 3 icons area -->\n\n\n<div  class="social_blk">\n\n  <img class="sb1" src="assets/earth45.png"  [navPush]="earthpage" />\n\n<img class="sb2" src="assets/mark45.png" [navPush]="eventpage" />\n\n<img class="sb3" src="assets/BLS_50.png" (click)="goBLS()" />\n  </div>\n\n<!-- end icons -->\n\n<!-- items scrolling part  -->\n\n<div class="items_top">\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (tap)="openPage(item)" (press)="promptActionSheet(item)">\n    <!-- <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)"> -->\n <ion-badge *ngIf="item.count"  color ="danger" item-right style="margin:0px; width: 40px;">{{item.count}}</ion-badge>\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n</div>\n<ion-fab right bottom>\n\n\n\n\n\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n       <button *ngIf="adminonly()" ion-fab color="light"  [navPush]="addcategorypage"><ion-icon name="add"></ion-icon></button>\n    </ion-fab-list>\n\n\n</ion-fab>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */],
@@ -1383,7 +1381,7 @@ var HomePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gallery_gallery__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gallery_gallery__ = __webpack_require__(86);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1655,12 +1653,15 @@ var UpdategalleryPage = (function () {
         actionSheet.present();
     };
     UpdategalleryPage.prototype.cancel = function () {
-        if (this.status) {
-            this.navCtrl.setRoot(this.retrunPage);
-        }
-        else {
-            this.viewCtrl.dismiss();
-        }
+        this.navCtrl.pop();
+        //   if(this.status)
+        //   {
+        //  this.navCtrl.setRoot(this.retrunPage);
+        // }
+        // else
+        // {
+        //   this.viewCtrl.dismiss();
+        // }
     };
     UpdategalleryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1693,7 +1694,7 @@ var UpdategalleryPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__ = __webpack_require__(87);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1746,6 +1747,7 @@ var UpdatecontentPage = (function () {
     }
     UpdatecontentPage.prototype.ionViewDidLoad = function () {
         var _this = this;
+        this.getLocations();
         // get main category list
         this.ss.getMainCategory().then(function (res) {
             _this.mainCatRes = res;
@@ -1763,6 +1765,67 @@ var UpdatecontentPage = (function () {
         })
             .catch(function (err) {
             console.log('error', err);
+        });
+    };
+    UpdatecontentPage.prototype.deleteLocation = function (location) {
+        var _this = this;
+        var param = "content_id=" + this.detailItem.id;
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "deleteContent_Location.php").then(function (response) {
+            loading.dismiss();
+            _this.insertLocation(location);
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
+        });
+    };
+    UpdatecontentPage.prototype.insertLocation = function (location) {
+        var param = "location=" + location + "&content_id=" + this.detailItem.id + "&main_category_id=" + this.detailItem.category_id;
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "insertContent_Location.php").then(function (response) {
+            loading.dismiss();
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
+        });
+    };
+    UpdatecontentPage.prototype.getSelectedLocation = function () {
+        var _this = this;
+        var param = "content_id=" + this.detailItem.id;
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "getContent_Location.php").then(function (response) {
+            _this.obj = response;
+            _this.loc = _this.obj.Data[0].location;
+            loading.dismiss();
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
+        });
+    };
+    UpdatecontentPage.prototype.getLocations = function () {
+        var _this = this;
+        var param = "main_category_id=" + this.detailItem.category_id;
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "getMain_Location.php").then(function (response) {
+            _this.obj = response;
+            _this.locations = _this.obj.Data;
+            loading.dismiss();
+            _this.getSelectedLocation();
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
         });
     };
     UpdatecontentPage.prototype.removeLoc = function () {
@@ -2077,7 +2140,7 @@ var UpdatecontentPage = (function () {
     };
     UpdatecontentPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-updatecontent',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n    <ion-title>Create Category</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]="createContent">\n        <ion-list>\n\n            <ion-item>\n                <div>\n                    <img [src]="image_path"  (click) ="presentActionSheet()"/>\n                </div>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines>\n                Main Category\n            </ion-label>\n\n            <ion-item>\n                <ion-select no-padding no-margin formControlName="mainCat">\n                    <ion-option *ngFor="let cat of mainCatList" value="{{cat.id}}">{{cat.name}}</ion-option>\n                </ion-select>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Name:</ion-label>\n                <ion-textarea rows="5" type="text" placeholder="Name" formControlName="name"></ion-textarea>\n            </ion-item>\n\n            <!--<ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-input type="text" placeholder="Description" formControlName="desc"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-input type="text" placeholder="Address" formControlName="address"></ion-input>\n            </ion-item>-->\n\n            <ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-textarea rows="10" type="text" placeholder="Description" formControlName="desc"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-textarea rows="5"  type="text" placeholder="Address" formControlName="address"></ion-textarea>\n            </ion-item>\n\n            <ion-list radio-group formControlName="type" (ionChange)="selectType()" no-lines>\n              <ion-list-header>\n                Type\n              </ion-list-header>\n              <ion-item>\n                <ion-label>食尚</ion-label>\n                <img src="assets/foodicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="0"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>親子活动</ion-label>\n                <img src="assets/familyicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="2"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>發現之旅</ion-label>\n                <img src="assets/globe.png" item-left width="27px" height="27px"/>\n                <ion-radio value="1"></ion-radio>\n              </ion-item>\n            </ion-list>\n\n            <!-- <ion-item>\n                <ion-label>Type</ion-label>\n                <ion-select formControlName="type" (ionChange)="selectType()">\n                    <ion-option value="0">Food</ion-option>\n                    <ion-option value="1">Discovery</ion-option>\n                </ion-select>\n            </ion-item> -->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Phone:</ion-label>\n                <ion-input type="text" placeholder="Phone" formControlName="phoneNo"></ion-input>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines [hidden]="infoFlag">\n                Business Hour\n            </ion-label>\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-input type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-input type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-input>\n            </ion-item>-->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-textarea>\n            </ion-item>\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Website:</ion-label>\n                <ion-input type="text" placeholder="Website" formControlName="website"></ion-input>\n            </ion-item>\n\n            <ion-item [hidden]="locationFlag">\n                <ion-label>\n                    GPS: {{latitude}}, {{longitude}}\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n\n        <button ion-button full color="secondary" [hidden]="locationFlag" (click)="removeLoc()">Remove Location</button>\n        <button ion-button full color="secondary" [hidden]="!locationFlag" (click)="addLoc()">Add Location</button>\n        <button ion-button full color="secondary" (click)="submitForm()">Save</button>\n        <button ion-button full color="danger" (click)="onCancelClick()">Cancel</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/
+            selector: 'page-updatecontent',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n    <ion-title>Create Category</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]="createContent">\n        <ion-list>\n\n            <ion-item>\n                <div>\n                    <img [src]="image_path"  (click) ="presentActionSheet()"/>\n                </div>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines>\n                Main Category\n            </ion-label>\n\n            <ion-item>\n                <ion-select no-padding no-margin formControlName="mainCat">\n                    <ion-option *ngFor="let cat of mainCatList" value="{{cat.id}}">{{cat.name}}</ion-option>\n                </ion-select>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Name:</ion-label>\n                <ion-textarea rows="5" type="text" placeholder="Name" formControlName="name"></ion-textarea>\n            </ion-item>\n\n            <!--<ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-input type="text" placeholder="Description" formControlName="desc"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-input type="text" placeholder="Address" formControlName="address"></ion-input>\n            </ion-item>-->\n\n            <ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-textarea rows="10" type="text" placeholder="Description" formControlName="desc"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-textarea rows="5"  type="text" placeholder="Address" formControlName="address"></ion-textarea>\n            </ion-item>\n\n            <ion-list radio-group formControlName="type" (ionChange)="selectType()" no-lines>\n              <ion-list-header>\n                Type\n              </ion-list-header>\n              <ion-item>\n                <ion-label>食尚</ion-label>\n                <img src="assets/foodicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="0"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>親子活动</ion-label>\n                <img src="assets/familyicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="2"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>發現之旅</ion-label>\n                <img src="assets/globe.png" item-left width="27px" height="27px"/>\n                <ion-radio value="1"></ion-radio>\n              </ion-item>\n            </ion-list>\n\n            <!-- <ion-item>\n                <ion-label>Type</ion-label>\n                <ion-select formControlName="type" (ionChange)="selectType()">\n                    <ion-option value="0">Food</ion-option>\n                    <ion-option value="1">Discovery</ion-option>\n                </ion-select>\n            </ion-item> -->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Phone:</ion-label>\n                <ion-input type="text" placeholder="Phone" formControlName="phoneNo"></ion-input>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines [hidden]="infoFlag">\n                Business Hour\n            </ion-label>\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-input type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-input type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-input>\n            </ion-item>-->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-textarea>\n            </ion-item>\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Website:</ion-label>\n                <ion-input type="text" placeholder="Website" formControlName="website"></ion-input>\n            </ion-item>\n\n            <ion-item [hidden]="locationFlag">\n                <ion-label>\n                    GPS: {{latitude}}, {{longitude}}\n                </ion-label>\n            </ion-item>\n\n\n\n        </ion-list>\n\n        <button ion-button full color="secondary" [hidden]="locationFlag" (click)="removeLoc()">Remove Location</button>\n        <button ion-button full color="secondary" [hidden]="!locationFlag" (click)="addLoc()">Add Location</button>\n        <button ion-button full color="secondary" (click)="submitForm()">Save</button>\n        <button ion-button full color="danger" (click)="onCancelClick()">Cancel</button>\n    </form>\n\n    <ion-list radio-group [(ngModel)]="loc">\n      <ion-list-header>\n        Locations\n      </ion-list-header>\n\n      <ion-item *ngFor="let location of locations">\n        <ion-label>{{location.name}}</ion-label>\n        <ion-radio (ionSelect)="deleteLocation(location.name)" value="{{location.name}}"></ion-radio>\n      </ion-item>\n\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__["a" /* ImagePicker */],
             __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* Platform */],
@@ -2104,7 +2167,7 @@ var UpdatecontentPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_native__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_image_picker__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_image_picker__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(25);
@@ -2336,62 +2399,6 @@ var AddcontentPage = (function () {
             console.log(err);
         });
     };
-    AddcontentPage.prototype.imgPick = function () {
-        var _this = this;
-        var options = {
-            maximumImagesCount: 1
-        };
-        this.imagePicker.getPictures(options).then(function (results) {
-            var res = results[0];
-            if (_this.platform.is('android')) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(res)
-                    .then(function (filePath) {
-                    console.log('filepath', filePath);
-                    _this.resizeImage(filePath);
-                    _this.resolvePath = filePath;
-                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                    var currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-                    console.log('currentfilename', currentName);
-                    console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1));
-                    _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-                });
-            }
-            else {
-                var currentName = _this.resolvePath.substr(_this.resolvePath.lastIndexOf('/') + 1);
-                var correctPath = _this.resolvePath.substr(0, _this.resolvePath.lastIndexOf('/') + 1);
-                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-            }
-        }, function (err) { });
-    };
-    // chooseFile(){
-    //
-    //   let options: ImagePickerOptions = {
-    //     maximumImagesCount: 1
-    //   }
-    //
-    //   this.imagePicker.getPictures(options).then((res) => {
-    //
-    //     if (this.platform.is('android')) {
-    //       FilePath.resolveNativePath(res)
-    //       .then(filePath => {
-    //         console.log('filepath', filePath);
-    //         this.resizeImage(filePath);
-    //         this.resolvePath = filePath;
-    //         let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-    //         let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-    //         console.log('currentfilename', currentName );
-    //         console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-    //         this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //       });
-    //     } else {
-    //       var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-    //       var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-    //       this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //     }
-    //
-    //   },(err) => {
-    //    });
-    // }
     AddcontentPage.prototype.resizeImage = function (uri) {
         var _this = this;
         var options = {
@@ -2498,9 +2505,7 @@ var AddcontentPage = (function () {
                     text: 'Browser',
                     icon: 'image',
                     handler: function () {
-                        // this.browse(Camera.PictureSourceType.PHOTOLIBRARY);
-                        // this.chooseFile();
-                        _this.imgPick();
+                        _this.browsePicture(__WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY);
                     }
                 },
                 {
@@ -2605,9 +2610,8 @@ var AddcontentPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_native__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__event_event__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__event_event__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__ = __webpack_require__(62);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2624,10 +2628,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var UpdatecategoryPage = (function () {
-    function UpdatecategoryPage(imagePicker, platform, navCtrl, navParams, actionSheetCtrl, ss, loadingCtrl, viewCtrl, toastCtrl) {
-        this.imagePicker = imagePicker;
+    function UpdatecategoryPage(platform, navCtrl, navParams, actionSheetCtrl, ss, loadingCtrl, viewCtrl, toastCtrl) {
         this.platform = platform;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -2642,7 +2644,6 @@ var UpdatecategoryPage = (function () {
         this.homepage = __WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */];
         this.eventpage = __WEBPACK_IMPORTED_MODULE_4__event_event__["a" /* EventPage */];
         this.name = "";
-        this.type = "";
         this.rate = "";
         this.retrunPage = this.homepage;
     }
@@ -2651,7 +2652,55 @@ var UpdatecategoryPage = (function () {
         this.image_path = this.catItem.image_path;
         this.name = this.catItem.name;
         this.catId = this.catItem.id;
-        console.log('ionViewDidLoad AddcategoryPage', this.catItem);
+        this.type = 1;
+        this.getLocations();
+    };
+    UpdatecategoryPage.prototype.getLocations = function () {
+        var _this = this;
+        var param = "main_category_id=" + this.catItem.id;
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "getMain_Location.php").then(function (response) {
+            _this.obj = response;
+            _this.locations = _this.obj.Data;
+            loading.dismiss();
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
+        });
+    };
+    UpdatecategoryPage.prototype.insertLocation = function (newlocation) {
+        var _this = this;
+        var param = "main_category_id=" + this.catItem.id + "&name=" + newlocation;
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "insertMain_Location.php").then(function (response) {
+            loading.dismiss();
+            _this.getLocations();
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
+        });
+    };
+    UpdatecategoryPage.prototype.delLocation = function (id) {
+        var _this = this;
+        var param = "id=" + id;
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "deleteMain_LocationbyID.php").then(function (response) {
+            alert("Data successfully deleted!");
+            loading.dismiss();
+            _this.getLocations();
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
+        });
     };
     UpdatecategoryPage.prototype.createFileName = function () {
         var d = new Date(), n = d.getTime(), newFileName = n + ".jpg";
@@ -2711,61 +2760,6 @@ var UpdatecategoryPage = (function () {
             console.log(err);
         });
     };
-    UpdatecategoryPage.prototype.imgPick = function () {
-        var _this = this;
-        var options = {
-            maximumImagesCount: 1
-        };
-        this.imagePicker.getPictures(options).then(function (results) {
-            var res = results[0];
-            if (_this.platform.is('android')) {
-                __WEBPACK_IMPORTED_MODULE_1_ionic_native__["d" /* FilePath */].resolveNativePath(res)
-                    .then(function (filePath) {
-                    console.log('filepath', filePath);
-                    _this.resizeImage(filePath);
-                    _this.resolvePath = filePath;
-                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                    var currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-                    console.log('currentfilename', currentName);
-                    console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1));
-                    _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-                });
-            }
-            else {
-                var currentName = _this.resolvePath.substr(_this.resolvePath.lastIndexOf('/') + 1);
-                var correctPath = _this.resolvePath.substr(0, _this.resolvePath.lastIndexOf('/') + 1);
-                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-            }
-        }, function (err) { });
-    };
-    // chooseFile(sourceType){
-    //     FileChooser.open().then(
-    //         (res) => {
-    //             console.log('choosepath', res);
-    //
-    //             if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
-    //             FilePath.resolveNativePath(res)
-    //                 .then(filePath => {
-    //                     console.log('filepath', filePath);
-    //                     this.resizeImage(filePath);
-    //                     this.resolvePath = filePath;
-    //                     let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-    //                     let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-    //                     console.log('currentfilename', currentName );
-    //                     console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-    //                     this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //                 });
-    //             } else {
-    //                 var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-    //                 var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-    //                 this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //             }
-    //         },
-    //         (err) => {
-    //             console.log('choosepatherr', err);
-    //         }
-    //     );
-    // }
     UpdatecategoryPage.prototype.resizeImage = function (uri) {
         var _this = this;
         var options = {
@@ -2860,7 +2854,7 @@ var UpdatecategoryPage = (function () {
     UpdatecategoryPage.prototype.updateExistCategory = function (imageUrl) {
         var _this = this;
         this.imgFileURL = imageUrl;
-        this.param = "id=" + this.catId + "&name=" + this.name + "&image_path=" + this.imgFileURL + "&type" + this.type;
+        this.param = "id=" + this.catId + "&name=" + this.name + "&image_path=" + this.imgFileURL + "&type=" + this.type;
         console.log('aaa', this.imgFileURL);
         console.log('bbb', this.param);
         var loading = this.loadingCtrl.create({
@@ -2973,8 +2967,7 @@ var UpdatecategoryPage = (function () {
                     text: 'Browser',
                     icon: 'image',
                     handler: function () {
-                        _this.imgPick();
-                        // this.chooseFile(Camera.PictureSourceType.PHOTOLIBRARY);
+                        _this.browsePicture(__WEBPACK_IMPORTED_MODULE_1_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY);
                     }
                 },
                 {
@@ -2994,10 +2987,9 @@ var UpdatecategoryPage = (function () {
     };
     UpdatecategoryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-updatecategory',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updatecategory\updatecategory.html"*/'\n<ion-header>\n\n  <ion-navbar color="darkbule">\n    <ion-title>Update Category</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n<ion-list>\n\n  <ion-item>\n    <div>\n      <img [src]="image_path"  (click) ="presentActionSheet()"/>\n    </div>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>Category Name:</ion-label>\n    <ion-input type="text" [(ngModel)]="name"></ion-input>\n  </ion-item>\n\n<ion-item>\n    <ion-label>Type</ion-label>\n    <ion-select [(ngModel)]="type">\n     <ion-option value="1">Earth</ion-option>\n      <ion-option value="2">Event</ion-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>Top</ion-label>\n    <ion-input  type="number" step="any" name="topRate" [(ngModel)]="rate" min="1"\n               max="20"></ion-input>\n  </ion-item>\n\n</ion-list>\n\n<button ion-button full color="secondary" (click)="save()">Save</button>\n <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updatecategory\updatecategory.html"*/
+            selector: 'page-updatecategory',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updatecategory\updatecategory.html"*/'\n<ion-header>\n\n  <ion-navbar color="darkbule">\n    <ion-title>Update Category</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n<ion-list>\n\n  <ion-item>\n    <div>\n      <img [src]="image_path"  (click) ="presentActionSheet()"/>\n    </div>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>Category Name:</ion-label>\n    <ion-input type="text" [(ngModel)]="name"></ion-input>\n  </ion-item>\n\n<ion-item>\n    <ion-label>Type</ion-label>\n    <ion-select [(ngModel)]="type">\n     <ion-option value="1">Earth</ion-option>\n      <ion-option value="2">Location</ion-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>Top</ion-label>\n    <ion-input  type="number" step="any" name="topRate" [(ngModel)]="rate" min="1"\n               max="20"></ion-input>\n  </ion-item>\n\n  <ion-item *ngFor="let location of locations">\n    <h2 (click)="delLocation(location.id)">{{location.name}}</h2>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>New Location</ion-label>\n    <ion-input  [(ngModel)]="newlocation"></ion-input>\n  </ion-item>\n  <button ion-button (click)="insertLocation(newlocation)">Add</button>\n\n\n\n</ion-list>\n\n<button ion-button full color="secondary" (click)="save()">Save</button>\n <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updatecategory\updatecategory.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__["a" /* ImagePicker */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["n" /* Platform */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["n" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* ActionSheetController */],
@@ -3042,14 +3034,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_sublist_sublist__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_earth_earth__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_event_event__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_event_event__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_topten_topten__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_tabtopten_tabtopten__ = __webpack_require__(731);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_fave_fave__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_detail_detail__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_banners_banners__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_aboutus_aboutus__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_gallery_gallery__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_aboutus_aboutus__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_gallery_gallery__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_video_video__ = __webpack_require__(732);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_addvideo_addvideo__ = __webpack_require__(733);
@@ -3060,7 +3052,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_file_path__ = __webpack_require__(402);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__ionic_native_camera__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__ionic_native_video_editor__ = __webpack_require__(404);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_image_picker__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_image_picker__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_addcategory_addcategory__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_addcontent_addcontent__ = __webpack_require__(409);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_updatecategory_updatecategory__ = __webpack_require__(410);
@@ -3120,6 +3112,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// import { TagsInputModule } from 'ionic2-tags-input';
 
 
 
@@ -3161,7 +3154,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_35__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_34_ionic_gallery_modal__["b" /* GalleryModalModule */],
                 __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */]),
-                __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["a" /* IonicStorageModule */].forRoot()
+                __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicApp */]],
             entryComponents: [
@@ -3241,7 +3234,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_video_editor__ = __webpack_require__(404);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_video_player__ = __webpack_require__(405);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_servercon__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__gallery_gallery__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__gallery_gallery__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__banners_banners__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ionic_gallery_modal__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__updategallery_updategallery__ = __webpack_require__(407);
@@ -3687,19 +3680,22 @@ var DetailPage = (function () {
     DetailPage.prototype.openVideo = function (v) {
         // alert(v);
         // let test = "http://betweenlifestyle.com/android/upload/fe4373a2273641b4-20160229014152.mp4";
-        var browser = this.iab.create(v);
+        var browser = this.iab.create(v, "_self", "location=no,fullscreen=yes");
         // let options: StreamingVideoOptions = {
-        //   successCallback: () => { alert('Video played') },
-        //   errorCallback: (e) => { alert('Error streaming') },
+        //   successCallback: () => { console.log('Video played') },
+        //   errorCallback: (e) => { console.log('Error streaming') },
         //   orientation: 'landscape'
         // };
+        //
         // this.streamingMedia.playVideo(v, options);
-        // Playing a video.
+        //
+        // // Playing a video.
         // this.videoPlayer.play(v).then(() => {
-        //  alert('video completed');
+        //  console.log('video completed');
         // }).catch(err => {
-        //  alert(err);
+        //  console.log(err);
         // });
+        //
     };
     DetailPage.prototype.openGallery = function (index) {
         this.photos = [];
@@ -3999,7 +3995,7 @@ var SublistPage = (function () {
         console.log(this.navParams.data);
         this.listitem(param);
         this.subFilter();
-        // this.getLocation();
+        this.getLocation();
     };
     SublistPage.prototype.presentAS = function (item) {
         var _this = this;
@@ -4074,6 +4070,28 @@ var SublistPage = (function () {
             loading.dismiss();
         });
     };
+    SublistPage.prototype.washData = function (loc) {
+        var _this = this;
+        var param = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
+        console.log(param);
+        var loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        loading.present();
+        this.ss.dataList(param, "washDatabyLocation.php").then(function (response) {
+            _this.items = response;
+            // this.total= this.items.total;
+            //this.start=this.items.start;
+            //this.end=this.items.end;
+            _this.items = _this.items.Data;
+            console.log(_this.items);
+            _this.backup_items = _this.items;
+            loading.dismiss();
+        }).catch(function (Error) {
+            console.log("Connection Error" + Error);
+            loading.dismiss();
+        });
+    };
     SublistPage.prototype.getLocation = function () {
         var _this = this;
         var param = "main_category_id=" + this.navParams.get("id");
@@ -4082,7 +4100,7 @@ var SublistPage = (function () {
             content: 'Please wait...'
         });
         loading.present();
-        this.ss.dataList(param, "getSubDatabyMainID.php").then(function (response) {
+        this.ss.dataList(param, "getMain_Location.php").then(function (response) {
             _this.locations = response;
             _this.locations = _this.locations.Data;
             loading.dismiss();
@@ -4243,7 +4261,7 @@ var SublistPage = (function () {
     };
     SublistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-sublist',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/'\n<ion-header>\n <ion-navbar color="darkbule">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button color="white" ion-button icon-only (click)="presentPopover($event)">\n        <ion-icon name="list"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-searchbar class="sb" *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n   <!-- <ion-select class="sbl" *ngIf="showme" [(ngModel)]="gender">\n     <ion-option *ngFor="let location of locations" value="{{location.id}}">{{location.name}}</ion-option>\n   </ion-select> -->\n</ion-header>\n\n\n<ion-content>\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.content_name}} </p>\n     </div>\n\n  </div>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="Loading more data...">\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/
+            selector: 'page-sublist',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/'\n<ion-header>\n <ion-navbar color="darkbule">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button color="white" ion-button icon-only (click)="presentPopover($event)">\n        <ion-icon name="list"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-searchbar class="sb" *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n   <ion-select class="sbl" *ngIf="showme" [(ngModel)]="loc" (ionChange)="washData(loc)">\n     <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>\n   </ion-select>\n</ion-header>\n\n\n<ion-content>\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.content_name}} </p>\n     </div>\n\n  </div>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="Loading more data...">\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
     ], SublistPage);
@@ -4254,7 +4272,7 @@ var SublistPage = (function () {
 
 /***/ }),
 
-/***/ 63:
+/***/ 62:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4391,7 +4409,7 @@ var EventPage = (function () {
 
 /***/ }),
 
-/***/ 64:
+/***/ 63:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4468,11 +4486,11 @@ var AboutusPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_earth_earth__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_event_event__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_event_event__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_topten_topten__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_fave_fave__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_banners_banners__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_aboutus_aboutus__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_aboutus_aboutus__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_servercon__ = __webpack_require__(21);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4571,7 +4589,7 @@ var MyApp = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabtoptenPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__aboutus_aboutus__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__aboutus_aboutus__ = __webpack_require__(63);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4697,7 +4715,7 @@ var AddvideoPage = (function () {
 
 /***/ }),
 
-/***/ 87:
+/***/ 86:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4771,9 +4789,9 @@ var GalleryPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_servercon__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_image_picker__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_image_picker__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__event_event__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__event_event__ = __webpack_require__(62);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4872,64 +4890,6 @@ var AddcategoryPage = (function () {
             console.log(err);
         });
     };
-    AddcategoryPage.prototype.imgPick = function () {
-        var _this = this;
-        var options = {
-            maximumImagesCount: 1
-        };
-        this.imagePicker.getPictures(options).then(function (results) {
-            var res = results[0];
-            if (_this.platform.is('android')) {
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["d" /* FilePath */].resolveNativePath(res)
-                    .then(function (filePath) {
-                    console.log('filepath', filePath);
-                    _this.resizeImage(filePath);
-                    _this.resolvePath = filePath;
-                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                    var currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-                    console.log('currentfilename', currentName);
-                    console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1));
-                    _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-                });
-            }
-            else {
-                var currentName = _this.resolvePath.substr(_this.resolvePath.lastIndexOf('/') + 1);
-                var correctPath = _this.resolvePath.substr(0, _this.resolvePath.lastIndexOf('/') + 1);
-                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-            }
-        }, function (err) { });
-    };
-    // chooseFile(){
-    //   let options: ImagePickerOptions = {
-    //     maximumImagesCount: 1
-    //   }
-    //
-    //   this.imagePicker.getPictures(options).then((results) => {
-    //
-    //     let res = results[0];
-    //
-    //
-    //     if (this.platform.is('android')) {
-    //       FilePath.resolveNativePath(res)
-    //       .then(filePath => {
-    //         console.log('filepath', filePath);
-    //         this.resizeImage(filePath);
-    //         this.resolvePath = filePath;
-    //         let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-    //         let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-    //         console.log('currentfilename', currentName );
-    //         console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-    //         this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //       });
-    //     } else {
-    //       var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-    //       var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-    //       this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //     }
-    //
-    //   },(err) => {
-    //    });
-    // }
     AddcategoryPage.prototype.resizeImage = function (uri) {
         var _this = this;
         var options = {
@@ -5127,8 +5087,7 @@ var AddcategoryPage = (function () {
                     text: 'Browser',
                     icon: 'image',
                     handler: function () {
-                        //  this.chooseFile();
-                        _this.imgPick();
+                        _this.browsePicture(__WEBPACK_IMPORTED_MODULE_2_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY);
                     }
                 },
                 {

@@ -47,7 +47,7 @@ import { UpdategalleryPage } from '../pages/updategallery/updategallery';
 
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-
+// import { TagsInputModule } from 'ionic2-tags-input';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
 
 import { VideoPlayer } from '@ionic-native/video-player';
@@ -76,7 +76,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
     // GalleryModal,
     // ZoomableImage,
-
     AddcategoryPage,
     AddvideoPage,
     AddcontentPage,
@@ -90,7 +89,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     BrowserModule,
     ionicGalleryModal.GalleryModalModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    // TagsInputModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -114,7 +114,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
     // GalleryModal,
     // ZoomableImage,
-
     AddcategoryPage,
     AddvideoPage,
     AddcontentPage,

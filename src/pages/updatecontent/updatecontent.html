@@ -118,6 +118,8 @@
                 </ion-label>
             </ion-item>
 
+
+
         </ion-list>
 
         <button ion-button full color="secondary" [hidden]="locationFlag" (click)="removeLoc()">Remove Location</button>
@@ -125,4 +127,17 @@
         <button ion-button full color="secondary" (click)="submitForm()">Save</button>
         <button ion-button full color="danger" (click)="onCancelClick()">Cancel</button>
     </form>
+
+    <ion-list radio-group [(ngModel)]="loc">
+      <ion-list-header>
+        Locations
+      </ion-list-header>
+
+      <ion-item *ngFor="let location of locations">
+        <ion-label>{{location.name}}</ion-label>
+        <ion-radio (ionSelect)="deleteLocation(location.name)" value="{{location.name}}"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
 </ion-content>

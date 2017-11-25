@@ -48,6 +48,11 @@ export class UpdatecontentPage {
     detailItem: any;
     coordinates: any;
 
+    locations: any;
+    obj: any;
+    loc: any;
+
+
     constructor(
       private imagePicker: ImagePicker,
 
@@ -82,6 +87,8 @@ export class UpdatecontentPage {
     }
 
     ionViewDidLoad(){
+
+      this.getLocations();
         // get main category list
         this.ss.getMainCategory().then(
             (res) => {
@@ -108,6 +115,78 @@ export class UpdatecontentPage {
                     console.log('error', err);
                 }
             );
+    }
+
+    deleteLocation(location)
+    {
+      let param = "content_id=" + this.detailItem.id;
+
+      let loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+      loading.present();
+      this.ss.dataList(param,"deleteContent_Location.php").then((response)=>{
+          loading.dismiss();
+          this.insertLocation(location);
+        }).catch((Error)=>{
+          console.log("Connection Error"+Error);
+          loading.dismiss();
+          });
+    }
+
+    insertLocation(location)
+    {
+      let param = "location=" + location + "&content_id=" + this.detailItem.id + "&main_category_id=" + this.detailItem.category_id;
+
+      let loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+      loading.present();
+      this.ss.dataList(param,"insertContent_Location.php").then((response)=>{
+          loading.dismiss();
+        }).catch((Error)=>{
+          console.log("Connection Error"+Error);
+          loading.dismiss();
+          });
+    }
+
+    getSelectedLocation()
+    {
+      let param = "content_id=" + this.detailItem.id;
+
+      let loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+      loading.present();
+      this.ss.dataList(param,"getContent_Location.php").then((response)=>{
+
+          this.obj = response;
+          this.loc = this.obj.Data[0].location;
+          loading.dismiss();
+        }).catch((Error)=>{
+          console.log("Connection Error"+Error);
+          loading.dismiss();
+          });
+    }
+
+    getLocations()
+    {
+      let param = "main_category_id=" + this.detailItem.category_id;
+
+      let loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+      loading.present();
+      this.ss.dataList(param,"getMain_Location.php").then((response)=>{
+
+          this.obj = response;
+          this.locations = this.obj.Data;
+          loading.dismiss();
+          this.getSelectedLocation();
+        }).catch((Error)=>{
+          console.log("Connection Error"+Error);
+          loading.dismiss();
+          });
     }
 
     removeLoc(){

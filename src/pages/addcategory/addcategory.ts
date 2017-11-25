@@ -123,68 +123,6 @@ export class AddcategoryPage {
     });
 }
 
-
-imgPick(){
-
-  let options: ImagePickerOptions = {
-    maximumImagesCount: 1
-  }
-
-  this.imagePicker.getPictures(options).then((results) => {
-        let res = results[0];
-        if (this.platform.is('android')) {
-          FilePath.resolveNativePath(res)
-          .then(filePath => {
-            console.log('filepath', filePath);
-            this.resizeImage(filePath);
-            this.resolvePath = filePath;
-            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-            console.log('currentfilename', currentName );
-            console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-          });
-        } else {
-          var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-          var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-          this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-        }
-  }, (err) => { });
-
-}
-
-    // chooseFile(){
-    //   let options: ImagePickerOptions = {
-    //     maximumImagesCount: 1
-    //   }
-    //
-    //   this.imagePicker.getPictures(options).then((results) => {
-    //
-    //     let res = results[0];
-    //
-    //
-    //     if (this.platform.is('android')) {
-    //       FilePath.resolveNativePath(res)
-    //       .then(filePath => {
-    //         console.log('filepath', filePath);
-    //         this.resizeImage(filePath);
-    //         this.resolvePath = filePath;
-    //         let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-    //         let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-    //         console.log('currentfilename', currentName );
-    //         console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-    //         this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //       });
-    //     } else {
-    //       var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-    //       var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-    //       this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //     }
-    //
-    //   },(err) => {
-    //    });
-    // }
-
     resizeImage(uri){
         let options = {
             uri: uri,
@@ -424,8 +362,7 @@ presentActionSheet() {
          text: 'Browser',
         icon:'image',
          handler: () => {
-          //  this.chooseFile();
-          this.imgPick();
+           this.browsePicture(Camera.PictureSourceType.PHOTOLIBRARY);           
          }
        },
        {

@@ -2,18 +2,18 @@
   "_args": [
     [
       {
-        "raw": "cordova-plugin-streaming-media",
+        "raw": "cordova-plugin-streaming-media@^1.0.2",
         "scope": null,
         "escapedName": "cordova-plugin-streaming-media",
         "name": "cordova-plugin-streaming-media",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
+        "rawSpec": "^1.0.2",
+        "spec": ">=1.0.2 <2.0.0",
+        "type": "range"
       },
-      "C:\\Users\\131216\\Crappy\\BLS\\node_modules"
+      "C:\\Users\\131216\\Crappy\\BLS"
     ]
   ],
-  "_from": "cordova-plugin-streaming-media@latest",
+  "_from": "cordova-plugin-streaming-media@>=1.0.2 <2.0.0",
   "_id": "cordova-plugin-streaming-media@1.0.2",
   "_inCache": true,
   "_location": "/cordova-plugin-streaming-media",
@@ -29,13 +29,13 @@
   "_npmVersion": "3.5.4",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "cordova-plugin-streaming-media",
+    "raw": "cordova-plugin-streaming-media@^1.0.2",
     "scope": null,
     "escapedName": "cordova-plugin-streaming-media",
     "name": "cordova-plugin-streaming-media",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "rawSpec": "^1.0.2",
+    "spec": ">=1.0.2 <2.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "#USER",
@@ -44,8 +44,8 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-streaming-media/-/cordova-plugin-streaming-media-1.0.2.tgz",
   "_shasum": "d36848015325208a0f997fba4ce98067d92d2ccb",
   "_shrinkwrap": null,
-  "_spec": "cordova-plugin-streaming-media",
-  "_where": "C:\\Users\\131216\\Crappy\\BLS\\node_modules",
+  "_spec": "cordova-plugin-streaming-media@^1.0.2",
+  "_where": "C:\\Users\\131216\\Crappy\\BLS",
   "author": {
     "name": "Nicholas Hutchind"
   },

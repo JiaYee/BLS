@@ -4,7 +4,6 @@ import { Servercon } from '../../providers/servercon'
 import { HomePage } from '../home/home';
 import { EventPage } from '../event/event';
 import { Platform } from 'ionic-angular';
-import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 
 import {
   NavController,
@@ -32,7 +31,7 @@ export class UpdatecategoryPage {
   homepage:any;
   eventpage:any;
   name:string;
-  type:string;
+  type:number;
   rate:any;
   imageUrl: any;
   imageName: string;
@@ -40,9 +39,10 @@ export class UpdatecategoryPage {
   catItem: any;
   catId: any;
 
-  constructor(
-    private imagePicker: ImagePicker,
+  locations: any;
+  obj: any;
 
+  constructor(
     public platform: Platform,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -58,7 +58,6 @@ export class UpdatecategoryPage {
     this.eventpage=EventPage;
     this.name="";
 
-    this.type="";
     this.rate="";
 
     this.retrunPage=this.homepage;
@@ -69,7 +68,63 @@ export class UpdatecategoryPage {
     this.image_path = this.catItem.image_path;
     this.name = this.catItem.name;
     this.catId = this.catItem.id;
-    console.log('ionViewDidLoad AddcategoryPage', this.catItem);
+    this.type = 1;
+
+    this.getLocations();
+  }
+
+  getLocations()
+  {
+    let param = "main_category_id=" + this.catItem.id;
+
+    let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+    loading.present();
+    this.ss.dataList(param,"getMain_Location.php").then((response)=>{
+
+        this.obj = response;
+        this.locations = this.obj.Data;
+        loading.dismiss();
+      }).catch((Error)=>{
+        console.log("Connection Error"+Error);
+        loading.dismiss();
+        });
+  }
+
+  insertLocation(newlocation)
+  {
+    let param = "main_category_id=" + this.catItem.id + "&name=" + newlocation;
+
+    let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+    loading.present();
+    this.ss.dataList(param,"insertMain_Location.php").then((response)=>{
+        loading.dismiss();
+        this.getLocations();
+      }).catch((Error)=>{
+        console.log("Connection Error"+Error);
+        loading.dismiss();
+        });
+  }
+
+  delLocation(id)
+  {
+    let param = "id=" + id;
+
+    let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+    loading.present();
+    this.ss.dataList(param,"deleteMain_LocationbyID.php").then((response)=>{
+        alert("Data successfully deleted!");
+        loading.dismiss();
+        this.getLocations();
+      }).catch((Error)=>{
+        console.log("Connection Error"+Error);
+        loading.dismiss();
+        });
   }
 
     createFileName() {
@@ -136,64 +191,6 @@ export class UpdatecategoryPage {
           console.log(err);
       });
   }
-
-  imgPick(){
-
-    let options: ImagePickerOptions = {
-      maximumImagesCount: 1
-    }
-
-    this.imagePicker.getPictures(options).then((results) => {
-          let res = results[0];
-          if (this.platform.is('android')) {
-            FilePath.resolveNativePath(res)
-            .then(filePath => {
-              console.log('filepath', filePath);
-              this.resizeImage(filePath);
-              this.resolvePath = filePath;
-              let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-              let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-              console.log('currentfilename', currentName );
-              console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-              this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-            });
-          } else {
-            var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-            var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-          }
-    }, (err) => { });
-
-  }
-
-    // chooseFile(sourceType){
-    //     FileChooser.open().then(
-    //         (res) => {
-    //             console.log('choosepath', res);
-    //
-    //             if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
-    //             FilePath.resolveNativePath(res)
-    //                 .then(filePath => {
-    //                     console.log('filepath', filePath);
-    //                     this.resizeImage(filePath);
-    //                     this.resolvePath = filePath;
-    //                     let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-    //                     let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
-    //                     console.log('currentfilename', currentName );
-    //                     console.log('currentfilename', filePath.substring(filePath.lastIndexOf('/') + 1 ));
-    //                     this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //                 });
-    //             } else {
-    //                 var currentName = this.resolvePath.substr(this.resolvePath.lastIndexOf('/') + 1);
-    //                 var correctPath = this.resolvePath.substr(0, this.resolvePath.lastIndexOf('/') + 1);
-    //                 this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //             }
-    //         },
-    //         (err) => {
-    //             console.log('choosepatherr', err);
-    //         }
-    //     );
-    // }
 
     resizeImage(uri){
         let options = {
@@ -312,7 +309,7 @@ export class UpdatecategoryPage {
   updateExistCategory(imageUrl){
     this.imgFileURL = imageUrl;
 
-    this.param = "id="+this.catId+"&name="+this.name+"&image_path="+this.imgFileURL+"&type"+this.type;
+    this.param = "id="+this.catId+"&name="+this.name+"&image_path="+this.imgFileURL+"&type="+this.type;
 
     console.log('aaa', this.imgFileURL);
     console.log('bbb', this.param);
@@ -454,8 +451,7 @@ export class UpdatecategoryPage {
           text: 'Browser',
           icon:'image',
           handler: () => {
-            this.imgPick();
-            // this.chooseFile(Camera.PictureSourceType.PHOTOLIBRARY);
+            this.browsePicture(Camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
         {

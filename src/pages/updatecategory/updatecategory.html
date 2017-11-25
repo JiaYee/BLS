@@ -26,7 +26,7 @@
     <ion-label>Type</ion-label>
     <ion-select [(ngModel)]="type">
      <ion-option value="1">Earth</ion-option>
-      <ion-option value="2">Event</ion-option>
+      <ion-option value="2">Location</ion-option>
     </ion-select>
   </ion-item>
 
@@ -35,6 +35,18 @@
     <ion-input  type="number" step="any" name="topRate" [(ngModel)]="rate" min="1"
                max="20"></ion-input>
   </ion-item>
+
+  <ion-item *ngFor="let location of locations">
+    <h2 (click)="delLocation(location.id)">{{location.name}}</h2>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>New Location</ion-label>
+    <ion-input  [(ngModel)]="newlocation"></ion-input>
+  </ion-item>
+  <button ion-button (click)="insertLocation(newlocation)">Add</button>
+
+
 
 </ion-list>
 

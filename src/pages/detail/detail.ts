@@ -584,22 +584,22 @@ openVideo(v:string)
   // alert(v);
   // let test = "http://betweenlifestyle.com/android/upload/fe4373a2273641b4-20160229014152.mp4";
 
-  const browser = this.iab.create(v);
+  const browser = this.iab.create(v, "_self", "location=no,fullscreen=yes");
   // let options: StreamingVideoOptions = {
-  //   successCallback: () => { alert('Video played') },
-  //   errorCallback: (e) => { alert('Error streaming') },
+  //   successCallback: () => { console.log('Video played') },
+  //   errorCallback: (e) => { console.log('Error streaming') },
   //   orientation: 'landscape'
   // };
-
+  //
   // this.streamingMedia.playVideo(v, options);
-
-  // Playing a video.
+  //
+  // // Playing a video.
   // this.videoPlayer.play(v).then(() => {
-  //  alert('video completed');
+  //  console.log('video completed');
   // }).catch(err => {
-  //  alert(err);
+  //  console.log(err);
   // });
-
+  //
 }
 
 openGallery(index:any)
