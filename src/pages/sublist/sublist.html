@@ -9,13 +9,27 @@
     </ion-buttons>
   </ion-navbar>
  <ion-searchbar class="sb" *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>
-   <ion-select class="sbl" *ngIf="showme" [(ngModel)]="loc" (ionChange)="washData(loc)">
+  <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">
+    <ion-icon name="arrow-dropdown"></ion-icon>
+  </button>
+
+   <!-- <ion-select class="sbl" *ngIf="showme" placeholder="V" [(ngModel)]="loc" (ionChange)="washData(loc)" interface="action-sheet">
      <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>
-   </ion-select>
+   </ion-select> -->
 </ion-header>
 
 
 <ion-content>
+
+  <div class="locpage" *ngIf="showlocpage">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let location of locations" col-6>
+          <button outline ion-button block (click)="washData(location.name)">{{location.name}}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
   <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">
 

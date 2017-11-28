@@ -36,17 +36,11 @@
                max="20"></ion-input>
   </ion-item>
 
-  <ion-item *ngFor="let location of locations">
-    <h2 (click)="delLocation(location.id)">{{location.name}}</h2>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>New Location</ion-label>
-    <ion-input  [(ngModel)]="newlocation"></ion-input>
-  </ion-item>
-  <button ion-button (click)="insertLocation(newlocation)">Add</button>
-
-
+  <!-- <ion-item> -->
+  <ion-label stacked>Locations</ion-label>
+  <tag-input class="tag" [ngModel]="locations" [identifyBy]="'id'" [displayBy]="'name'" (onAdd)="insertLocation($event.name)" (onRemove)="delLocation($event.id)" theme='minimal'>
+  </tag-input>
+<!-- </ion-item> -->
 
 </ion-list>
 

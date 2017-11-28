@@ -117,6 +117,7 @@ background-color:#002146
  width:75%;
  margin:0;
  white-space: pre-line;
+ text-align: left;
 
 }
 .deatils .info .wday_box
@@ -126,6 +127,7 @@ background-color:#002146
  width:65%;
  margin:0;
  white-space: pre-line;
+ text-align: left;
 
 }
 .deatils div
@@ -150,11 +152,13 @@ a {
     vertical-align:top;
     padding-right:5px;
     text-transform:capitalize;
+    text-align: left;
 }
 
 .info {
     padding-left: 5px;
     padding-bottom: 12px;
+    text-align: left;
 }
 
 }

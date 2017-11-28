@@ -56,8 +56,9 @@ papa:any;
 code:number = 0;
 
 obj: any;
-
 locations: any;
+showlocpage: boolean = false;
+
   constructor(public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, public events: Events, public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public ss:Servercon) {
 
     this.showme=false;
@@ -76,6 +77,12 @@ this.listitem(param);
 this.subFilter();
 this.getLocation();
 
+  }
+
+  showLP()
+  {
+    this.showlocpage = true;
+    this.showme = false;
   }
 
   presentAS(item)
@@ -159,6 +166,7 @@ delContent(item)
 
   washData(loc)
   {
+    this.showlocpage = false;
     let param = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
     console.log(param);
     let loading = this.loadingCtrl.create({

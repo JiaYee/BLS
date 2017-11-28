@@ -39,7 +39,7 @@ export class UpdatecategoryPage {
   catItem: any;
   catId: any;
 
-  locations: any;
+  locations = [];
   obj: any;
 
   constructor(
@@ -75,6 +75,7 @@ export class UpdatecategoryPage {
 
   getLocations()
   {
+    let i;
     let param = "main_category_id=" + this.catItem.id;
 
     let loading = this.loadingCtrl.create({
@@ -85,6 +86,7 @@ export class UpdatecategoryPage {
 
         this.obj = response;
         this.locations = this.obj.Data;
+
         loading.dismiss();
       }).catch((Error)=>{
         console.log("Connection Error"+Error);
@@ -118,7 +120,7 @@ export class UpdatecategoryPage {
       });
     loading.present();
     this.ss.dataList(param,"deleteMain_LocationbyID.php").then((response)=>{
-        alert("Data successfully deleted!");
+        // alert("Data successfully deleted!");
         loading.dismiss();
         this.getLocations();
       }).catch((Error)=>{

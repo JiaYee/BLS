@@ -118,17 +118,26 @@
                 </ion-label>
             </ion-item>
 
+          </ion-list>
+        </form>
 
-
-        </ion-list>
+        <ion-label stacked>Tag Location:</ion-label>
+        <ion-select mode="wp" class="tag" [(ngModel)]="loc" (ionChange)="deleteLocation(loc)">
+          <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>
+        </ion-select>
+            <!-- <ion-label stacked>Tag Location</ion-label>
+            <tag-input class="tag" [maxItems]="1" [ngModel]="loc" (onAdd)="insertLocation($event.value)" (onRemove)="deleteLocation()" [onlyFromAutocomplete]="true">
+              <tag-input-dropdown [showDropdownIfEmpty]="true"
+              [autocompleteItems]="locations">
+            </tag-input-dropdown>
+          </tag-input> -->
 
         <button ion-button full color="secondary" [hidden]="locationFlag" (click)="removeLoc()">Remove Location</button>
         <button ion-button full color="secondary" [hidden]="!locationFlag" (click)="addLoc()">Add Location</button>
         <button ion-button full color="secondary" (click)="submitForm()">Save</button>
         <button ion-button full color="danger" (click)="onCancelClick()">Cancel</button>
-    </form>
 
-    <ion-list radio-group [(ngModel)]="loc">
+    <!-- <ion-list radio-group [(ngModel)]="loc">
       <ion-list-header>
         Locations
       </ion-list-header>
@@ -136,8 +145,8 @@
       <ion-item *ngFor="let location of locations">
         <ion-label>{{location.name}}</ion-label>
         <ion-radio (ionSelect)="deleteLocation(location.name)" value="{{location.name}}"></ion-radio>
-      </ion-item>
+      </ion-item> -->
 
-    </ion-list>
+    <!-- </ion-list> -->
 
 </ion-content>

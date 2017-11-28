@@ -48,9 +48,10 @@ export class UpdatecontentPage {
     detailItem: any;
     coordinates: any;
 
-    locations: any;
+    locations = [];
     obj: any;
-    loc: any;
+    ob: any;
+    loc = [];
 
 
     constructor(
@@ -89,6 +90,7 @@ export class UpdatecontentPage {
     ionViewDidLoad(){
 
       this.getLocations();
+      this.getSelectedLocation();
         // get main category list
         this.ss.getMainCategory().then(
             (res) => {
@@ -136,6 +138,7 @@ export class UpdatecontentPage {
 
     insertLocation(location)
     {
+      // console.log(location);
       let param = "location=" + location + "&content_id=" + this.detailItem.id + "&main_category_id=" + this.detailItem.category_id;
 
       let loading = this.loadingCtrl.create({
@@ -160,8 +163,12 @@ export class UpdatecontentPage {
       loading.present();
       this.ss.dataList(param,"getContent_Location.php").then((response)=>{
 
-          this.obj = response;
-          this.loc = this.obj.Data[0].location;
+          this.ob = response;
+
+          this.loc.push(this.ob.Data[0].location);
+          console.log(this.loc);
+
+          this.loc = this.ob.Data[0].location;
           loading.dismiss();
         }).catch((Error)=>{
           console.log("Connection Error"+Error);
@@ -171,6 +178,7 @@ export class UpdatecontentPage {
 
     getLocations()
     {
+      let i;
       let param = "main_category_id=" + this.detailItem.category_id;
 
       let loading = this.loadingCtrl.create({
@@ -181,10 +189,19 @@ export class UpdatecontentPage {
 
           this.obj = response;
           this.locations = this.obj.Data;
+          // let json = this.obj.Data;
+          // console.log(json);
+
+          // for(i=0; i<=json.length; i++)
+          // {
+            // this.locations.push(this.obj.Data[i].name);
+            // console.log(this.locations)
+          // }
+
+
           loading.dismiss();
-          this.getSelectedLocation();
         }).catch((Error)=>{
-          console.log("Connection Error"+Error);
+          // console.log("Connection Error"+Error);
           loading.dismiss();
           });
     }

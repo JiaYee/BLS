@@ -1,16 +1,22 @@
 page-sublist {
 
-  .sb {
-    width: 60%;
+  .locpage{
+    width: 100%;
+    height: 100%;
+    background-color: white;
   }
-  
+
+  .sb {
+    position: absolute;
+    top: 35px;
+    width: 92%;
+  }
+
   .sbl {
     position: absolute;
-    background-color: white;
-    left: 59%;
-    top: 45px;
-    width: 140px;
-    height: 40px;
+    left: 88%;
+    top: 38px;
+    height: 43px;
   }
 
 .img_item {

@@ -45,9 +45,13 @@ import { UpdatecontentPage } from '../pages/updatecontent/updatecontent';
 import { PopoverEdit } from '../pages/detail/detail';
 import { UpdategalleryPage } from '../pages/updategallery/updategallery';
 
+// import {IonTagsInputModule} from "ionic-tags-input";
+import { TagInputModule } from 'ng2-tag-input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+
+
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-// import { TagsInputModule } from 'ionic2-tags-input';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
 
 import { VideoPlayer } from '@ionic-native/video-player';
@@ -90,7 +94,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ionicGalleryModal.GalleryModalModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    // TagsInputModule,
+    // IonTagsInputModule,
+    TagInputModule,
+    BrowserAnimationsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
