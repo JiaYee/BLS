@@ -125,7 +125,51 @@ export class PopoverEdit {
     this.getDetailItem = this.navParams.get('detailItem');
   }
 
+  deleteItem()
+  {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm delete?',
+      message: 'Do you really want to delete this item?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.delContent();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 
+delContent()
+{
+  this.viewCtrl.dismiss();
+  let newparam = "content_id=" + this.getDetailItem.id + "&category_id=" + this.getDetailItem.category_id;
+  this.ss.dataList(newparam,"deleteContent.php")
+  .then((response)=>{
+    alert("Item successfully deleted!")
+    this.events.publish("deletion", "true");
+  })
+  .catch((Error)=>{
+    // alert("Insert Data Error");
+  })
+}
+
+  close() {
+    this.viewCtrl.dismiss().then(()=> {
+      this.navCtrl.push(UpdatecontentPage, {
+        detailItem: this.getDetailItem
+      });
+    });
+  }
 }
 // End of popoveredit component
 
@@ -206,13 +250,24 @@ this.items ={
 };
 this.tt="details";
 //ScreenOrientation.lockOrientation('portrait');
+
+events.subscribe('deletion', (data) => {
+  // user and time are the same arguments passed in `events.publish(user, time)`
+  this.navCtrl.pop();
+});
+
+events.subscribe('edition', (data) => {
+  // user and time are the same arguments passed in `events.publish(user, time)`
+  this.listitem(this.param);
+});
+
   }
 
 
   ionViewDidLoad() {
 this.item=this.navParams.data;
-this.image_path=this.navParams.get("image_path");
-this.title=this.navParams.get("content_name");
+// this.image_path=this.navParams.get("image_path");
+// this.title=this.navParams.get("content_name");
 console.log(this.item)
 if(this.item.content_id)
 this.param="category_id="+this.item.category_id+"&content_id="+this.item.content_id;
@@ -254,27 +309,29 @@ deleteGal(gal)
 
 deleteVid(vid)
 {
-  // console.log(item);
-  const alert = this.alertCtrl.create({
-    title: 'Confirm delete?',
-    message: 'Do you really want to delete this video?',
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
+  if(this.adminonly())
+  {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm delete?',
+      message: 'Do you really want to delete this video?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.delVid(vid);
+          }
         }
-      },
-      {
-        text: 'Delete',
-        handler: () => {
-          this.delVid(vid);
-        }
-      }
-    ]
-  });
-  alert.present();
+      ]
+    });
+    alert.present();
+  }
 }
 
 delVid(item)
@@ -324,28 +381,75 @@ deleteImage(galleryItem){
     });
 }
 
-openEdit(galleryItem){
-  // if(this.adminonly()){
-    let actionSheet = this.actionSheetCtrl.create({
-      buttons: [
-        {
-          text: 'Edit',
-          handler: () => {
-            this.navCtrl.push(UpdategalleryPage, {
-              galleryItem: galleryItem
-            });
-          }
-        },
-        {
-          text: 'Delete',
-          handler: () => {
-            this.deleteImage(galleryItem);
-          }
-        }
-      ]
-    });
+adminonly(){
+if(this.ss.readData("loginSts") == 1)
+return true;
+else
+return false;
+}
 
-    actionSheet.present();
+checkPermission()
+{
+if(this.ss.readData("delete_action") == 1)
+  return true;
+else
+  return false;
+}
+
+openEdit(galleryItem){
+  if(this.adminonly()){
+    // if(this.checkPermission())
+    // {
+      let actionSheet = this.actionSheetCtrl.create({
+        buttons: [
+          {
+            text: 'Edit',
+            handler: () => {
+              this.navCtrl.push(UpdategalleryPage, {
+                galleryItem: galleryItem
+              });
+            }
+          },
+          {
+            text: 'Delete',
+            handler: () => {
+              this.deleteGal(galleryItem);
+            }
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+
+      actionSheet.present();
+    // // }
+    // else
+    // {
+    //   let actionSheet = this.actionSheetCtrl.create({
+    //     buttons: [
+    //       {
+    //         text: 'Edit',
+    //         handler: () => {
+    //           this.navCtrl.push(UpdategalleryPage, {
+    //             galleryItem: galleryItem
+    //           });
+    //         }
+    //       }
+    //     ]
+    //   });
+    //
+    //   actionSheet.present();
+    // }
+}
+else
+{
+
+}
 }
 
 /* detail of item */
@@ -369,6 +473,8 @@ loading.present();
 this.ss.dataList(param,"getContentDetail.php").then((response)=>{
 this.obj =response;
 this.items=this.obj.Data;
+this.image_path = this.items.image_path;
+this.title = this.items.name;
 console.log(this.items);
 loading.dismiss();
   }).catch((Error)=>{
@@ -645,14 +751,6 @@ profileModal.onDidDismiss(() => {
   this.getGallery(this.param);
 });
 profileModal.present();
-}
-
-adminonly()
-{
- if(this.ss.readData("loginSts"))
- return true;
- else
- return false;
 }
 
 promptVideo()

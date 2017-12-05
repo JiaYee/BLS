@@ -1,4 +1,52 @@
 page-home {
+
+  .sb {
+  position: absolute;
+  top: 35px;
+  width: 92%;
+}
+
+.sbl {
+  position: absolute;
+  left: 88%;
+  top: 38px;
+  height: 43px;
+}
+
+  .leftpanel {
+    width: 40%;
+    position: absolute;
+    top: 10px;
+    left: 5%;
+    background-color: #D3D3D3,inherit;
+  }
+
+  .leftpanel .button-inner {
+    justify-content: left;
+  }
+
+
+  .rightpanel {
+    width: 48%;
+    position: absolute;
+    left: 48%;
+    top: 10px;
+    background-color: #f4f4f4
+  }
+
+  .rightpanel button {
+    line-height: 170%;
+    height: 50px;
+  }
+
+.superfilter {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 5%;
+  background-color: #f4f4f4
+}
+
 .social_blk{
     width:13%;
     display:inline-block;

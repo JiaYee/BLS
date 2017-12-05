@@ -258,8 +258,8 @@ export class AddcontentPage {
     takePicture(sourceType){
         Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -354,8 +354,8 @@ export class AddcontentPage {
     browsePicture(sourceType){
         Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true

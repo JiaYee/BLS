@@ -3,7 +3,7 @@ import { Camera, Transfer,  File, FilePath, FileChooser, ImageResizer  } from 'i
 import { Servercon } from '../../providers/servercon'
 import { HomePage } from '../home/home';
 import { EventPage } from '../event/event';
-import { Platform } from 'ionic-angular';
+import { Platform, Events } from 'ionic-angular';
 
 import {
   NavController,
@@ -48,6 +48,7 @@ export class UpdatecategoryPage {
     public navParams: NavParams,
     public actionSheetCtrl: ActionSheetController,
     public ss:Servercon,
+    public events: Events,
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
     public toastCtrl: ToastController
@@ -160,8 +161,8 @@ export class UpdatecategoryPage {
   takePicture(sourceType){
       Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -216,8 +217,8 @@ export class UpdatecategoryPage {
   browsePicture(sourceType){
     Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -320,7 +321,7 @@ export class UpdatecategoryPage {
         content: 'Please wait...'
       });
 
-    console.log(this.page+"?"+this.param);
+    console.log("use existing image " + this.page+"?"+this.param);
 
     loading.present();
 
@@ -330,6 +331,8 @@ export class UpdatecategoryPage {
         loading.dismiss();
 
         this.navCtrl.pop();
+        this.events.publish("maincatedit", "true");
+
 
         this.presentToast("uploaded successfully");
 
@@ -350,7 +353,7 @@ export class UpdatecategoryPage {
     let imgName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
     this.imgFileURL = this.ss.fileURL + imgName;
 
-    this.param = "id="+this.catId+"&name="+this.name+"&image_path="+this.imgFileURL+"&type"+this.type;
+    this.param = "id="+this.catId+"&name="+this.name+"&image_path="+this.imgFileURL+"&type="+this.type;
 
     console.log('aaa', this.imgFileURL);
     console.log('bbb', this.param);
@@ -371,7 +374,7 @@ export class UpdatecategoryPage {
         content: 'Please wait...'
       });
 
-    console.log(this.page+"?"+this.param);
+    // alert("Using new image " + this.page+"?"+this.param);
 
     loading.present();
 
@@ -383,6 +386,8 @@ export class UpdatecategoryPage {
         this.navCtrl.pop();
 
         this.presentToast("uploaded successfully");
+        this.events.publish("maincatedit", "true");
+
 
         // if(this.type=='1')
         //   this.navCtrl.push(this.homepage);

@@ -1,9 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { PhotoViewer,LaunchNavigator,SocialSharing} from 'ionic-native';
-// import { PhotoViewer,LaunchNavigator,SocialSharing,ScreenOrientation} from 'ionic-native';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-// import { Storage } from '@ionic/storage';
 import { IonicStorageModule } from '@ionic/storage'
 import { HttpModule } from '@angular/http';
 
@@ -45,7 +43,6 @@ import { UpdatecontentPage } from '../pages/updatecontent/updatecontent';
 import { PopoverEdit } from '../pages/detail/detail';
 import { UpdategalleryPage } from '../pages/updategallery/updategallery';
 
-// import {IonTagsInputModule} from "ionic-tags-input";
 import { TagInputModule } from 'ng2-tag-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 
@@ -94,7 +91,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ionicGalleryModal.GalleryModalModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    // IonTagsInputModule,
     TagInputModule,
     BrowserAnimationsModule,
   ],

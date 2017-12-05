@@ -53,11 +53,15 @@ backup_items:any=[];
 showme:boolean;
 limititem:any;
 papa:any;
+popo: any;
+lokasi: any;
 code:number = 0;
 
 obj: any;
-locations: any;
+locations = [];
 showlocpage: boolean = false;
+display: any;
+
 
   constructor(public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, public events: Events, public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public ss:Servercon) {
 
@@ -70,13 +74,21 @@ showlocpage: boolean = false;
 
   ionViewDidLoad() {
 
-let param = "id="+this.navParams.get("id")+"&subid=0&start=0&end=10&type=0";
-this.title=this.navParams.get("name");
-console.log(this.navParams.data);
-this.listitem(param);
-this.subFilter();
-this.getLocation();
+    let direct = this.navParams.get('locname');
 
+    if(direct !== undefined)
+    {
+      this.washData(direct);
+    }
+    else
+    {
+      let param = "id="+this.navParams.get("id")+"&subid=0&start=0&end=10&type=0";
+      this.title=this.navParams.get("name");
+      console.log(this.navParams.data);
+      this.listitem(param);
+      this.subFilter();
+      this.getLocation();
+    }
   }
 
   showLP()
@@ -87,25 +99,70 @@ this.getLocation();
 
   presentAS(item)
   {
-    let actionSheet = this.actionSheetCtrl.create({
-      buttons: [
-        {
-          text: 'Edit',
-          handler: () => {
-            this.editSublist(item);
-          }
-        },
-        {
-          text: 'Delete',
-          handler: () => {
-            this.delSublist(item);
-          }
-        }
-      ]
-    });
-
-    actionSheet.present();
+    console.log(this.adminonly());
+    console.log(this.checkPermission())
+    if(this.adminonly() == true){
+      if(this.checkPermission() == true)
+      {
+        let actionSheet = this.actionSheetCtrl.create({
+          buttons: [
+            {
+              text: 'Edit',
+              handler: () => {
+                this.editSublist(item);
+              }
+            },
+            {
+              text: 'Delete',
+              handler: () => {
+                this.delSublist(item);
+              }
+            },
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            }
+          ]
+        });
+        actionSheet.present();
+      }
+      else
+      {
+        let actionSheet = this.actionSheetCtrl.create({
+          buttons: [
+            {
+              text: 'Edit',
+              handler: () => {
+                this.editSublist(item);
+              }
+            }
+          ]
+        });
+        actionSheet.present();
+      }
   }
+  else
+  {
+  }
+}
+
+  adminonly(){
+  if(this.ss.readData("loginSts") == 1)
+  return true;
+  else
+  return false;
+}
+
+checkPermission()
+{
+  if(this.ss.readData("delete_action") == 1)
+    return true;
+  else
+    return false;
+}
 
   delSublist(item)
   {
@@ -166,14 +223,14 @@ delContent(item)
 
   washData(loc)
   {
+    this.lokasi = loc;
     this.showlocpage = false;
-    let param = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
-    console.log(param);
+    this.popo = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
     let loading = this.loadingCtrl.create({
         content: 'Please wait...'
       });
     loading.present();
-     this.ss.dataList(param,"washDatabyLocation.php").then((response)=>{
+     this.ss.dataList(this.popo,"washDatabyLocation.php").then((response)=>{
 
 
     this.items =response;
@@ -193,6 +250,8 @@ delContent(item)
 
   getLocation()
   {
+    let i;
+
     let param = "main_category_id=" + this.navParams.get("id");
     console.log("Sending" + param)
     let loading = this.loadingCtrl.create({
@@ -200,8 +259,25 @@ delContent(item)
       });
     loading.present();
      this.ss.dataList(param,"getMain_Location.php").then((response)=>{
-       this.locations = response;
-       this.locations = this.locations.Data;
+       this.display = response;
+       this.display = this.display.Data;
+
+       for(i=0; i<=this.display.length; i++)
+       {
+         let name = this.display[i].name;
+         let pipeline = name.split("/");
+         let chinese = pipeline[0];
+         let english = pipeline[1];
+         this.locations.push({
+           name: name,
+           chinese: chinese,
+           english: english
+         });
+       }
+
+
+
+
     loading.dismiss();
       }).catch((Error)=>{
     console.log("Connection Error"+Error);
@@ -226,17 +302,43 @@ delContent(item)
     })
 
     this.events.subscribe("deletion", (data) => {
-      if(this.papa == undefined)
+      if(this.papa !== undefined)
+      {
+        //means its filtered before, need to show filtered result
+        this.filteritem(this.papa);
+      }
+      else if(this.popo !== undefined)
+      {
+        //means its filtered by location before, need show filtered result;
+        this.washData(this.lokasi);
+      }
+      else
       {
         //means it does not filtered before, need to show full list with refresh
         let param = "id="+this.navParams.get("id")+"&subid=0&start=0&end=10&type=0";
         this.listitem(param);
       }
-      else
+    })
+
+    this.events.subscribe("edition", (data) => {
+      if(this.papa !== undefined)
       {
         //means its filtered before, need to show filtered result
         this.filteritem(this.papa);
       }
+      else if(this.popo !== undefined)
+      {
+        //means its filtered by location before, need show filtered result;
+        this.washData(this.lokasi);
+      }
+      else
+      {
+        //means it does not filtered before, need to show full list with refresh
+        let param = "id="+this.navParams.get("id")+"&subid=0&start=0&end=10&type=0";
+        this.listitem(param);
+      }
+
+
     })
   }
 
@@ -360,7 +462,7 @@ getItems(ev: any) {
 
     // if the value is an empty string don't filter the items
 
-    if (val && val.trim() != '' && val.length>2) {
+    if (val && val.trim() != '' && val.length>1) {
 
 let loading = this.loadingCtrl.create({
     content: 'Please wait...'

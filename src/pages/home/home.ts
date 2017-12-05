@@ -8,7 +8,8 @@ import {
   PopoverController,
   ToastController,
   AlertController,
-  ActionSheetController
+  ActionSheetController,
+  Events,
 } from 'ionic-angular';
 
 import { PhotoViewer } from 'ionic-native';
@@ -210,17 +211,19 @@ validationPop()
   });
 loading.present();
 
- this.ss.dataList("verification_code="+data.password,"validateVerificationCode.php").then((response)=>{
+ this.ss.dataList("verification_code="+data.password,"newVVC.php").then((response)=>{
 
 let myname =data.username;
 
 loading.dismiss();
  data =response;
+ console.log(data);
 
 if(data.data.status)
 {
 this.ss.saveData("myname",myname);
 this.ss.saveData("loginSts","1");
+this.ss.saveData("delete_action", data.data.delete_action);
 this.presentToast("login successful");
 }
 else
@@ -279,6 +282,8 @@ loading.dismiss();
   }
 
 
+
+
 }
 
 
@@ -298,7 +303,12 @@ export class HomePage {
   favepage:any;
   toptenpage:any;
   addcategorypage:any;
-  showme:boolean;
+  showme:boolean = false;
+  showpopover: boolean = false;
+
+  locations = [];
+  display: any;
+  countries = [];
 
   constructor(
     public navCtrl: NavController,
@@ -307,6 +317,7 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public popoverCtrl: PopoverController,
     private alertCtrl: AlertController,
+    public events: Events,
     private actionSheetCtrl: ActionSheetController
   ) {
     this.earthpage = EarthPage;
@@ -315,11 +326,66 @@ export class HomePage {
     this.toptenpage=ToptenPage;
     this.showme=false;
     this.addcategorypage=AddcategoryPage;
+
+    events.subscribe("maincatedit", (data) => {
+      this.listitem();
+    })
   }
 
   ionViewDidLoad() {
     this.listBanner();
     this.listitem();
+  }
+
+  goSublist(locname, id)
+  {
+    this.navCtrl.push(SublistPage, {locname, id});
+  }
+
+  filterRight(item, index)
+  {
+    let j;
+    for(j=0; j<this.countries.length; j++)
+    {
+      this.countries[j].selected = false;
+    }
+    this.countries[index].selected = true;
+
+    let i;
+    this.locations = [];
+
+    let param = "main_category_id=" + item.id;
+    console.log("Sending" + param)
+    let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+    loading.present();
+     this.ss.dataList(param,"getMain_Location.php").then((response)=>{
+       this.display = response;
+       this.display = this.display.Data;
+
+       for(i=0; i<=this.display.length; i++)
+       {
+         let name = this.display[i].name;
+         let pipeline = name.split("/");
+         let chinese = pipeline[0];
+         let english = pipeline[1];
+         this.locations.push({
+           name: name,
+           chinese: chinese,
+           english: english,
+           id: item.id,
+         });
+       }
+
+
+
+
+    loading.dismiss();
+      }).catch((Error)=>{
+    console.log("Connection Error"+Error);
+    loading.dismiss();
+        });
   }
 
   goBLS()
@@ -353,13 +419,19 @@ export class HomePage {
             handler: () => {
               this.navCtrl.push(UpdatecategoryPage, {catItem});
             }
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
           }
         ]
       });
 
       actionSheet.present();
     }else{
-
     }
   }
 
@@ -469,11 +541,37 @@ export class HomePage {
     this.showme=false;
   }
 
-  seachshow(){
-    if(this.showme==false)
-    this.showme=true;
+  seachshow()
+  {
+    if(this.showme == true)
+    {
+      this.showme = false;
+    }
     else
-    this.showme=false;
+    {
+      this.showme = true;
+    }
+  }
+
+  showLP(){
+    let i;
+    this.showme = false;
+    if(this.showpopover==false)
+    {
+      for(i=0; i<this.items.length; i++)
+      {
+      // console.log(this.items[i].name);
+      // console.log(this.items[i].id);
+        this.countries.push({
+          name: this.items[i].name,
+          id: this.items[i].id,
+          selected: false,
+        })
+      }
+      this.showpopover=true;
+    }
+    else
+    this.showpopover=false;
   }
 
   view_photo(image_path:string,title:string){
@@ -490,8 +588,16 @@ export class HomePage {
 
   adminonly(){
     if(this.ss.readData("loginSts"))
-    return true;
+      return true;
     else
-    return false;
+      return false;
+  }
+
+  checkPermission()
+  {
+    if(this.ss.readData("delete_action"))
+      return true;
+    else
+      return false;
   }
 }

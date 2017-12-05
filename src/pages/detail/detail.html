@@ -18,15 +18,15 @@
       </button>
     </ion-buttons> -->
 
-    <!-- <ion-buttons end>
+    <ion-buttons end>
       <button *ngIf="adminonly()" ion-button (click)="popOverEdit($event)">
         <ion-icon name="more"></ion-icon>
       </button>
-    </ion-buttons> -->
+    </ion-buttons>
   </ion-navbar>
  <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="tt" mode="ios">
-      <ion-segment-button value="details" >
+      <ion-segment-button value="details" (ionSelect)="listitem(param)">
      Details
       </ion-segment-button>
       <ion-segment-button value="gallery" (ionSelect)="getGallery(param)" >

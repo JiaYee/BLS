@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,ActionSheetController,LoadingController,
-  ViewController,ToastController, Platform } from 'ionic-angular';
+  ViewController,ToastController, Platform, Events } from 'ionic-angular';
 import {Camera, Transfer, File, FilePath, FileChooser, ImageResizer} from 'ionic-native';
 import{Servercon} from '../../providers/servercon'
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
@@ -37,6 +37,7 @@ export class AddcategoryPage {
     public navParams: NavParams,
     public actionSheetCtrl: ActionSheetController,
     public ss:Servercon,
+    public events: Events,
     private imagePicker: ImagePicker,
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
@@ -89,8 +90,8 @@ export class AddcategoryPage {
  takePicture(sourceType){
     Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -145,8 +146,8 @@ export class AddcategoryPage {
 browsePicture(sourceType){
   Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -296,6 +297,8 @@ upload(imgurl){
         loading.dismiss();
 
         this.navCtrl.pop();
+        this.events.publish("maincatedit", "true");
+
 
         this.presentToast("uploaded successfully");
 
@@ -362,7 +365,7 @@ presentActionSheet() {
          text: 'Browser',
         icon:'image',
          handler: () => {
-           this.browsePicture(Camera.PictureSourceType.PHOTOLIBRARY);           
+           this.browsePicture(Camera.PictureSourceType.PHOTOLIBRARY);
          }
        },
        {

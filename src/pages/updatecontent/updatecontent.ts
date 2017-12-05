@@ -3,7 +3,7 @@ import { Camera,Transfer,Base64ToGallery, File, FilePath, FileChooser, ImageResi
 import { Geolocation } from 'ionic-native';
 import { Servercon } from '../../providers/servercon'
 import { HomePage } from '../home/home';
-import { Platform } from 'ionic-angular';
+import { Platform, Events } from 'ionic-angular';
 import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import {
             NavController,
@@ -40,7 +40,7 @@ export class UpdatecontentPage {
     uploadRes: any;
     imageName: string;
     imgFileURL: string;
-    latitude: any
+    latitude: any;
     longitude: any;
     locationFlag: boolean = false;
     infoFlag: boolean = false;
@@ -63,13 +63,22 @@ export class UpdatecontentPage {
         public actionSheetCtrl: ActionSheetController,
         public ss:Servercon,
         public fb: FormBuilder,
+        public events: Events,
         private alertCtrl: AlertController,
         private loadingCtrl: LoadingController
     ){
         this.detailItem = this.navParams.get('detailItem');
         console.log('ooo', this.detailItem);
-        // this.image_path="assets/upi.jpg";
         this.image_path = this.detailItem.image_path;
+        this.latitude = this.detailItem.latitude;
+        this.longitude = this.detailItem.longitude;
+        // console.log(this.latitude);
+        // console.log(this.longitude);
+
+        if(this.latitude == "0.0000000" || this.longitude == "0.0000000")
+        {
+          this.locationFlag = true;
+        }
         this.page="insertMainCategoryData.php";
 
         this.createContent = this.fb.group({
@@ -81,7 +90,7 @@ export class UpdatecontentPage {
             phoneNo: [this.detailItem.phone_office],
             weekday: [this.detailItem.weekday_business_hour],
             weekend: [this.detailItem.weekend_business_hour],
-            website: [this.detailItem.website_url]
+            website: [this.detailItem.website_url],
         });
 
         this.type = this.createContent.controls['type'];
@@ -101,22 +110,6 @@ export class UpdatecontentPage {
                 console.log(err);
             }
         );
-
-        // get current location coordinates
-        Geolocation.getCurrentPosition()
-            .then(
-                (res) => {
-                    console.log('location', res);
-                    this.coordinates = res.coords;
-                    this.latitude = res.coords.latitude;
-                    this.longitude = res.coords.longitude;
-                }
-            )
-            .catch(
-                (err) => {
-                    console.log('error', err);
-                }
-            );
     }
 
     deleteLocation(location)
@@ -207,15 +200,50 @@ export class UpdatecontentPage {
     }
 
     removeLoc(){
-        this.locationFlag = true;
-        this.latitude = '';
-        this.longitude = '';
+      let alert = this.alertCtrl.create({
+        title: 'Attention!',
+        message: 'You are trying to remove the GPS location, are you sure?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Confirm',
+            handler: () => {
+              this.locationFlag = true;
+              this.latitude = '';
+              this.longitude = '';
+            }
+          }
+        ]
+      });
+      alert.present();
+
     }
 
     addLoc(){
         this.locationFlag = false;
-        this.latitude = this.coordinates.latitude;
-        this.longitude = this.coordinates.longitude;
+        // this.latitude = this.coordinates.latitude;
+        // this.longitude = this.coordinates.longitude;
+        // get current location coordinates
+        Geolocation.getCurrentPosition()
+            .then(
+                (res) => {
+                    console.log('location', res);
+                    this.coordinates = res.coords;
+                    this.latitude = res.coords.latitude;
+                    this.longitude = res.coords.longitude;
+                }
+            )
+            .catch(
+                (err) => {
+                    console.log('error', err);
+                }
+            );
     }
 
     selectType(){
@@ -272,20 +300,6 @@ export class UpdatecontentPage {
                 console.log('err', err);
         });
 
-        //fileTransfer.abort();
-        // this.ss.uploadFile(imgurl, 'uploadFile.php').then(
-        //     (res) => {
-        //         console.log('res', res);
-        //         this.uploadRes = res;
-        //         let responseCode = this.uploadRes.Response.responseCode;
-        //         if(responseCode == 200){
-        //             this.insertContent(this.imageUrl, this.retrieveForm);
-        //         }
-        //     },
-        //     (err) => {
-        //         console.log('err', err);
-        //     }
-        // );
     }
 
     camer_upload(){
@@ -339,8 +353,8 @@ export class UpdatecontentPage {
     takePicture(sourceType){
         Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -396,8 +410,8 @@ export class UpdatecontentPage {
     browsePicture(sourceType){
         Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -494,7 +508,10 @@ export class UpdatecontentPage {
                 this.insertRes = res;
                 let resMsg = this.insertRes.Response.responseMessage;
 
-                this.navCtrl.popTo(HomePage);
+                // this.navCtrl.popTo(HomePage);
+                this.navCtrl.pop();
+                this.events.publish("edition", "true");
+
                 this.promptAlert('', resMsg);
             },
             (err) => {
@@ -527,7 +544,10 @@ export class UpdatecontentPage {
                 this.insertRes = res;
                 let resMsg = this.insertRes.Response.responseMessage;
 
-                this.navCtrl.popTo(HomePage);
+                // this.navCtrl.popTo(HomePage);
+                this.navCtrl.pop();
+                this.events.publish("edition", "true");
+
                 this.promptAlert('', resMsg);
             },
             (err) => {

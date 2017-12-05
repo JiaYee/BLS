@@ -14,13 +14,28 @@
     <ion-title>Between Lifestyle</ion-title>
 
   </ion-navbar>
- <ion-searchbar *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>
+  <ion-searchbar class="sb" *ngIf="showme" (search)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>
+   <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">
+     <ion-icon name="arrow-dropdown"></ion-icon>
+   </button>
 
 </ion-header>
 
-<ion-content>
   <!-- slider area -->
   <!--<div class="slideshow">-->
+  <div class="superfilter" *ngIf="showpopover">
+        <ion-list class="leftpanel" no-lines>
+            <button [style.background-color]="country.selected ? '#A9A9A9' : '#D3D3D3'" ion-button *ngFor="let country of countries ; let i = index" color="lightgrey" block (click)="filterRight(country, i)">{{country.name}}</button>
+        </ion-list>
+
+        <ion-list class="rightpanel" no-lines>
+          <button *ngFor="let location of locations" ion-button block (click)="goSublist(location.name, location.id)">{{location.chinese}}<br>{{location.english}}</button>
+        </ion-list>
+  </div>
+
+  <ion-content *ngIf="!showpopover">
+
+
 
 <ion-slides class="slideshow">
   <ion-slide *ngFor="let slide of slides">
