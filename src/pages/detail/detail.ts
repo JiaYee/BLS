@@ -203,7 +203,18 @@ thumbs_path: any;
 oriname: any;
 loading:any;
 
-isDelete: boolean = false;
+showaddvideopage: boolean = false;
+vidpath: any;
+thumbpath: any;
+vidtitle: any;
+viddesc: any
+
+
+
+selected: any;
+
+
+
 
   constructor(
   private mediaCapture: MediaCapture,
@@ -226,6 +237,7 @@ isDelete: boolean = false;
   public iab: InAppBrowser,
   public videoEditor: VideoEditor,
   public alertCtrl: AlertController){
+    this.thumbpath="assets/upv.jpg";
 this.gallerypage= GalleryPage;
 this.banner=BannersPage;
 this.items ={
@@ -279,6 +291,12 @@ DeviceOrientation.getCurrentHeading().then(
   (data: DeviceOrientationCompassHeading) => console.log(JSON.stringify(data)),
   (error: any) => console.log("err"+JSON.stringify(error))
 );
+}
+
+selectVideo(vid)
+{
+  this.selected = vid;
+  console.log(this.selected);
 }
 
 deleteGal(gal)
@@ -427,24 +445,6 @@ openEdit(galleryItem){
       });
 
       actionSheet.present();
-    // // }
-    // else
-    // {
-    //   let actionSheet = this.actionSheetCtrl.create({
-    //     buttons: [
-    //       {
-    //         text: 'Edit',
-    //         handler: () => {
-    //           this.navCtrl.push(UpdategalleryPage, {
-    //             galleryItem: galleryItem
-    //           });
-    //         }
-    //       }
-    //     ]
-    //   });
-    //
-    //   actionSheet.present();
-    // }
 }
 else
 {
@@ -676,6 +676,7 @@ this.ss.dataList(param,"getContentPlay.php").then((response)=>{
 this.obj =response;
 this.vgallery=response;
 this.vgallery=this.obj.Data;
+this.selectVideo(this.vgallery[0])
 //console.log(JSON.stringify(this.vgallery));
 loading.dismiss();
   }).catch((Error)=>{
@@ -687,25 +688,7 @@ loading.dismiss();
 
 openVideo(v:string)
 {
-  // alert(v);
-  // let test = "http://betweenlifestyle.com/android/upload/fe4373a2273641b4-20160229014152.mp4";
-
   const browser = this.iab.create(v, "_self", "location=no,fullscreen=yes");
-  // let options: StreamingVideoOptions = {
-  //   successCallback: () => { console.log('Video played') },
-  //   errorCallback: (e) => { console.log('Error streaming') },
-  //   orientation: 'landscape'
-  // };
-  //
-  // this.streamingMedia.playVideo(v, options);
-  //
-  // // Playing a video.
-  // this.videoPlayer.play(v).then(() => {
-  //  console.log('video completed');
-  // }).catch(err => {
-  //  console.log(err);
-  // });
-  //
 }
 
 openGallery(index:any)
@@ -753,7 +736,7 @@ profileModal.onDidDismiss(() => {
 profileModal.present();
 }
 
-promptVideo()
+presentActionSheet()
 {
   let actionSheet = this.actionSheetCtrl.create({
     title: 'Upload Video',
@@ -776,6 +759,30 @@ promptVideo()
   });
 
   actionSheet.present();
+}
+
+cancel()
+{
+  this.showaddvideopage = false;
+}
+
+promptVideo()
+{
+  this.showaddvideopage = true;
+  this.vidpath = undefined;
+  this.vidtitle = undefined;
+  this.viddesc = undefined;
+  this.thumbpath = "assets/upv.jpg";
+
+}
+
+saveVideo()
+{
+  this.showaddvideopage = false;
+  if(this.vidpath !== undefined)
+  {
+    this.insertData(this.vidpath, this.thumbpath, this.vidtitle, this.viddesc);
+  }
 }
 
 browseVideo()
@@ -849,6 +856,7 @@ createThumb(fileUri)
   this.videoEditor.createThumbnail(options)
   .then((thumbUri) => {
     // alert(thumbUri);
+    // this.thumburi = thumbUri;
     this.uploadThumb(fileUri, thumbUri);
   })
   .catch((err) => {
@@ -900,20 +908,22 @@ uploadVideo(fileUri, thumbPath)
   let videoPath = datas.response;
 
   // alert(videoPath);
-  this.insertData(videoPath, thumbPath);
+  this.vidpath = videoPath;
+  this.thumbpath = thumbPath;
+  this.loading.dismiss();
+  // this.insertData(videoPath, thumbPath);
 })
   .catch((err) => {
     alert("Upload Video Error!");
   })
 }
 
-insertData(videoPath, thumbPath)
+insertData(videoPath, thumbPath, title, desc)
 {
-  let newparam = this.param + "&image_path=" + thumbPath + "&video_path=" + videoPath + "&datetime=&name=&description="
+  let newparam = this.param + "&image_path=" + thumbPath + "&video_path=" + videoPath + "&datetime=&name=" + title + "&description=" + desc
 
   this.ss.dataList(newparam,"videoaddtest.php")
   .then((response)=>{
-    this.loading.dismiss();
     alert("Video successfully uploaded!\n")
     this.getVGallery(this.param);
   })

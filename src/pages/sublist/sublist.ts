@@ -78,13 +78,15 @@ display: any;
 
     if(direct !== undefined)
     {
+      console.log("Direct Wash: " + this.navParams.get("id"));
       this.washData(direct);
     }
     else
     {
+      console.log("Normal Clicked: " + this.navParams.get("id"));
       let param = "id="+this.navParams.get("id")+"&subid=0&start=0&end=10&type=0";
       this.title=this.navParams.get("name");
-      console.log(this.navParams.data);
+      // console.log(this.navParams.data);
       this.listitem(param);
       this.subFilter();
       this.getLocation();
@@ -226,6 +228,7 @@ delContent(item)
     this.lokasi = loc;
     this.showlocpage = false;
     this.popo = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
+    console.log(this.popo);
     let loading = this.loadingCtrl.create({
         content: 'Please wait...'
       });
@@ -386,7 +389,8 @@ let loading = this.loadingCtrl.create({
 loading.present();
  this.ss.dataList(param,"getSubCategoryById.php").then((response)=>{
 
-
+// console.log("Initialized item: ");
+// console.log(this.items);
 this.items =response;
 this.total= this.items.total;
 //this.start=this.items.start;
@@ -405,8 +409,66 @@ loading.dismiss();
 
 doInfinite(infiniteScroll)
 {
-  if(this.total>=this.start &&  this.showme==false)
+
+  if(this.lokasi !== undefined)
   {
+    this.papa = undefined;
+
+
+  // if(this.total>=this.start &&  this.showme==false)
+  // {
+  let param = "main_category_id=" + this.navParams.get("id") + "&location=" + this.lokasi + "&start="+this.start+"&end="+this.end;
+
+ console.log("param limit"+param);
+ this.ss.dataList(param,"washDatabyLocation.php").then((response)=>{
+this.limititem =response;
+this.total= this.limititem.total;
+this.start=parseInt(this.limititem.start)+10;
+console.log(this.limititem.Data);
+this.limititem.Data.forEach(element => {
+  this.items.push(element);
+//this.backup_items.push(element);
+});
+
+this.limititem="";
+ infiniteScroll.complete();
+
+});
+  // }
+ //  else
+ //  {
+ // infiniteScroll.complete();
+ //
+  // }
+}
+else if(this.papa !== undefined)
+{
+  this.lokasi = undefined;
+  let param = "id="+this.navParams.get("id")+"&subid=0&start=" + this.start + "&end=" + this.end + "&type=" + this.code;
+  console.log("Doing infinite for " + param);
+  this.ss.dataList(param,"getSubCategoryById_BK.php").then((response)=>{
+
+
+    this.limititem =response;
+    this.total= this.limititem.total;
+    this.start=parseInt(this.limititem.start)+10;
+    console.log(this.limititem.Data);
+    this.limititem.Data.forEach(element => {
+      this.items.push(element);
+    //this.backup_items.push(element);
+    });
+
+    this.limititem="";
+     infiniteScroll.complete();
+
+   }).catch((Error)=>{
+ console.log("Connection Error"+Error);
+     });
+}
+else
+{
+  // if(this.total>=this.start &&  this.showme==false)
+  // {
 
  let param = "id="+this.navParams.get("id")+"&subid=0&start="+this.start+"&end="+this.end;
  console.log("param limit"+param);
@@ -424,12 +486,13 @@ this.limititem="";
  infiniteScroll.complete();
 
 });
-  }
-  else
-  {
- infiniteScroll.complete();
-
-  }
+  // }
+ //  else
+ //  {
+ // infiniteScroll.complete();
+ //
+ //  }
+}
 
 
 }

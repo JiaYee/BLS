@@ -32958,6 +32958,70 @@ page-addcontent hr {
   visibility: visible !important;
 }
 
+page-detail .addvid {
+  display: block;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+}
+
+page-detail .addvidpage {
+  position: relative;
+  top: 5%;
+  width: 100%;
+  height: 100%;
+}
+
+page-detail .playicon {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  color: black;
+  border-radius: 25px;
+  background: #FFFFFF;
+  padding: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+page-detail .vid {
+  width: 100%;
+  height: 300px;
+}
+
+page-detail ion-scroll[scrollX] {
+  white-space: nowrap;
+}
+
+page-detail ion-scroll[scrollX] .scroll-item {
+  display: inline-block;
+}
+
+page-detail img1 {
+  padding: 5px;
+  width: 50px;
+  background-color: #4B0082;
+}
+
+page-detail .card {
+  display: inline-block;
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+
+page-detail .card-1 {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+page-detail .card-1:hover {
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
 page-detail .img_item {
   width: 100%;
   height: 200px;
@@ -33083,7 +33147,7 @@ page-detail .deatils .info .name_box {
 page-detail .deatils .info .wday_box {
   display: inline-block;
   vertical-align: top;
-  width: 65%;
+  width: 100%;
   margin: 0;
   white-space: pre-line;
   text-align: left;
@@ -33383,7 +33447,7 @@ page-home .leftpanel {
   width: 40%;
   position: absolute;
   top: 10px;
-  left: 5%;
+  left: 3%;
   background-color: #D3D3D3,inherit;
 }
 
@@ -33403,7 +33467,7 @@ page-home .rightpanel {
 }
 
 page-home .rightpanel button {
-  line-height: 170%;
+  line-height: 140%;
   height: 50px;
 }
 
@@ -33551,12 +33615,17 @@ page-home ion-buttons {
   order: 1;
 }
 
+page-sublist .navbar {
+  position: absolute;
+}
+
 page-sublist .locpage {
   position: relative;
   top: 5%;
   width: 100%;
   height: 100%;
   background-color: #D3D3D3;
+  z-index: 1000;
 }
 
 page-sublist .locpage button {
@@ -33578,8 +33647,9 @@ page-sublist .sbl {
 }
 
 page-sublist .img_item {
+  top: 35px;
   width: 100%;
-  height: 168px;
+  height: 25%;
   position: relative;
 }
 

@@ -1,6 +1,6 @@
 
 <ion-header>
- <ion-navbar color="darkbule">
+ <ion-navbar color="darkbule" class="navbar">
     <ion-title>{{title}}</ion-title>
     <ion-buttons end>
       <button color="white" ion-button icon-only (click)="presentPopover($event)">
@@ -28,7 +28,7 @@
   </ion-grid>
 </div>
 
-<ion-content *ngIf="!showlocpage">
+<ion-content >
 
 
   <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">

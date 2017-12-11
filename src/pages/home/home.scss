@@ -17,7 +17,7 @@ page-home {
     width: 40%;
     position: absolute;
     top: 10px;
-    left: 5%;
+    left: 3%;
     background-color: #D3D3D3,inherit;
   }
 
@@ -35,8 +35,11 @@ page-home {
   }
 
   .rightpanel button {
-    line-height: 170%;
+    line-height: 140%;
+    // margin-top: auto;
+    // margin-bottom: auto;
     height: 50px;
+
   }
 
 .superfilter {

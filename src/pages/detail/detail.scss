@@ -1,4 +1,70 @@
 page-detail {
+
+  .addvid {
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+
+  }
+
+  .addvidpage {
+    position: relative;
+    top: 5%;
+    width: 100%;
+    height: 100%;
+  }
+
+  .playicon {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    color: black;
+    border-radius: 25px;
+    background: #FFFFFF;
+    padding: 20px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .vid {
+    width: 100%;
+    height: 300px;
+  }
+
+  ion-scroll[scrollX] {
+  white-space: nowrap;
+  .scroll-item {
+  display: inline-block;
+  }}
+
+  img1 {
+  // border: 2px solid #BA55D3;
+  // border-radius: 50%;
+  padding: 5px;
+  width: 50px;
+  background-color:#4B0082;
+  // box-shadow: 1px 1px 1px 1px yellow;
+  }
+  .card {
+   // background: #1E90FF;
+   // border-radius: 25%;
+   display: inline-block;
+   height: 100px;
+   // border: 1px solid #fff;
+   // padding: 7px;
+   // margin: 1;
+   position: relative;
+   width: 100px;
+   }
+  .card-1 {
+   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+   .card-1:hover {
+   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+
 .img_item {
     width: 100%;
     height: 200px;
@@ -124,7 +190,7 @@ background-color:#002146
 {
  display:inline-block;
  vertical-align:top;
- width:65%;
+ width:100%;
  margin:0;
  white-space: pre-line;
  text-align: left;
@@ -156,6 +222,7 @@ a {
 }
 
 .info {
+
     padding-left: 5px;
     padding-bottom: 12px;
     text-align: left;

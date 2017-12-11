@@ -1,23 +1,7 @@
 
-<ion-header >
+<ion-header *ngIf="!showaddvideopage">
  <ion-navbar color="darkbule">
     <ion-title>{{title}}</ion-title>
-<!--
- <ion-buttons end>
-        <button ion-button  (click)="openBanner()">
-      <ion-icon name="add"></ion-icon>
-      </button>
- </ion-buttons>
--->
-    <!-- <ion-buttons *ngIf="adminonly()" end>
-      <button *ngIf="!isDelete" ion-button (click)="toggleDelete()">
-        <ion-icon name="trash"></ion-icon>
-      </button>
-      <button *ngIf="isDelete" ion-button (click)="toggleDelete()">
-        <ion-icon color="danger" name="trash"></ion-icon>
-      </button>
-    </ion-buttons> -->
-
     <ion-buttons end>
       <button *ngIf="adminonly()" ion-button (click)="popOverEdit($event)">
         <ion-icon name="more"></ion-icon>
@@ -39,9 +23,33 @@
   </ion-toolbar>
 </ion-header>
 
+<div class="addvidpage" *ngIf="showaddvideopage">
+  <ion-item >
+    <div>
+    <img class="addvid" [src]="thumbpath"  (click) ="presentActionSheet()"/>
+    </div>
+  </ion-item>
+
+  <ion-list color="light">
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-textarea rows="1" type="text" [(ngModel)]="vidtitle"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-textarea rows="3" type="text" [(ngModel)]="viddesc"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <button ion-button full color="secondary" (click)="saveVideo()">Save</button>
+  <button ion-button full color="danger"  (click)="cancel()">Cancel</button>
+</div>
 
 
-<ion-content class="bgcolor">
+
+
+
+<ion-content class="bgcolor" *ngIf="!showaddvideopage">
 
 <!-- <ion-fab left bottom>
   <button *ngIf="!isDelete" (click)="toggleDelete()" ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>
@@ -163,7 +171,7 @@
        </ion-list>
 
     <ion-list *ngSwitchCase="'Videos'" >
-      <ion-grid>
+      <!-- <ion-grid>
         <ion-row wrap>
           <ion-col col-4 *ngFor="let vid of vgallery" >
       <div >
@@ -172,19 +180,29 @@
 
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
 
+      <div *ngIf="selected" (click)="openVideo(selected.video_path)">
+        <img class="vid" [src]="selected.image_path">
+        <ion-icon class="playicon" name="play"></ion-icon>
+        <h1> {{selected.name}} </h1>
+        <p> {{selected.description}} </p>
+      </div>
 
-<!-- <ion-grid>
-  <ion-row wrap>
-    <ion-col width-33 *ngFor="let vid of vgallery" >
-<div >
-<img [src]="vid.image_path" width="400px" height="75px" (click)="openVideo(vid.video_path)">
-</div> -->
+      <ion-item>
 
-    <!-- </ion-col>
-  </ion-row>
-</ion-grid> -->
+         <ion-scroll scrollX style="height:100px;">
+        <div class="scroll-item">
+        <ion-col col-33 *ngFor="let vid of vgallery">
+       <div class="card card-1" (click)="selectVideo(vid)">
+
+         <img src="{{vid.image_path}}">
+         </div>
+          </ion-col>
+         </div>
+         </ion-scroll>
+
+      </ion-item>
 
 
 

@@ -3014,6 +3014,7 @@ var UpdatecategoryPage = (function () {
             console.log('resres', response);
             loading.dismiss();
             _this.navCtrl.pop();
+            _this.events.publish("maincatedit", "true");
             _this.presentToast("uploaded successfully");
             // if(this.type=='1')
             //   this.navCtrl.push(this.homepage);
@@ -3573,7 +3574,8 @@ var DetailPage = (function () {
         this.iab = iab;
         this.videoEditor = videoEditor;
         this.alertCtrl = alertCtrl;
-        this.isDelete = false;
+        this.showaddvideopage = false;
+        this.thumbpath = "assets/upv.jpg";
         this.gallerypage = __WEBPACK_IMPORTED_MODULE_14__gallery_gallery__["a" /* GalleryPage */];
         this.banner = __WEBPACK_IMPORTED_MODULE_15__banners_banners__["a" /* BannersPage */];
         this.items = {
@@ -3618,6 +3620,10 @@ var DetailPage = (function () {
             this.param = "category_id=" + this.item.category_id + "&content_id=" + this.item.id;
         this.listitem(this.param);
         __WEBPACK_IMPORTED_MODULE_2_ionic_native__["b" /* DeviceOrientation */].getCurrentHeading().then(function (data) { return console.log(JSON.stringify(data)); }, function (error) { return console.log("err" + JSON.stringify(error)); });
+    };
+    DetailPage.prototype.selectVideo = function (vid) {
+        this.selected = vid;
+        console.log(this.selected);
     };
     DetailPage.prototype.deleteGal = function (gal) {
         var _this = this;
@@ -3749,24 +3755,6 @@ var DetailPage = (function () {
                 ]
             });
             actionSheet.present();
-            // // }
-            // else
-            // {
-            //   let actionSheet = this.actionSheetCtrl.create({
-            //     buttons: [
-            //       {
-            //         text: 'Edit',
-            //         handler: () => {
-            //           this.navCtrl.push(UpdategalleryPage, {
-            //             galleryItem: galleryItem
-            //           });
-            //         }
-            //       }
-            //     ]
-            //   });
-            //
-            //   actionSheet.present();
-            // }
         }
         else {
         }
@@ -3924,6 +3912,7 @@ var DetailPage = (function () {
             _this.obj = response;
             _this.vgallery = response;
             _this.vgallery = _this.obj.Data;
+            _this.selectVideo(_this.vgallery[0]);
             //console.log(JSON.stringify(this.vgallery));
             loading.dismiss();
         }).catch(function (Error) {
@@ -3932,24 +3921,7 @@ var DetailPage = (function () {
         });
     };
     DetailPage.prototype.openVideo = function (v) {
-        // alert(v);
-        // let test = "http://betweenlifestyle.com/android/upload/fe4373a2273641b4-20160229014152.mp4";
         var browser = this.iab.create(v, "_self", "location=no,fullscreen=yes");
-        // let options: StreamingVideoOptions = {
-        //   successCallback: () => { console.log('Video played') },
-        //   errorCallback: (e) => { console.log('Error streaming') },
-        //   orientation: 'landscape'
-        // };
-        //
-        // this.streamingMedia.playVideo(v, options);
-        //
-        // // Playing a video.
-        // this.videoPlayer.play(v).then(() => {
-        //  console.log('video completed');
-        // }).catch(err => {
-        //  console.log(err);
-        // });
-        //
     };
     DetailPage.prototype.openGallery = function (index) {
         this.photos = [];
@@ -3983,7 +3955,7 @@ var DetailPage = (function () {
         });
         profileModal.present();
     };
-    DetailPage.prototype.promptVideo = function () {
+    DetailPage.prototype.presentActionSheet = function () {
         var _this = this;
         var actionSheet = this.actionSheetCtrl.create({
             title: 'Upload Video',
@@ -4005,6 +3977,22 @@ var DetailPage = (function () {
             ]
         });
         actionSheet.present();
+    };
+    DetailPage.prototype.cancel = function () {
+        this.showaddvideopage = false;
+    };
+    DetailPage.prototype.promptVideo = function () {
+        this.showaddvideopage = true;
+        this.vidpath = undefined;
+        this.vidtitle = undefined;
+        this.viddesc = undefined;
+        this.thumbpath = "assets/upv.jpg";
+    };
+    DetailPage.prototype.saveVideo = function () {
+        this.showaddvideopage = false;
+        if (this.vidpath !== undefined) {
+            this.insertData(this.vidpath, this.thumbpath, this.vidtitle, this.viddesc);
+        }
     };
     DetailPage.prototype.browseVideo = function () {
         var _this = this;
@@ -4069,6 +4057,7 @@ var DetailPage = (function () {
         this.videoEditor.createThumbnail(options)
             .then(function (thumbUri) {
             // alert(thumbUri);
+            // this.thumburi = thumbUri;
             _this.uploadThumb(fileUri, thumbUri);
         })
             .catch(function (err) {
@@ -4112,18 +4101,20 @@ var DetailPage = (function () {
             var datas = JSON.parse(JSON.stringify(data));
             var videoPath = datas.response;
             // alert(videoPath);
-            _this.insertData(videoPath, thumbPath);
+            _this.vidpath = videoPath;
+            _this.thumbpath = thumbPath;
+            _this.loading.dismiss();
+            // this.insertData(videoPath, thumbPath);
         })
             .catch(function (err) {
             alert("Upload Video Error!");
         });
     };
-    DetailPage.prototype.insertData = function (videoPath, thumbPath) {
+    DetailPage.prototype.insertData = function (videoPath, thumbPath, title, desc) {
         var _this = this;
-        var newparam = this.param + "&image_path=" + thumbPath + "&video_path=" + videoPath + "&datetime=&name=&description=";
+        var newparam = this.param + "&image_path=" + thumbPath + "&video_path=" + videoPath + "&datetime=&name=" + title + "&description=" + desc;
         this.ss.dataList(newparam, "videoaddtest.php")
             .then(function (response) {
-            _this.loading.dismiss();
             alert("Video successfully uploaded!\n");
             _this.getVGallery(_this.param);
         })
@@ -4145,7 +4136,7 @@ var DetailPage = (function () {
     };
     DetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-detail',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\detail\detail.html"*/'\n<ion-header >\n <ion-navbar color="darkbule">\n    <ion-title>{{title}}</ion-title>\n<!--\n <ion-buttons end>\n        <button ion-button  (click)="openBanner()">\n      <ion-icon name="add"></ion-icon>\n      </button>\n </ion-buttons>\n-->\n    <!-- <ion-buttons *ngIf="adminonly()" end>\n      <button *ngIf="!isDelete" ion-button (click)="toggleDelete()">\n        <ion-icon name="trash"></ion-icon>\n      </button>\n      <button *ngIf="isDelete" ion-button (click)="toggleDelete()">\n        <ion-icon color="danger" name="trash"></ion-icon>\n      </button>\n    </ion-buttons> -->\n\n    <ion-buttons end>\n      <button *ngIf="adminonly()" ion-button (click)="popOverEdit($event)">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-toolbar no-border-top>\n    <ion-segment [(ngModel)]="tt" mode="ios">\n      <ion-segment-button value="details" (ionSelect)="listitem(param)">\n     Details\n      </ion-segment-button>\n      <ion-segment-button value="gallery" (ionSelect)="getGallery(param)" >\n      <img src="assets/gallery.png"/>\n      </ion-segment-button>\n      <ion-segment-button value="Videos" (ionSelect)="getVGallery(param)" >\n       <img src="assets/play.png"/>\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content class="bgcolor">\n\n<!-- <ion-fab left bottom>\n  <button *ngIf="!isDelete" (click)="toggleDelete()" ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>\n  <button *ngIf="isDelete" (click)="toggleDelete()" ion-fab color="light"><ion-icon name="trash"></ion-icon></button>\n</ion-fab> -->\n\n<div [ngSwitch]="tt">\n\n    <ion-list *ngSwitchCase="\'details\'">\n\n\n<div  class="img_item">\n <img [src]="image_path"  (click)="view_photo(image_path,title)"  style="height: 200px;  width: 100%;" />\n\n<div class="top_text" >\n    <img *ngIf="checkfavo(items.id)==1" src="assets/LoveY_40.png" (click)=removfavo(items.id)/>\n      <img *ngIf="checkfavo(items.id)==2" src="assets/LoveG_40.png" (click)=favo(items)/><br>\n      <img src="assets/Tten_40.png" (click)="presentPopover($event,items.id)" style="margin-right: 3px;" />\n     </div>\n</div>\n\n<div class="deatils">\n<!-- working area -->\n\n<div class="info" *ngIf="items.categoryName">\n <label>  Main Category : </label>\n {{items.categoryName}}\n</div>\n\n<div class="info" *ngIf="items.name">\n<!--\n<label style="">Name : </label>\n -->\n <p text-justify class="name_box">{{items.name}} </p>\n</div>\n\n<div class="info" *ngIf="items.description">\n <label> Description : </label>\n<div text-justify style="white-space: pre-line;">{{items.description}}</div>\n</div>\n\n<div class="info" *ngIf="items.address">\n<label> Address : </label>\n<div style="text-align: left; white-space: pre-line;" text-justify (click)="navigater(items.address)">{{items.address }}</div>\n</div>\n\n<div  class="info" *ngIf="items.phone_mobile">\n<label> Mobile : </label>\n{{items.phone_mobile}}\n</div>\n\n<div class="info" *ngIf="items.phone_office">\n<label> Phone : </label>\n<a href="tel:{{items.phone_office}}" class="phone_num"> {{items.phone_office}} </a>\n</div>\n\n<div style="padding: 0;" class="info" *ngIf="items.weekday_business_hour">\n <label> Business Hour : </label>\n</div>\n\n<div class="info" *ngIf="items.weekday_business_hour">\n<label>Weekday : </label><br>\n<p text-justify class="wday_box" style="text-align-last: white-space: pre-line;"> {{items.weekday_business_hour}} </p>\n</div>\n\n<div class="info" *ngIf="items.weekend_business_hour">\n<label> Weekend : </label><br>\n<p text-justify class="wday_box" style="text-align-last: white-space: pre-line;">{{items.weekend_business_hour}}</p>\n</div>\n\n<div class="info" *ngIf="items.website_url">\n<label> Website : </label>\n<a text-justify (click)="open_url(items.website_url)">{{items.website_url}}</a>\n</div>\n\n<div  class="info" *ngIf="checkme(items.latitude)"   >\n<label> Latitude / Longitude : </label>\n<div text-justify (click)="navigater([items.latitude,items.longitude])" >{{items.latitude }} - {{items.longitude }}</div>\n</div>\n\n<div class="info" *ngIf="items.latitude">\n<label> created : </label>\n{{items.timestamp | date: \'MMMM/y\'}}\n</div>\n\n<!-- end area  -->\n</div>\n\n\n\n\n   </ion-list>\n\n    <ion-list *ngSwitchCase="\'gallery\'" >\n\n<!-- <ion-grid *ngIf="!isDelete">\n  <ion-row wrap>\n    <ion-col col-4 *ngFor="let pic of gallery ; let i = index">\n        <img [src]="pic.tmp" width="400px" height="75px" (click)="openGallery(i)">\n    </ion-col>\n  </ion-row>\n</ion-grid> -->\n\n<ion-grid>\n  <ion-row wrap>\n    <ion-col col-4 *ngFor="let pic of gallery ; let i = index">\n        <img [src]="pic.tmp" width="400px" height="75px" (press)="openEdit(pic)" (click)="openGallery(i)">\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n<!--\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="openBanner()" ><ion-icon name="add" ></ion-icon></button>\n\n</ion-fab>\n-->\n\n       </ion-list>\n\n    <ion-list *ngSwitchCase="\'Videos\'" >\n      <ion-grid>\n        <ion-row wrap>\n          <ion-col col-4 *ngFor="let vid of vgallery" >\n      <div >\n      <img [src]="vid.image_path" width="400px" height="75px" (click)="openVideo(vid.video_path)" (press)="deleteVid(vid)">\n      </div>\n\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n\n<!-- <ion-grid>\n  <ion-row wrap>\n    <ion-col width-33 *ngFor="let vid of vgallery" >\n<div >\n<img [src]="vid.image_path" width="400px" height="75px" (click)="openVideo(vid.video_path)">\n</div> -->\n\n    <!-- </ion-col>\n  </ion-row>\n</ion-grid> -->\n\n\n\n    </ion-list>\n\n\n</div>\n<ion-fab right bottom>\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button *ngIf="adminonly()"  ion-fab color="light" (click)="openBanner()"><ion-icon name="image"></ion-icon></button>\n     <button *ngIf="adminonly()"  ion-fab color="light" (click)="promptVideo()"><ion-icon name="videocam"></ion-icon></button>\n\n     <button ion-fab color="light" (click)="sharelink(items.category_id,items.id)"><ion-icon name="share"></ion-icon></button>\n\n\n         </ion-fab-list>\n\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\detail\detail.html"*/
+            selector: 'page-detail',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\detail\detail.html"*/'\n<ion-header *ngIf="!showaddvideopage">\n <ion-navbar color="darkbule">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button *ngIf="adminonly()" ion-button (click)="popOverEdit($event)">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-toolbar no-border-top>\n    <ion-segment [(ngModel)]="tt" mode="ios">\n      <ion-segment-button value="details" (ionSelect)="listitem(param)">\n     Details\n      </ion-segment-button>\n      <ion-segment-button value="gallery" (ionSelect)="getGallery(param)" >\n      <img src="assets/gallery.png"/>\n      </ion-segment-button>\n      <ion-segment-button value="Videos" (ionSelect)="getVGallery(param)" >\n       <img src="assets/play.png"/>\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n<div class="addvidpage" *ngIf="showaddvideopage">\n  <ion-item >\n    <div>\n    <img class="addvid" [src]="thumbpath"  (click) ="presentActionSheet()"/>\n    </div>\n  </ion-item>\n\n  <ion-list color="light">\n    <ion-item>\n      <ion-label floating>Title</ion-label>\n      <ion-textarea rows="1" type="text" [(ngModel)]="vidtitle"></ion-textarea>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Description</ion-label>\n      <ion-textarea rows="3" type="text" [(ngModel)]="viddesc"></ion-textarea>\n    </ion-item>\n  </ion-list>\n  <button ion-button full color="secondary" (click)="saveVideo()">Save</button>\n  <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n</div>\n\n\n\n\n\n<ion-content class="bgcolor" *ngIf="!showaddvideopage">\n\n<!-- <ion-fab left bottom>\n  <button *ngIf="!isDelete" (click)="toggleDelete()" ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>\n  <button *ngIf="isDelete" (click)="toggleDelete()" ion-fab color="light"><ion-icon name="trash"></ion-icon></button>\n</ion-fab> -->\n\n<div [ngSwitch]="tt">\n\n    <ion-list *ngSwitchCase="\'details\'">\n\n\n<div  class="img_item">\n <img [src]="image_path"  (click)="view_photo(image_path,title)"  style="height: 200px;  width: 100%;" />\n\n<div class="top_text" >\n    <img *ngIf="checkfavo(items.id)==1" src="assets/LoveY_40.png" (click)=removfavo(items.id)/>\n      <img *ngIf="checkfavo(items.id)==2" src="assets/LoveG_40.png" (click)=favo(items)/><br>\n      <img src="assets/Tten_40.png" (click)="presentPopover($event,items.id)" style="margin-right: 3px;" />\n     </div>\n</div>\n\n<div class="deatils">\n<!-- working area -->\n\n<div class="info" *ngIf="items.categoryName">\n <label>  Main Category : </label>\n {{items.categoryName}}\n</div>\n\n<div class="info" *ngIf="items.name">\n<!--\n<label style="">Name : </label>\n -->\n <p text-justify class="name_box">{{items.name}} </p>\n</div>\n\n<div class="info" *ngIf="items.description">\n <label> Description : </label>\n<div text-justify style="white-space: pre-line;">{{items.description}}</div>\n</div>\n\n<div class="info" *ngIf="items.address">\n<label> Address : </label>\n<div style="text-align: left; white-space: pre-line;" text-justify (click)="navigater(items.address)">{{items.address }}</div>\n</div>\n\n<div  class="info" *ngIf="items.phone_mobile">\n<label> Mobile : </label>\n{{items.phone_mobile}}\n</div>\n\n<div class="info" *ngIf="items.phone_office">\n<label> Phone : </label>\n<a href="tel:{{items.phone_office}}" class="phone_num"> {{items.phone_office}} </a>\n</div>\n\n<div style="padding: 0;" class="info" *ngIf="items.weekday_business_hour">\n <label> Business Hour : </label>\n</div>\n\n<div class="info" *ngIf="items.weekday_business_hour">\n<label>Weekday : </label><br>\n<p text-justify class="wday_box" style="text-align-last: white-space: pre-line;"> {{items.weekday_business_hour}} </p>\n</div>\n\n<div class="info" *ngIf="items.weekend_business_hour">\n<label> Weekend : </label><br>\n<p text-justify class="wday_box" style="text-align-last: white-space: pre-line;">{{items.weekend_business_hour}}</p>\n</div>\n\n<div class="info" *ngIf="items.website_url">\n<label> Website : </label>\n<a text-justify (click)="open_url(items.website_url)">{{items.website_url}}</a>\n</div>\n\n<div  class="info" *ngIf="checkme(items.latitude)"   >\n<label> Latitude / Longitude : </label>\n<div text-justify (click)="navigater([items.latitude,items.longitude])" >{{items.latitude }} - {{items.longitude }}</div>\n</div>\n\n<div class="info" *ngIf="items.latitude">\n<label> created : </label>\n{{items.timestamp | date: \'MMMM/y\'}}\n</div>\n\n<!-- end area  -->\n</div>\n\n\n\n\n   </ion-list>\n\n    <ion-list *ngSwitchCase="\'gallery\'" >\n\n<!-- <ion-grid *ngIf="!isDelete">\n  <ion-row wrap>\n    <ion-col col-4 *ngFor="let pic of gallery ; let i = index">\n        <img [src]="pic.tmp" width="400px" height="75px" (click)="openGallery(i)">\n    </ion-col>\n  </ion-row>\n</ion-grid> -->\n\n<ion-grid>\n  <ion-row wrap>\n    <ion-col col-4 *ngFor="let pic of gallery ; let i = index">\n        <img [src]="pic.tmp" width="400px" height="75px" (press)="openEdit(pic)" (click)="openGallery(i)">\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n<!--\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="openBanner()" ><ion-icon name="add" ></ion-icon></button>\n\n</ion-fab>\n-->\n\n       </ion-list>\n\n    <ion-list *ngSwitchCase="\'Videos\'" >\n      <!-- <ion-grid>\n        <ion-row wrap>\n          <ion-col col-4 *ngFor="let vid of vgallery" >\n      <div >\n      <img [src]="vid.image_path" width="400px" height="75px" (click)="openVideo(vid.video_path)" (press)="deleteVid(vid)">\n      </div>\n\n          </ion-col>\n        </ion-row>\n      </ion-grid> -->\n\n      <div *ngIf="selected" (click)="openVideo(selected.video_path)">\n        <img class="vid" [src]="selected.image_path">\n        <ion-icon class="playicon" name="play"></ion-icon>\n        <h1> {{selected.name}} </h1>\n        <p> {{selected.description}} </p>\n      </div>\n\n      <ion-item>\n\n         <ion-scroll scrollX style="height:100px;">\n        <div class="scroll-item">\n        <ion-col col-33 *ngFor="let vid of vgallery">\n       <div class="card card-1" (click)="selectVideo(vid)">\n\n         <img src="{{vid.image_path}}">\n         </div>\n          </ion-col>\n         </div>\n         </ion-scroll>\n\n      </ion-item>\n\n\n\n    </ion-list>\n\n\n</div>\n<ion-fab right bottom>\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button *ngIf="adminonly()"  ion-fab color="light" (click)="openBanner()"><ion-icon name="image"></ion-icon></button>\n     <button *ngIf="adminonly()"  ion-fab color="light" (click)="promptVideo()"><ion-icon name="videocam"></ion-icon></button>\n\n     <button ion-fab color="light" (click)="sharelink(items.category_id,items.id)"><ion-icon name="share"></ion-icon></button>\n\n\n         </ion-fab-list>\n\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\detail\detail.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__ionic_native_media_capture__["a" /* MediaCapture */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */],
@@ -4242,12 +4233,14 @@ var SublistPage = (function () {
     SublistPage.prototype.ionViewDidLoad = function () {
         var direct = this.navParams.get('locname');
         if (direct !== undefined) {
+            console.log("Direct Wash: " + this.navParams.get("id"));
             this.washData(direct);
         }
         else {
+            console.log("Normal Clicked: " + this.navParams.get("id"));
             var param = "id=" + this.navParams.get("id") + "&subid=0&start=0&end=10&type=0";
             this.title = this.navParams.get("name");
-            console.log(this.navParams.data);
+            // console.log(this.navParams.data);
             this.listitem(param);
             this.subFilter();
             this.getLocation();
@@ -4375,6 +4368,7 @@ var SublistPage = (function () {
         this.lokasi = loc;
         this.showlocpage = false;
         this.popo = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
+        console.log(this.popo);
         var loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
@@ -4498,6 +4492,8 @@ var SublistPage = (function () {
         });
         loading.present();
         this.ss.dataList(param, "getSubCategoryById.php").then(function (response) {
+            // console.log("Initialized item: ");
+            // console.log(this.items);
             _this.items = response;
             _this.total = _this.items.total;
             //this.start=this.items.start;
@@ -4513,7 +4509,53 @@ var SublistPage = (function () {
     };
     SublistPage.prototype.doInfinite = function (infiniteScroll) {
         var _this = this;
-        if (this.total >= this.start && this.showme == false) {
+        if (this.lokasi !== undefined) {
+            this.papa = undefined;
+            // if(this.total>=this.start &&  this.showme==false)
+            // {
+            var param = "main_category_id=" + this.navParams.get("id") + "&location=" + this.lokasi + "&start=" + this.start + "&end=" + this.end;
+            console.log("param limit" + param);
+            this.ss.dataList(param, "washDatabyLocation.php").then(function (response) {
+                _this.limititem = response;
+                _this.total = _this.limititem.total;
+                _this.start = parseInt(_this.limititem.start) + 10;
+                console.log(_this.limititem.Data);
+                _this.limititem.Data.forEach(function (element) {
+                    _this.items.push(element);
+                    //this.backup_items.push(element);
+                });
+                _this.limititem = "";
+                infiniteScroll.complete();
+            });
+            // }
+            //  else
+            //  {
+            // infiniteScroll.complete();
+            //
+            // }
+        }
+        else if (this.papa !== undefined) {
+            this.lokasi = undefined;
+            var param = "id=" + this.navParams.get("id") + "&subid=0&start=" + this.start + "&end=" + this.end + "&type=" + this.code;
+            console.log("Doing infinite for " + param);
+            this.ss.dataList(param, "getSubCategoryById_BK.php").then(function (response) {
+                _this.limititem = response;
+                _this.total = _this.limititem.total;
+                _this.start = parseInt(_this.limititem.start) + 10;
+                console.log(_this.limititem.Data);
+                _this.limititem.Data.forEach(function (element) {
+                    _this.items.push(element);
+                    //this.backup_items.push(element);
+                });
+                _this.limititem = "";
+                infiniteScroll.complete();
+            }).catch(function (Error) {
+                console.log("Connection Error" + Error);
+            });
+        }
+        else {
+            // if(this.total>=this.start &&  this.showme==false)
+            // {
             var param = "id=" + this.navParams.get("id") + "&subid=0&start=" + this.start + "&end=" + this.end;
             console.log("param limit" + param);
             this.ss.dataList(param, "getSubCategoryById.php").then(function (response) {
@@ -4528,9 +4570,12 @@ var SublistPage = (function () {
                 _this.limititem = "";
                 infiniteScroll.complete();
             });
-        }
-        else {
-            infiniteScroll.complete();
+            // }
+            //  else
+            //  {
+            // infiniteScroll.complete();
+            //
+            //  }
         }
     };
     SublistPage.prototype.listimage = function (imageurl) {
@@ -4593,7 +4638,7 @@ var SublistPage = (function () {
     };
     SublistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-sublist',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/'\n<ion-header>\n <ion-navbar color="darkbule">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button color="white" ion-button icon-only (click)="presentPopover($event)">\n        <ion-icon name="list"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-searchbar class="sb" *ngIf="showme" (search)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n  <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">\n    <ion-icon name="arrow-dropdown"></ion-icon>\n  </button>\n\n   <!-- <ion-select class="sbl" *ngIf="showme" placeholder="V" [(ngModel)]="loc" (ionChange)="washData(loc)" interface="action-sheet">\n     <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>\n   </ion-select> -->\n</ion-header>\n\n<div class="locpage" *ngIf="showlocpage">\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor="let location of locations" col-6>\n        <button ion-button block (click)="washData(location.name)">{{location.chinese}}<br>{{location.english}}</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</div>\n\n<ion-content *ngIf="!showlocpage">\n\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.content_name}} </p>\n     </div>\n\n  </div>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="Loading more data...">\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/
+            selector: 'page-sublist',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/'\n<ion-header>\n <ion-navbar color="darkbule" class="navbar">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button color="white" ion-button icon-only (click)="presentPopover($event)">\n        <ion-icon name="list"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-searchbar class="sb" *ngIf="showme" (search)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n  <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">\n    <ion-icon name="arrow-dropdown"></ion-icon>\n  </button>\n\n   <!-- <ion-select class="sbl" *ngIf="showme" placeholder="V" [(ngModel)]="loc" (ionChange)="washData(loc)" interface="action-sheet">\n     <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>\n   </ion-select> -->\n</ion-header>\n\n<div class="locpage" *ngIf="showlocpage">\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor="let location of locations" col-6>\n        <button ion-button block (click)="washData(location.name)">{{location.chinese}}<br>{{location.english}}</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</div>\n\n<ion-content >\n\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.content_name}} </p>\n     </div>\n\n  </div>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="Loading more data...">\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
     ], SublistPage);
@@ -5141,12 +5186,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AddcategoryPage = (function () {
-    function AddcategoryPage(platform, navCtrl, navParams, actionSheetCtrl, ss, imagePicker, loadingCtrl, viewCtrl, toastCtrl) {
+    function AddcategoryPage(platform, navCtrl, navParams, actionSheetCtrl, ss, events, imagePicker, loadingCtrl, viewCtrl, toastCtrl) {
         this.platform = platform;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.actionSheetCtrl = actionSheetCtrl;
         this.ss = ss;
+        this.events = events;
         this.imagePicker = imagePicker;
         this.loadingCtrl = loadingCtrl;
         this.viewCtrl = viewCtrl;
@@ -5362,6 +5408,7 @@ var AddcategoryPage = (function () {
             console.log('resres', response);
             loading.dismiss();
             _this.navCtrl.pop();
+            _this.events.publish("maincatedit", "true");
             _this.presentToast("uploaded successfully");
             // if(this.type=='1')
             //   this.nav.push(this.homepage);
@@ -5447,6 +5494,7 @@ var AddcategoryPage = (function () {
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
             __WEBPACK_IMPORTED_MODULE_3__providers_servercon__["a" /* Servercon */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_image_picker__["a" /* ImagePicker */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */],
