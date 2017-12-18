@@ -11,6 +11,8 @@ import { BannersPage } from '../pages/banners/banners';
 import { AboutusPage } from '../pages/aboutus/aboutus';
 //import { GalleryPage } from '../pages/gallery/gallery';
 import { Servercon } from '../providers/servercon';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,7 +25,9 @@ export class MyApp {
 
   pages: Array<{title: string, component: any,icon: string,img:string ,adminonly:any}>;
 
-  constructor(public platform: Platform, public ss:Servercon) {
+  constructor(public platform: Platform,
+    private screenOrientation: ScreenOrientation,
+    public ss:Servercon) {
 
 this.rootPage= HomePage;
     this.initializeApp();
@@ -55,6 +59,14 @@ else
 
   initializeApp() {
     this.platform.ready().then(() => {
+      // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT)
+      // .then((data) => {
+      //   alert(data);
+      // })
+      // .catch((error) => {
+      //   alert("Error " + error);
+      // })
+
 
       StatusBar.styleDefault();
       Splashscreen.hide();

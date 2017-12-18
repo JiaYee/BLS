@@ -390,7 +390,7 @@ export class HomePage {
 
   goBLS()
   {
-    window.open("http://www.betweenlifestyle.my/")
+    window.open("http://www.citytour.com.my/")
   }
 
   updateMainCat() {

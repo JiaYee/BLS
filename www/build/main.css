@@ -32974,14 +32974,13 @@ page-detail .addvidpage {
 
 page-detail .playicon {
   position: absolute;
-  top: 20%;
-  left: 40%;
+  top: 18%;
+  left: 35%;
   color: black;
   border-radius: 25px;
-  background: #FFFFFF;
-  padding: 20px;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
+  opacity: 0.5;
 }
 
 page-detail .vid {
@@ -33487,7 +33486,7 @@ page-home .social_blk {
 }
 
 page-home .social_blk .sb1 {
-  padding-top: 5px;
+  padding-top: 10px;
   padding-bottom: 5px;
 }
 
@@ -33499,6 +33498,8 @@ page-home .social_blk .sb2 {
 page-home .social_blk .sb3 {
   padding-top: 5px;
   padding-bottom: 5px;
+  width: 40px;
+  height: 45px;
 }
 
 page-home .slideshow .slideimg {

@@ -62,7 +62,7 @@
 
 
 <div  class="img_item">
- <img [src]="image_path"  (click)="view_photo(image_path,title)"  style="height: 200px;  width: 100%;" />
+ <img *ngIf="image_path" [src]="image_path"  (click)="view_photo(image_path,title)"  style="height: 200px;  width: 100%;" />
 
 <div class="top_text" >
     <img *ngIf="checkfavo(items.id)==1" src="assets/LoveY_40.png" (click)=removfavo(items.id)/>
@@ -171,25 +171,33 @@
        </ion-list>
 
     <ion-list *ngSwitchCase="'Videos'" >
-      <!-- <ion-grid>
+
+      <div class="deatils" *ngIf="selected" (click)="openVideo(selected.video_path)">
+        <img class="vid" [src]="selected.image_path">
+        <img class="playicon" src="assets/playbutton.png">
+
+        <!-- <ion-icon class="playicon" name="play"></ion-icon> -->
+        <!-- <h3 style="padding-left: 10px"> {{selected.name}} </h3>
+        <p style="padding-left: 10px"> {{selected.description}} </p> -->
+        <div class="info">
+         <label> <b>{{selected.name}}</b> </label>
+        <div text-justify style="white-space: pre-line;">{{selected.description}}</div>
+        </div>
+      </div>
+
+      <ion-grid>
         <ion-row wrap>
           <ion-col col-4 *ngFor="let vid of vgallery" >
-      <div >
-      <img [src]="vid.image_path" width="400px" height="75px" (click)="openVideo(vid.video_path)" (press)="deleteVid(vid)">
-      </div>
+            <div >
+              <img [src]="vid.image_path" width="400px" height="75px" (click)="selectVideo(vid)" (press)="deleteVid(vid)">
+            </div>
 
           </ion-col>
         </ion-row>
-      </ion-grid> -->
+      </ion-grid>
 
-      <div *ngIf="selected" (click)="openVideo(selected.video_path)">
-        <img class="vid" [src]="selected.image_path">
-        <ion-icon class="playicon" name="play"></ion-icon>
-        <h1> {{selected.name}} </h1>
-        <p> {{selected.description}} </p>
-      </div>
 
-      <ion-item>
+      <!-- <ion-item>
 
          <ion-scroll scrollX style="height:100px;">
         <div class="scroll-item">
@@ -202,7 +210,7 @@
          </div>
          </ion-scroll>
 
-      </ion-item>
+      </ion-item> -->
 
 
 

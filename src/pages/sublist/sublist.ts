@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {  ViewController, PopoverController, NavController, NavParams,LoadingController, Events, AlertController, ActionSheetController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Content, ViewController, PopoverController, NavController, NavParams,LoadingController, Events, AlertController, ActionSheetController } from 'ionic-angular';
 import{Servercon} from '../../providers/servercon'
 import{DetailPage} from '../detail/detail'
 import { UpdatecontentPage } from '../updatecontent/updatecontent';
@@ -62,6 +62,8 @@ locations = [];
 showlocpage: boolean = false;
 display: any;
 
+@ViewChild(Content) content: Content;
+
 
   constructor(public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, public events: Events, public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public ss:Servercon) {
 
@@ -73,7 +75,7 @@ display: any;
   }
 
   ionViewDidLoad() {
-
+    this.content.scrollToTop();
     let direct = this.navParams.get('locname');
 
     if(direct !== undefined)
@@ -294,11 +296,15 @@ delContent(item)
     this.events.subscribe("filtercode", (code) => {
       if(code == 99)
       {
+        this.papa = undefined;
         this.ionViewDidLoad();
       }
       else
       {
         this.code = code;
+        // this.start = 0;
+        // this.end = 0;
+        // this.lokasi = undefined;
         this.papa = "id="+this.navParams.get("id")+"&subid=0&start=0&end=10&type=" + code;
         this.filteritem(this.papa);
       }
@@ -363,7 +369,7 @@ delContent(item)
   loading.present();
    this.ss.dataList(param,"getSubCategoryById_BK.php").then((response)=>{
 
-
+     this.items = undefined;
   this.items =response;
   this.total= this.items.total;
   //this.start=this.items.start;
@@ -373,6 +379,7 @@ delContent(item)
   this.backup_items=this.items;
 
   loading.dismiss();
+  this.content.scrollToTop();
     }).catch((Error)=>{
   console.log("Connection Error"+Error);
   loading.dismiss();
@@ -412,9 +419,8 @@ doInfinite(infiniteScroll)
 
   if(this.lokasi !== undefined)
   {
+    console.log("doing infinite scroll for location")
     this.papa = undefined;
-
-
   // if(this.total>=this.start &&  this.showme==false)
   // {
   let param = "main_category_id=" + this.navParams.get("id") + "&location=" + this.lokasi + "&start="+this.start+"&end="+this.end;
@@ -443,12 +449,13 @@ this.limititem="";
 }
 else if(this.papa !== undefined)
 {
+  console.log("doing infinite scroll for type filtering")
   this.lokasi = undefined;
   let param = "id="+this.navParams.get("id")+"&subid=0&start=" + this.start + "&end=" + this.end + "&type=" + this.code;
   console.log("Doing infinite for " + param);
   this.ss.dataList(param,"getSubCategoryById_BK.php").then((response)=>{
 
-
+    this.limititem = undefined;
     this.limititem =response;
     this.total= this.limititem.total;
     this.start=parseInt(this.limititem.start)+10;
@@ -467,6 +474,7 @@ else if(this.papa !== undefined)
 }
 else
 {
+  console.log("doing infinite scroll for normal occasion")
   // if(this.total>=this.start &&  this.showme==false)
   // {
 

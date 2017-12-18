@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 141:
+/***/ 142:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -348,10 +348,10 @@ var BannersPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-banners',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\banners\banners.html"*/'\n<ion-header>\n<ion-navbar color="darkbule">\n      <ion-title>Upload Image</ion-title>\n      <a tappable ion-button  clear menuToggle >\n        <ion-icon name="menu"></ion-icon>\n <!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n      </a>\n    \n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n  <!--\n  <ion-card>\n    <ion-card-content>\n      Hello World, this is my camera app\n\n      <button (click)="takePicture()">Take a Picture</button>\n\n      Latest Picture:\n      <img [src]="base64Image" *ngIf="base64Image" />\n    </ion-card-content>\n  </ion-card>\n\n-->\n\n<div>\n<ion-list color="light">\n\n\n  <ion-item >\n    <div>\n    <img [src]="image_path"  (click) ="presentActionSheet()"/>\n    </div>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Description</ion-label>\n    <!--<ion-input type="text" [(ngModel)]="desc"></ion-input>-->\n    <ion-textarea rows="3" type="text" [(ngModel)]="desc"></ion-textarea>\n  </ion-item>\n\n\n\n</ion-list>\n\n\n</div>\n <button ion-button full color="secondary" (click)="savebanner()">Save</button>\n <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\banners\banners.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */]])
     ], BannersPage);
     return BannersPage;
 }());
@@ -360,7 +360,7 @@ var BannersPage = (function () {
 
 /***/ }),
 
-/***/ 142:
+/***/ 143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -849,15 +849,15 @@ var UpdatecontentPage = (function () {
             selector: 'page-updatecontent',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n    <ion-title>Create Category</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]="createContent">\n        <ion-list>\n\n            <ion-item>\n                <div>\n                    <img [src]="image_path"  (click) ="presentActionSheet()"/>\n                </div>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines>\n                Main Category\n            </ion-label>\n\n            <ion-item>\n                <ion-select no-padding no-margin formControlName="mainCat">\n                    <ion-option *ngFor="let cat of mainCatList" value="{{cat.id}}">{{cat.name}}</ion-option>\n                </ion-select>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Name:</ion-label>\n                <ion-textarea rows="5" type="text" placeholder="Name" formControlName="name"></ion-textarea>\n            </ion-item>\n\n            <!--<ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-input type="text" placeholder="Description" formControlName="desc"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-input type="text" placeholder="Address" formControlName="address"></ion-input>\n            </ion-item>-->\n\n            <ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-textarea rows="10" type="text" placeholder="Description" formControlName="desc"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-textarea rows="5"  type="text" placeholder="Address" formControlName="address"></ion-textarea>\n            </ion-item>\n\n            <ion-list radio-group formControlName="type" (ionChange)="selectType()" no-lines>\n              <ion-list-header>\n                Type\n              </ion-list-header>\n              <ion-item>\n                <ion-label>食尚</ion-label>\n                <img src="assets/foodicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="0"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>親子活动</ion-label>\n                <img src="assets/familyicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="2"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>發現之旅</ion-label>\n                <img src="assets/globe.png" item-left width="27px" height="27px"/>\n                <ion-radio value="1"></ion-radio>\n              </ion-item>\n            </ion-list>\n\n            <!-- <ion-item>\n                <ion-label>Type</ion-label>\n                <ion-select formControlName="type" (ionChange)="selectType()">\n                    <ion-option value="0">Food</ion-option>\n                    <ion-option value="1">Discovery</ion-option>\n                </ion-select>\n            </ion-item> -->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Phone:</ion-label>\n                <ion-input type="text" placeholder="Phone" formControlName="phoneNo"></ion-input>\n            </ion-item>\n\n            <ion-label style="padding: 0 0 0 16px; margin-bottom: 0;" no-lines [hidden]="infoFlag">\n                Business Hour\n            </ion-label>\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-input type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-input>\n            </ion-item>-->\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-input type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-input>\n            </ion-item>-->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-textarea>\n            </ion-item>\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Website:</ion-label>\n                <ion-input type="text" placeholder="Website" formControlName="website"></ion-input>\n            </ion-item>\n\n            <ion-item [hidden]="locationFlag">\n                <ion-label>\n                    GPS: {{latitude}}, {{longitude}}\n                </ion-label>\n            </ion-item>\n\n          </ion-list>\n        </form>\n\n        <ion-label stacked>Tag Location:</ion-label>\n        <ion-select mode="wp" class="tag" [(ngModel)]="loc" (ionChange)="deleteLocation(loc)">\n          <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>\n        </ion-select>\n            <!-- <ion-label stacked>Tag Location</ion-label>\n            <tag-input class="tag" [maxItems]="1" [ngModel]="loc" (onAdd)="insertLocation($event.value)" (onRemove)="deleteLocation()" [onlyFromAutocomplete]="true">\n              <tag-input-dropdown [showDropdownIfEmpty]="true"\n              [autocompleteItems]="locations">\n            </tag-input-dropdown>\n          </tag-input> -->\n\n        <button ion-button full color="secondary" [hidden]="locationFlag" (click)="removeLoc()">Remove Location</button>\n        <button ion-button full color="secondary" [hidden]="!locationFlag" (click)="addLoc()">Add Location</button>\n        <button ion-button full color="secondary" (click)="submitForm()">Save</button>\n        <button ion-button full color="danger" (click)="onCancelClick()">Cancel</button>\n\n    <!-- <ion-list radio-group [(ngModel)]="loc">\n      <ion-list-header>\n        Locations\n      </ion-list-header>\n\n      <ion-item *ngFor="let location of locations">\n        <ion-label>{{location.name}}</ion-label>\n        <ion-radio (ionSelect)="deleteLocation(location.name)" value="{{location.name}}"></ion-radio>\n      </ion-item> -->\n\n    <!-- </ion-list> -->\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updatecontent\updatecontent.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__ionic_native_image_picker__["a" /* ImagePicker */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* ActionSheetController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */],
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormBuilder"],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Events */],
             __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["i" /* LoadingController */]])
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* LoadingController */]])
     ], UpdatecontentPage);
     return UpdatecontentPage;
 }());
@@ -866,7 +866,7 @@ var UpdatecontentPage = (function () {
 
 /***/ }),
 
-/***/ 144:
+/***/ 145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -994,7 +994,7 @@ var EarthPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-earth',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\earth\earth.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n      <ion-title>Earth</ion-title>\n      <a tappable ion-button  clear menuToggle >\n        <ion-icon name="menu"></ion-icon>\n <!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n      </a>\n\n  </ion-navbar>\n   <ion-searchbar *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n\n</ion-header>\n\n<ion-content >\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)">\n  <ion-badge *ngIf="item.count"  color ="danger" item-right style="margin: 8px; width: 40px;">{{item.count}}</ion-badge>\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n<ion-fab right bottom>\n\n\n\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n       <button ion-fab color="light" [navPush]="addcategorypage"><ion-icon name="add"></ion-icon></button>\n    </ion-fab-list>\n\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\earth\earth.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
     ], EarthPage);
     return EarthPage;
 }());
@@ -1003,7 +1003,7 @@ var EarthPage = (function () {
 
 /***/ }),
 
-/***/ 145:
+/***/ 146:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1095,8 +1095,8 @@ var FavePage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-fave',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\fave\fave.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n      <ion-title>Favorite</ion-title>\n\n      <a tappable ion-button  clear menuToggle >\n        <ion-icon name="menu"></ion-icon>\n <!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n      </a>\n\n\n  </ion-navbar>\n   <ion-searchbar *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n\n</ion-header>\n\n<ion-content >\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\fave\fave.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ToastController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ToastController */]])
     ], FavePage);
     return FavePage;
 }());
@@ -1105,7 +1105,7 @@ var FavePage = (function () {
 
 /***/ }),
 
-/***/ 146:
+/***/ 147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1199,7 +1199,7 @@ var ToptenPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-topten',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\topten\topten.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n    <a tappable ion-button  clear menuToggle >\n      <ion-icon name="menu"></ion-icon>\n<!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n    </a>\n    <ion-title>Top Thirty</ion-title>\n  </ion-navbar>\n <ion-searchbar *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n\n\n <ion-toolbar no-border-top>\n    <ion-segment [(ngModel)]="tt">\n      <ion-segment-button value="malaysia"  (ionSelect)="listitem(\'segment=1\')">\n        Malaysia\n      </ion-segment-button>\n      <ion-segment-button value="asia"  (ionSelect)="listitem(\'segment=2\')">\n        Asia Pacific\n      </ion-segment-button>\n      <ion-segment-button value="world"  (ionSelect)="listitem(\'segment=3\')">\n        World\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n\n\n</ion-header>\n\n<ion-content>\n  <div [ngSwitch]="tt">\n\n    <ion-list *ngSwitchCase="\'malaysia\'">\n\n  <div   class="img_item" *ngFor="let item of items " [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n\n\n    </ion-list>\n\n\n\n    <ion-list *ngSwitchCase="\'asia\'" >\n\n      <div   class="img_item" *ngFor="let item of items " [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n\n    </ion-list>\n\n    <ion-list *ngSwitchCase="\'world\'" >\n\n      <div   class="img_item" *ngFor="let item of items " [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n\n    </ion-list>\n  </div>\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\topten\topten.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
     ], ToptenPage);
     return ToptenPage;
 }());
@@ -1208,7 +1208,7 @@ var ToptenPage = (function () {
 
 /***/ }),
 
-/***/ 157:
+/***/ 158:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -1217,11 +1217,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 157;
+webpackEmptyAsyncContext.id = 158;
 
 /***/ }),
 
-/***/ 200:
+/***/ 201:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -1230,7 +1230,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 200;
+webpackEmptyAsyncContext.id = 201;
 
 /***/ }),
 
@@ -1240,8 +1240,8 @@ webpackEmptyAsyncContext.id = 200;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Servercon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1475,15 +1475,15 @@ var Servercon = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MorePage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_native__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sublist_sublist__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__earth_earth__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__earth_earth__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__event_event__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fave_fave__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__topten_topten__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fave_fave__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__topten_topten__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__aboutus_aboutus__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__addcategory_addcategory__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__addcontent_addcontent__ = __webpack_require__(409);
@@ -1593,9 +1593,9 @@ var SubPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: "\n    <ion-list color=\"light\">\n      <button ion-item icon-right (click)=\"openAddcategory(addCategory)\">Add Main Category </button>\n      <button ion-item (click)=\"openAddcontent(addContent)\">Add Content</button>\n      <button ion-item  >Edit Subcategory</button>\n      </ion-list>\n      "
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["q" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["s" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */]])
     ], SubPage);
     return SubPage;
@@ -1710,9 +1710,9 @@ var MorePage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: "\n     <ion-list color=\"light\">\n      <button ion-item icon-right (click)=\"presentPopover($event)\">Admin</button>\n       <button ion-item (click)=\"validationPop()\">Validation Code</button>\n      <button *ngIf=\"adminonly()\"  ion-item  (click)=\"logout()\">Logout</button>\n       </ion-list>\n      "
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["q" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* PopoverController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["s" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */]])
     ], MorePage);
     return MorePage;
@@ -1787,7 +1787,7 @@ var HomePage = (function () {
         });
     };
     HomePage.prototype.goBLS = function () {
-        window.open("http://www.betweenlifestyle.my/");
+        window.open("http://www.citytour.com.my/");
     };
     HomePage.prototype.updateMainCat = function () {
         var urlSearchParams = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* URLSearchParams */]();
@@ -1974,15 +1974,15 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n      <a tappable ion-button  clear menuToggle >\n        <ion-icon name="menu"></ion-icon>\n <!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n      </a>\n\n <ion-buttons end>\n        <button ion-button  (click)="presentPopover($event)">\n      <ion-icon name="more"></ion-icon>\n      </button>\n </ion-buttons>\n\n    <ion-title>Between Lifestyle</ion-title>\n\n  </ion-navbar>\n  <ion-searchbar class="sb" *ngIf="showme" (search)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n   <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">\n     <ion-icon name="arrow-dropdown"></ion-icon>\n   </button>\n\n</ion-header>\n\n  <!-- slider area -->\n  <!--<div class="slideshow">-->\n  <div class="superfilter" *ngIf="showpopover">\n        <ion-list class="leftpanel" no-lines>\n            <button [style.background-color]="country.selected ? \'#A9A9A9\' : \'#D3D3D3\'" ion-button *ngFor="let country of countries ; let i = index" color="lightgrey" block (click)="filterRight(country, i)">{{country.name}}</button>\n        </ion-list>\n\n        <ion-list class="rightpanel" no-lines>\n          <button *ngFor="let location of locations" ion-button block (click)="goSublist(location.name, location.id)">{{location.chinese}}<br>{{location.english}}</button>\n        </ion-list>\n  </div>\n\n  <ion-content *ngIf="!showpopover">\n\n\n\n<ion-slides class="slideshow">\n  <ion-slide *ngFor="let slide of slides">\n    <img [src]="slide.Image_Path" class="slideimg" (click)="view_photo(slide.Image_Path,slide.name)"/>\n  </ion-slide>\n</ion-slides>\n\n<!--</div>-->\n\n<!-- end slide -->\n\n<!-- Side 3 icons area -->\n\n\n<div  class="social_blk">\n\n  <img class="sb1" src="assets/earth45.png"  [navPush]="earthpage" />\n\n<img class="sb2" src="assets/mark45.png" [navPush]="eventpage" />\n\n<img class="sb3" src="assets/BLS_50.png" (click)="goBLS()" />\n  </div>\n\n<!-- end icons -->\n\n<!-- items scrolling part  -->\n\n<div class="items_top">\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (tap)="openPage(item)" (press)="promptActionSheet(item)">\n    <!-- <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)"> -->\n <ion-badge *ngIf="item.count"  color ="danger" item-right style="margin:0px; width: 40px;">{{item.count}}</ion-badge>\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n</div>\n<ion-fab right bottom>\n\n\n\n\n\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n       <button *ngIf="adminonly()" ion-fab color="light"  [navPush]="addcategorypage"><ion-icon name="add"></ion-icon></button>\n    </ion-fab-list>\n\n\n</ion-fab>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n      <a tappable ion-button  clear menuToggle >\n        <ion-icon name="menu"></ion-icon>\n <!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n      </a>\n\n <ion-buttons end>\n        <button ion-button  (click)="presentPopover($event)">\n      <ion-icon name="more"></ion-icon>\n      </button>\n </ion-buttons>\n\n    <ion-title>Between Lifestyle</ion-title>\n\n  </ion-navbar>\n  <ion-searchbar class="sb" *ngIf="showme" (search)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n   <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">\n     <ion-icon name="arrow-dropdown"></ion-icon>\n   </button>\n\n</ion-header>\n\n  <!-- slider area -->\n  <!--<div class="slideshow">-->\n  <div class="superfilter" *ngIf="showpopover">\n        <ion-list class="leftpanel" no-lines>\n            <button [style.background-color]="country.selected ? \'#A9A9A9\' : \'#D3D3D3\'" ion-button *ngFor="let country of countries ; let i = index" color="lightgrey" block (click)="filterRight(country, i)">{{country.name}}</button>\n        </ion-list>\n\n        <ion-list class="rightpanel" no-lines>\n          <button *ngFor="let location of locations" ion-button block (click)="goSublist(location.name, location.id)">{{location.chinese}}<br>{{location.english}}</button>\n        </ion-list>\n  </div>\n\n  <ion-content *ngIf="!showpopover">\n\n\n\n<ion-slides class="slideshow">\n  <ion-slide *ngFor="let slide of slides">\n    <img [src]="slide.Image_Path" class="slideimg" (click)="view_photo(slide.Image_Path,slide.name)"/>\n  </ion-slide>\n</ion-slides>\n\n<!--</div>-->\n\n<!-- end slide -->\n\n<!-- Side 3 icons area -->\n\n\n<div  class="social_blk">\n\n  <img class="sb1" src="assets/earth45.png"  [navPush]="earthpage" />\n\n<img class="sb2" src="assets/mark45.png" [navPush]="eventpage" />\n\n<img class="sb3" src="assets/citytour1.png" (click)="goBLS()" />\n  </div>\n\n<!-- end icons -->\n\n<!-- items scrolling part  -->\n\n<div class="items_top">\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (tap)="openPage(item)" (press)="promptActionSheet(item)">\n    <!-- <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)"> -->\n <ion-badge *ngIf="item.count"  color ="danger" item-right style="margin:0px; width: 40px;">{{item.count}}</ion-badge>\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n</div>\n<ion-fab right bottom>\n\n\n\n\n\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n       <button *ngIf="adminonly()" ion-fab color="light"  [navPush]="addcategorypage"><ion-icon name="add"></ion-icon></button>\n    </ion-fab-list>\n\n\n</ion-fab>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_4__providers_servercon__["a" /* Servercon */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* PopoverController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */]])
     ], HomePage);
     return HomePage;
@@ -2288,13 +2288,13 @@ var UpdategalleryPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-updategallery',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updategallery\updategallery.html"*/'\n<ion-header>\n    <ion-navbar color="darkbule">\n        <ion-title>Upload Image</ion-title>\n        <button ion-button clear menuToggle >\n        <img src="assets/head_logo.png"  class="logo_head"/>\n        </button>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-list color="light">\n\n            <ion-item >\n                <div>\n                <img [src]="image_path"  (click) ="presentActionSheet()"/>\n                </div>\n            </ion-item>\n\n            <ion-item>\n                <ion-label floating>Description</ion-label>\n                <!--<ion-input type="text" [(ngModel)]="desc"></ion-input>-->\n                <ion-textarea rows="3" type="text" [(ngModel)]="desc"></ion-textarea>\n            </ion-item>\n\n        </ion-list>\n    </div>\n    <button ion-button full color="secondary" (click)="savebanner()">Save</button>\n    <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n\n</ion-content>'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updategallery\updategallery.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
             __WEBPACK_IMPORTED_MODULE_3__providers_servercon__["a" /* Servercon */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ToastController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
     ], UpdategalleryPage);
     return UpdategalleryPage;
@@ -2730,14 +2730,14 @@ var AddcontentPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-addcontent',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\addcontent\addcontent.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n    <ion-title>Create Category</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <form [formGroup]="createContent">\n        <ion-list>\n\n            <ion-item>\n                <div>\n                    <img [src]="image_path"  (click) ="presentActionSheet()"/>\n                </div>\n            </ion-item>\n\n            <ion-list-header no-margin no-lines>\n                Main Category\n            </ion-list-header>\n\n            <ion-item>\n                <ion-select no-padding no-margin formControlName="mainCat">\n                    <ion-option *ngFor="let cat of mainCatList" value="{{cat.id}}">{{cat.name}}</ion-option>\n                </ion-select>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Name:</ion-label>\n                <ion-textarea rows="5" type="text" placeholder="Name" formControlName="name"></ion-textarea>\n            </ion-item>\n\n            <!--<ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-input type="text" placeholder="Description" formControlName="desc"></ion-input>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-input type="text" placeholder="Address" formControlName="address"></ion-input>\n            </ion-item>-->\n\n\n            <ion-item>\n                <ion-label stacked>Description:</ion-label>\n                <ion-textarea rows="10" type="text" placeholder="Description" formControlName="desc"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Address:</ion-label>\n                <ion-textarea rows="5" type="text" placeholder="Address" formControlName="address"></ion-textarea>\n            </ion-item>\n\n\n            <ion-list radio-group formControlName="type" (ionChange)="selectType()" no-lines>\n              <ion-list-header>\n                Type\n              </ion-list-header>\n              <ion-item>\n                <ion-label>食尚</ion-label>\n                <img src="assets/foodicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="0"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>親子活动</ion-label>\n                <img src="assets/familyicon.png" item-left width="27px" height="27px"/>\n                <ion-radio value="2"></ion-radio>\n              </ion-item>\n              <ion-item>\n                <ion-label>發現之旅</ion-label>\n                <img src="assets/globe.png" item-left width="27px" height="27px"/>\n                <ion-radio value="1"></ion-radio>\n              </ion-item>\n            </ion-list>\n\n            <!-- <hr> -->\n            <!-- <ion-item>\n                <ion-label>Type</ion-label>\n                <ion-select formControlName="type" (ionChange)="selectType()">\n                    <ion-option value="0">食尚</ion-option>\n                    <ion-option value="2">親子活动</ion-option>\n                    <ion-option value="1">發現之旅</ion-option>\n                </ion-select>\n            </ion-item> -->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Phone:</ion-label>\n                <ion-input type="text" placeholder="Phone(Office)" formControlName="phoneNo"></ion-input>\n            </ion-item>\n\n            <ion-list-header no-lines [hidden]="infoFlag">\n                Business Hour\n            </ion-list-header>\n\n            <!--<ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-input type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-input>\n            </ion-item>\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-input type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-input>\n            </ion-item>-->\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekday:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekday Business hour" formControlName="weekday"></ion-textarea>\n            </ion-item>\n\n            <ion-item [hidden]="infoFlag">\n                <ion-label stacked>Weekend:</ion-label>\n                <ion-textarea rows="8" type="text" placeholder="Weekend Business hour" formControlName="weekend"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Website:</ion-label>\n                <ion-input type="text" placeholder="Website" formControlName="website"></ion-input>\n            </ion-item>\n\n            <ion-item [hidden]="locationFlag">\n                <ion-label>\n                    GPS: {{latitude}}, {{longitude}}\n                </ion-label>\n            </ion-item>\n\n        </ion-list>\n\n        <button ion-button full color="secondary" [hidden]="locationFlag" (click)="removeLoc()">Remove Location</button>\n        <button ion-button full color="secondary" [hidden]="!locationFlag" (click)="addLoc()">Add Location</button>\n        <button ion-button full color="secondary" (click)="submitForm()">Save</button>\n        <button ion-button full color="danger" (click)="onCancelClick()">Cancel</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\addcontent\addcontent.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */],
             __WEBPACK_IMPORTED_MODULE_4__providers_servercon__["a" /* Servercon */],
             __WEBPACK_IMPORTED_MODULE_6__angular_forms__["FormBuilder"],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_image_picker__["a" /* ImagePicker */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* LoadingController */]])
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */]])
     ], AddcontentPage);
     return AddcontentPage;
 }());
@@ -3139,15 +3139,15 @@ var UpdatecategoryPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-updatecategory',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\updatecategory\updatecategory.html"*/'\n<ion-header>\n\n  <ion-navbar color="darkbule">\n    <ion-title>Update Category</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n<ion-list>\n\n  <ion-item>\n    <div>\n      <img [src]="image_path"  (click) ="presentActionSheet()"/>\n    </div>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>Category Name:</ion-label>\n    <ion-input type="text" [(ngModel)]="name"></ion-input>\n  </ion-item>\n\n<ion-item>\n    <ion-label>Type</ion-label>\n    <ion-select [(ngModel)]="type">\n     <ion-option value="1">Earth</ion-option>\n      <ion-option value="2">Location</ion-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>Top</ion-label>\n    <ion-input  type="number" step="any" name="topRate" [(ngModel)]="rate" min="1"\n               max="20"></ion-input>\n  </ion-item>\n\n  <!-- <ion-item> -->\n  <ion-label stacked>Locations</ion-label>\n  <tag-input class="tag" [ngModel]="locations" [identifyBy]="\'id\'" [displayBy]="\'name\'" (onAdd)="insertLocation($event.name)" (onRemove)="delLocation($event.id)" theme=\'minimal\'>\n  </tag-input>\n<!-- </ion-item> -->\n\n</ion-list>\n\n<button ion-button full color="secondary" (click)="save()">Save</button>\n <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\updatecategory\updatecategory.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["o" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["n" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* ActionSheetController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["r" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["q" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["d" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["j" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["s" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["r" /* ToastController */]])
     ], UpdatecategoryPage);
     return UpdatecategoryPage;
 }());
@@ -3178,19 +3178,19 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_screen_orientation__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_screen_orientation__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(730);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_sublist_sublist__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_earth_earth__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_earth_earth__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_event_event__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_topten_topten__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_topten_topten__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_tabtopten_tabtopten__ = __webpack_require__(731);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_fave_fave__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_fave_fave__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_detail_detail__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_banners_banners__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_banners_banners__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_aboutus_aboutus__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_gallery_gallery__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_servercon__ = __webpack_require__(21);
@@ -3207,7 +3207,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_addcategory_addcategory__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_addcontent_addcontent__ = __webpack_require__(409);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_updatecategory_updatecategory__ = __webpack_require__(410);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_updatecontent_updatecontent__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_updatecontent_updatecontent__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_updategallery_updategallery__ = __webpack_require__(408);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_ng2_tag_input__ = __webpack_require__(734);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_ng2_tag_input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34_ng2_tag_input__);
@@ -3216,7 +3216,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__angular_platform_browser__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_streaming_media__ = __webpack_require__(404);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__ionic_native_video_player__ = __webpack_require__(406);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__ionic_native_in_app_browser__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__ionic_native_in_app_browser__ = __webpack_require__(144);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3306,12 +3306,12 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_37__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_36_ionic_gallery_modal__["b" /* GalleryModalModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */]),
                 __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_34_ng2_tag_input__["TagInputModule"],
                 __WEBPACK_IMPORTED_MODULE_35__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicApp */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicApp */]],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */],
@@ -3341,7 +3341,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_33__pages_updategallery_updategallery__["a" /* UpdategalleryPage */]
             ],
             providers: [
-                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicErrorHandler */] },
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_18__providers_servercon__["a" /* Servercon */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_native__["i" /* PhotoViewer */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_native__["h" /* LaunchNavigator */],
@@ -3378,7 +3378,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_screen_orientation__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_screen_orientation__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(398);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_media_capture__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(400);
@@ -3390,11 +3390,11 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_video_player__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__gallery_gallery__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__banners_banners__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__banners_banners__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ionic_gallery_modal__ = __webpack_require__(407);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__updatecontent_updatecontent__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__updatecontent_updatecontent__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__updategallery_updategallery__ = __webpack_require__(408);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_in_app_browser__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_in_app_browser__ = __webpack_require__(144);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3468,11 +3468,11 @@ var PopoverPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: "\n    <ion-list color=\"light\">\n      <button ion-item (click)=\"addme(1)\">Malaysia</button>\n      <button ion-item (click)=\"addme(2)\">Asia Pacific</button>\n      <button ion-item (click)=\"addme(3)\">World</button>\n     <!-- <button ion-item (click)=\"addme(3)\">Remove</button>\n     -->\n      </ion-list>\n  "
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_13__providers_servercon__["a" /* Servercon */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ToastController */],
             __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__["a" /* Camera */],
             __WEBPACK_IMPORTED_MODULE_7__ionic_native_transfer__["a" /* Transfer */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */],
@@ -3540,12 +3540,12 @@ var PopoverEdit = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: "\n    <ion-list>\n      <ion-list-header>Admin</ion-list-header>\n      <button ion-item (click)=\"close()\">Edit</button>\n      <button ion-item (click)=\"deleteItem()\">Delete</button>\n    </ion-list>\n  "
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_13__providers_servercon__["a" /* Servercon */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */]])
     ], PopoverEdit);
     return PopoverEdit;
 }());
@@ -3610,6 +3610,7 @@ var DetailPage = (function () {
         });
     }
     DetailPage.prototype.ionViewDidLoad = function () {
+        this.screenOrientation.unlock();
         this.item = this.navParams.data;
         // this.image_path=this.navParams.get("image_path");
         // this.title=this.navParams.get("content_name");
@@ -3912,6 +3913,7 @@ var DetailPage = (function () {
             _this.obj = response;
             _this.vgallery = response;
             _this.vgallery = _this.obj.Data;
+            console.log(_this.vgallery);
             _this.selectVideo(_this.vgallery[0]);
             //console.log(JSON.stringify(this.vgallery));
             loading.dismiss();
@@ -3989,8 +3991,11 @@ var DetailPage = (function () {
         this.thumbpath = "assets/upv.jpg";
     };
     DetailPage.prototype.saveVideo = function () {
-        this.showaddvideopage = false;
-        if (this.vidpath !== undefined) {
+        if (this.viddesc == undefined) {
+            this.viddesc = "";
+        }
+        if (this.vidpath !== undefined && this.vidtitle !== undefined) {
+            this.showaddvideopage = false;
             this.insertData(this.vidpath, this.thumbpath, this.vidtitle, this.viddesc);
         }
     };
@@ -4136,22 +4141,22 @@ var DetailPage = (function () {
     };
     DetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-detail',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\detail\detail.html"*/'\n<ion-header *ngIf="!showaddvideopage">\n <ion-navbar color="darkbule">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button *ngIf="adminonly()" ion-button (click)="popOverEdit($event)">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-toolbar no-border-top>\n    <ion-segment [(ngModel)]="tt" mode="ios">\n      <ion-segment-button value="details" (ionSelect)="listitem(param)">\n     Details\n      </ion-segment-button>\n      <ion-segment-button value="gallery" (ionSelect)="getGallery(param)" >\n      <img src="assets/gallery.png"/>\n      </ion-segment-button>\n      <ion-segment-button value="Videos" (ionSelect)="getVGallery(param)" >\n       <img src="assets/play.png"/>\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n<div class="addvidpage" *ngIf="showaddvideopage">\n  <ion-item >\n    <div>\n    <img class="addvid" [src]="thumbpath"  (click) ="presentActionSheet()"/>\n    </div>\n  </ion-item>\n\n  <ion-list color="light">\n    <ion-item>\n      <ion-label floating>Title</ion-label>\n      <ion-textarea rows="1" type="text" [(ngModel)]="vidtitle"></ion-textarea>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Description</ion-label>\n      <ion-textarea rows="3" type="text" [(ngModel)]="viddesc"></ion-textarea>\n    </ion-item>\n  </ion-list>\n  <button ion-button full color="secondary" (click)="saveVideo()">Save</button>\n  <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n</div>\n\n\n\n\n\n<ion-content class="bgcolor" *ngIf="!showaddvideopage">\n\n<!-- <ion-fab left bottom>\n  <button *ngIf="!isDelete" (click)="toggleDelete()" ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>\n  <button *ngIf="isDelete" (click)="toggleDelete()" ion-fab color="light"><ion-icon name="trash"></ion-icon></button>\n</ion-fab> -->\n\n<div [ngSwitch]="tt">\n\n    <ion-list *ngSwitchCase="\'details\'">\n\n\n<div  class="img_item">\n <img [src]="image_path"  (click)="view_photo(image_path,title)"  style="height: 200px;  width: 100%;" />\n\n<div class="top_text" >\n    <img *ngIf="checkfavo(items.id)==1" src="assets/LoveY_40.png" (click)=removfavo(items.id)/>\n      <img *ngIf="checkfavo(items.id)==2" src="assets/LoveG_40.png" (click)=favo(items)/><br>\n      <img src="assets/Tten_40.png" (click)="presentPopover($event,items.id)" style="margin-right: 3px;" />\n     </div>\n</div>\n\n<div class="deatils">\n<!-- working area -->\n\n<div class="info" *ngIf="items.categoryName">\n <label>  Main Category : </label>\n {{items.categoryName}}\n</div>\n\n<div class="info" *ngIf="items.name">\n<!--\n<label style="">Name : </label>\n -->\n <p text-justify class="name_box">{{items.name}} </p>\n</div>\n\n<div class="info" *ngIf="items.description">\n <label> Description : </label>\n<div text-justify style="white-space: pre-line;">{{items.description}}</div>\n</div>\n\n<div class="info" *ngIf="items.address">\n<label> Address : </label>\n<div style="text-align: left; white-space: pre-line;" text-justify (click)="navigater(items.address)">{{items.address }}</div>\n</div>\n\n<div  class="info" *ngIf="items.phone_mobile">\n<label> Mobile : </label>\n{{items.phone_mobile}}\n</div>\n\n<div class="info" *ngIf="items.phone_office">\n<label> Phone : </label>\n<a href="tel:{{items.phone_office}}" class="phone_num"> {{items.phone_office}} </a>\n</div>\n\n<div style="padding: 0;" class="info" *ngIf="items.weekday_business_hour">\n <label> Business Hour : </label>\n</div>\n\n<div class="info" *ngIf="items.weekday_business_hour">\n<label>Weekday : </label><br>\n<p text-justify class="wday_box" style="text-align-last: white-space: pre-line;"> {{items.weekday_business_hour}} </p>\n</div>\n\n<div class="info" *ngIf="items.weekend_business_hour">\n<label> Weekend : </label><br>\n<p text-justify class="wday_box" style="text-align-last: white-space: pre-line;">{{items.weekend_business_hour}}</p>\n</div>\n\n<div class="info" *ngIf="items.website_url">\n<label> Website : </label>\n<a text-justify (click)="open_url(items.website_url)">{{items.website_url}}</a>\n</div>\n\n<div  class="info" *ngIf="checkme(items.latitude)"   >\n<label> Latitude / Longitude : </label>\n<div text-justify (click)="navigater([items.latitude,items.longitude])" >{{items.latitude }} - {{items.longitude }}</div>\n</div>\n\n<div class="info" *ngIf="items.latitude">\n<label> created : </label>\n{{items.timestamp | date: \'MMMM/y\'}}\n</div>\n\n<!-- end area  -->\n</div>\n\n\n\n\n   </ion-list>\n\n    <ion-list *ngSwitchCase="\'gallery\'" >\n\n<!-- <ion-grid *ngIf="!isDelete">\n  <ion-row wrap>\n    <ion-col col-4 *ngFor="let pic of gallery ; let i = index">\n        <img [src]="pic.tmp" width="400px" height="75px" (click)="openGallery(i)">\n    </ion-col>\n  </ion-row>\n</ion-grid> -->\n\n<ion-grid>\n  <ion-row wrap>\n    <ion-col col-4 *ngFor="let pic of gallery ; let i = index">\n        <img [src]="pic.tmp" width="400px" height="75px" (press)="openEdit(pic)" (click)="openGallery(i)">\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n<!--\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="openBanner()" ><ion-icon name="add" ></ion-icon></button>\n\n</ion-fab>\n-->\n\n       </ion-list>\n\n    <ion-list *ngSwitchCase="\'Videos\'" >\n      <!-- <ion-grid>\n        <ion-row wrap>\n          <ion-col col-4 *ngFor="let vid of vgallery" >\n      <div >\n      <img [src]="vid.image_path" width="400px" height="75px" (click)="openVideo(vid.video_path)" (press)="deleteVid(vid)">\n      </div>\n\n          </ion-col>\n        </ion-row>\n      </ion-grid> -->\n\n      <div *ngIf="selected" (click)="openVideo(selected.video_path)">\n        <img class="vid" [src]="selected.image_path">\n        <ion-icon class="playicon" name="play"></ion-icon>\n        <h1> {{selected.name}} </h1>\n        <p> {{selected.description}} </p>\n      </div>\n\n      <ion-item>\n\n         <ion-scroll scrollX style="height:100px;">\n        <div class="scroll-item">\n        <ion-col col-33 *ngFor="let vid of vgallery">\n       <div class="card card-1" (click)="selectVideo(vid)">\n\n         <img src="{{vid.image_path}}">\n         </div>\n          </ion-col>\n         </div>\n         </ion-scroll>\n\n      </ion-item>\n\n\n\n    </ion-list>\n\n\n</div>\n<ion-fab right bottom>\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button *ngIf="adminonly()"  ion-fab color="light" (click)="openBanner()"><ion-icon name="image"></ion-icon></button>\n     <button *ngIf="adminonly()"  ion-fab color="light" (click)="promptVideo()"><ion-icon name="videocam"></ion-icon></button>\n\n     <button ion-fab color="light" (click)="sharelink(items.category_id,items.id)"><ion-icon name="share"></ion-icon></button>\n\n\n         </ion-fab-list>\n\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\detail\detail.html"*/
+            selector: 'page-detail',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\detail\detail.html"*/'\n<ion-header *ngIf="!showaddvideopage">\n <ion-navbar color="darkbule">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button *ngIf="adminonly()" ion-button (click)="popOverEdit($event)">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-toolbar no-border-top>\n    <ion-segment [(ngModel)]="tt" mode="ios">\n      <ion-segment-button value="details" (ionSelect)="listitem(param)">\n     Details\n      </ion-segment-button>\n      <ion-segment-button value="gallery" (ionSelect)="getGallery(param)" >\n      <img src="assets/gallery.png"/>\n      </ion-segment-button>\n      <ion-segment-button value="Videos" (ionSelect)="getVGallery(param)" >\n       <img src="assets/play.png"/>\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n<div class="addvidpage" *ngIf="showaddvideopage">\n  <ion-item >\n    <div>\n    <img class="addvid" [src]="thumbpath"  (click) ="presentActionSheet()"/>\n    </div>\n  </ion-item>\n\n  <ion-list color="light">\n    <ion-item>\n      <ion-label floating>Title</ion-label>\n      <ion-textarea rows="1" type="text" [(ngModel)]="vidtitle"></ion-textarea>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Description</ion-label>\n      <ion-textarea rows="3" type="text" [(ngModel)]="viddesc"></ion-textarea>\n    </ion-item>\n  </ion-list>\n  <button ion-button full color="secondary" (click)="saveVideo()">Save</button>\n  <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n</div>\n\n\n\n\n\n<ion-content class="bgcolor" *ngIf="!showaddvideopage">\n\n<!-- <ion-fab left bottom>\n  <button *ngIf="!isDelete" (click)="toggleDelete()" ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>\n  <button *ngIf="isDelete" (click)="toggleDelete()" ion-fab color="light"><ion-icon name="trash"></ion-icon></button>\n</ion-fab> -->\n\n<div [ngSwitch]="tt">\n\n    <ion-list *ngSwitchCase="\'details\'">\n\n\n<div  class="img_item">\n <img *ngIf="image_path" [src]="image_path"  (click)="view_photo(image_path,title)"  style="height: 200px;  width: 100%;" />\n\n<div class="top_text" >\n    <img *ngIf="checkfavo(items.id)==1" src="assets/LoveY_40.png" (click)=removfavo(items.id)/>\n      <img *ngIf="checkfavo(items.id)==2" src="assets/LoveG_40.png" (click)=favo(items)/><br>\n      <img src="assets/Tten_40.png" (click)="presentPopover($event,items.id)" style="margin-right: 3px;" />\n     </div>\n</div>\n\n<div class="deatils">\n<!-- working area -->\n\n<div class="info" *ngIf="items.categoryName">\n <label>  Main Category : </label>\n {{items.categoryName}}\n</div>\n\n<div class="info" *ngIf="items.name">\n<!--\n<label style="">Name : </label>\n -->\n <p text-justify class="name_box">{{items.name}} </p>\n</div>\n\n<div class="info" *ngIf="items.description">\n <label> Description : </label>\n<div text-justify style="white-space: pre-line;">{{items.description}}</div>\n</div>\n\n<div class="info" *ngIf="items.address">\n<label> Address : </label>\n<div style="text-align: left; white-space: pre-line;" text-justify (click)="navigater(items.address)">{{items.address }}</div>\n</div>\n\n<div  class="info" *ngIf="items.phone_mobile">\n<label> Mobile : </label>\n{{items.phone_mobile}}\n</div>\n\n<div class="info" *ngIf="items.phone_office">\n<label> Phone : </label>\n<a href="tel:{{items.phone_office}}" class="phone_num"> {{items.phone_office}} </a>\n</div>\n\n<div style="padding: 0;" class="info" *ngIf="items.weekday_business_hour">\n <label> Business Hour : </label>\n</div>\n\n<div class="info" *ngIf="items.weekday_business_hour">\n<label>Weekday : </label><br>\n<p text-justify class="wday_box" style="text-align-last: white-space: pre-line;"> {{items.weekday_business_hour}} </p>\n</div>\n\n<div class="info" *ngIf="items.weekend_business_hour">\n<label> Weekend : </label><br>\n<p text-justify class="wday_box" style="text-align-last: white-space: pre-line;">{{items.weekend_business_hour}}</p>\n</div>\n\n<div class="info" *ngIf="items.website_url">\n<label> Website : </label>\n<a text-justify (click)="open_url(items.website_url)">{{items.website_url}}</a>\n</div>\n\n<div  class="info" *ngIf="checkme(items.latitude)"   >\n<label> Latitude / Longitude : </label>\n<div text-justify (click)="navigater([items.latitude,items.longitude])" >{{items.latitude }} - {{items.longitude }}</div>\n</div>\n\n<div class="info" *ngIf="items.latitude">\n<label> created : </label>\n{{items.timestamp | date: \'MMMM/y\'}}\n</div>\n\n<!-- end area  -->\n</div>\n\n\n\n\n   </ion-list>\n\n    <ion-list *ngSwitchCase="\'gallery\'" >\n\n<!-- <ion-grid *ngIf="!isDelete">\n  <ion-row wrap>\n    <ion-col col-4 *ngFor="let pic of gallery ; let i = index">\n        <img [src]="pic.tmp" width="400px" height="75px" (click)="openGallery(i)">\n    </ion-col>\n  </ion-row>\n</ion-grid> -->\n\n<ion-grid>\n  <ion-row wrap>\n    <ion-col col-4 *ngFor="let pic of gallery ; let i = index">\n        <img [src]="pic.tmp" width="400px" height="75px" (press)="openEdit(pic)" (click)="openGallery(i)">\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n<!--\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="openBanner()" ><ion-icon name="add" ></ion-icon></button>\n\n</ion-fab>\n-->\n\n       </ion-list>\n\n    <ion-list *ngSwitchCase="\'Videos\'" >\n\n      <div class="deatils" *ngIf="selected" (click)="openVideo(selected.video_path)">\n        <img class="vid" [src]="selected.image_path">\n        <img class="playicon" src="assets/playbutton.png">\n\n        <!-- <ion-icon class="playicon" name="play"></ion-icon> -->\n        <!-- <h3 style="padding-left: 10px"> {{selected.name}} </h3>\n        <p style="padding-left: 10px"> {{selected.description}} </p> -->\n        <div class="info">\n         <label> <b>{{selected.name}}</b> </label>\n        <div text-justify style="white-space: pre-line;">{{selected.description}}</div>\n        </div>\n      </div>\n\n      <ion-grid>\n        <ion-row wrap>\n          <ion-col col-4 *ngFor="let vid of vgallery" >\n            <div >\n              <img [src]="vid.image_path" width="400px" height="75px" (click)="selectVideo(vid)" (press)="deleteVid(vid)">\n            </div>\n\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n\n      <!-- <ion-item>\n\n         <ion-scroll scrollX style="height:100px;">\n        <div class="scroll-item">\n        <ion-col col-33 *ngFor="let vid of vgallery">\n       <div class="card card-1" (click)="selectVideo(vid)">\n\n         <img src="{{vid.image_path}}">\n         </div>\n          </ion-col>\n         </div>\n         </ion-scroll>\n\n      </ion-item> -->\n\n\n\n    </ion-list>\n\n\n</div>\n<ion-fab right bottom>\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button *ngIf="adminonly()"  ion-fab color="light" (click)="openBanner()"><ion-icon name="image"></ion-icon></button>\n     <button *ngIf="adminonly()"  ion-fab color="light" (click)="promptVideo()"><ion-icon name="videocam"></ion-icon></button>\n\n     <button ion-fab color="light" (click)="sharelink(items.category_id,items.id)"><ion-icon name="share"></ion-icon></button>\n\n\n         </ion-fab-list>\n\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\detail\detail.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__ionic_native_media_capture__["a" /* MediaCapture */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_native__["i" /* PhotoViewer */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_13__providers_servercon__["a" /* Servercon */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_10__ionic_native_streaming_media__["a" /* StreamingMedia */],
             __WEBPACK_IMPORTED_MODULE_12__ionic_native_video_player__["a" /* VideoPlayer */],
             __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__["a" /* Camera */],
@@ -4176,7 +4181,7 @@ var DetailPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_servercon__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__detail_detail__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__updatecontent_updatecontent__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__updatecontent_updatecontent__ = __webpack_require__(143);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4205,7 +4210,7 @@ var FilterPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: "\n     <ion-list color=\"light\">\n     <ion-item (click)=\"filterSub(99)\">\n     <img src=\"assets/eye.png\" item-left width=\"20%\" height=\"20%\"/>\n             \u6240\u6709\n    </ion-item>\n       <ion-item (click)=\"filterSub(0)\">\n       <img src=\"assets/foodicon1.png\" item-left width=\"27px\" height=\"27px\"/>\n               \u98DF\u5C1A\n      </ion-item>\n      <ion-item (click)=\"filterSub(2)\">\n      <img src=\"assets/familyicon1.png\" item-left width=\"27px\" height=\"27px\"/>\n      \u89AA\u5B50\u6D3B\u52A8\n      </ion-item>\n      <ion-item (click)=\"filterSub(1)\">\n      <img src=\"assets/globe1.png\" item-left width=\"27px\" height=\"27px\"/>\n              \u767C\u73FE\u4E4B\u65C5\n     </ion-item>\n     </ion-list>\n      "
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]])
     ], FilterPage);
     return FilterPage;
 }());
@@ -4231,6 +4236,7 @@ var SublistPage = (function () {
         this.total = 0;
     }
     SublistPage.prototype.ionViewDidLoad = function () {
+        this.content.scrollToTop();
         var direct = this.navParams.get('locname');
         if (direct !== undefined) {
             console.log("Direct Wash: " + this.navParams.get("id"));
@@ -4420,10 +4426,14 @@ var SublistPage = (function () {
         var _this = this;
         this.events.subscribe("filtercode", function (code) {
             if (code == 99) {
+                _this.papa = undefined;
                 _this.ionViewDidLoad();
             }
             else {
                 _this.code = code;
+                // this.start = 0;
+                // this.end = 0;
+                // this.lokasi = undefined;
                 _this.papa = "id=" + _this.navParams.get("id") + "&subid=0&start=0&end=10&type=" + code;
                 _this.filteritem(_this.papa);
             }
@@ -4472,6 +4482,7 @@ var SublistPage = (function () {
         });
         loading.present();
         this.ss.dataList(param, "getSubCategoryById_BK.php").then(function (response) {
+            _this.items = undefined;
             _this.items = response;
             _this.total = _this.items.total;
             //this.start=this.items.start;
@@ -4480,6 +4491,7 @@ var SublistPage = (function () {
             console.log(_this.items);
             _this.backup_items = _this.items;
             loading.dismiss();
+            _this.content.scrollToTop();
         }).catch(function (Error) {
             console.log("Connection Error" + Error);
             loading.dismiss();
@@ -4510,6 +4522,7 @@ var SublistPage = (function () {
     SublistPage.prototype.doInfinite = function (infiniteScroll) {
         var _this = this;
         if (this.lokasi !== undefined) {
+            console.log("doing infinite scroll for location");
             this.papa = undefined;
             // if(this.total>=this.start &&  this.showme==false)
             // {
@@ -4535,10 +4548,12 @@ var SublistPage = (function () {
             // }
         }
         else if (this.papa !== undefined) {
+            console.log("doing infinite scroll for type filtering");
             this.lokasi = undefined;
             var param = "id=" + this.navParams.get("id") + "&subid=0&start=" + this.start + "&end=" + this.end + "&type=" + this.code;
             console.log("Doing infinite for " + param);
             this.ss.dataList(param, "getSubCategoryById_BK.php").then(function (response) {
+                _this.limititem = undefined;
                 _this.limititem = response;
                 _this.total = _this.limititem.total;
                 _this.start = parseInt(_this.limititem.start) + 10;
@@ -4554,6 +4569,7 @@ var SublistPage = (function () {
             });
         }
         else {
+            console.log("doing infinite scroll for normal occasion");
             // if(this.total>=this.start &&  this.showme==false)
             // {
             var param = "id=" + this.navParams.get("id") + "&subid=0&start=" + this.start + "&end=" + this.end;
@@ -4636,11 +4652,15 @@ var SublistPage = (function () {
         else
             this.showme = false;
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+    ], SublistPage.prototype, "content", void 0);
     SublistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-sublist',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/'\n<ion-header>\n <ion-navbar color="darkbule" class="navbar">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button color="white" ion-button icon-only (click)="presentPopover($event)">\n        <ion-icon name="list"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-searchbar class="sb" *ngIf="showme" (search)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n  <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">\n    <ion-icon name="arrow-dropdown"></ion-icon>\n  </button>\n\n   <!-- <ion-select class="sbl" *ngIf="showme" placeholder="V" [(ngModel)]="loc" (ionChange)="washData(loc)" interface="action-sheet">\n     <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>\n   </ion-select> -->\n</ion-header>\n\n<div class="locpage" *ngIf="showlocpage">\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor="let location of locations" col-6>\n        <button ion-button block (click)="washData(location.name)">{{location.chinese}}<br>{{location.english}}</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</div>\n\n<ion-content >\n\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.content_name}} </p>\n     </div>\n\n  </div>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="Loading more data...">\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
     ], SublistPage);
     return SublistPage;
 }());
@@ -4777,7 +4797,7 @@ var EventPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-event',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\event\event.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n      <ion-title>Location</ion-title>\n\n      <a tappable ion-button  clear menuToggle >\n        <ion-icon name="menu"></ion-icon>\n <!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n      </a>\n\n\n  </ion-navbar>\n   <ion-searchbar *ngIf="showme" (ionInput)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n\n</ion-header>\n\n<ion-content >\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)">\n    <ion-badge *ngIf="item.count"  color ="danger" item-right style="margin:0px; width: 40px;">{{item.count}}</ion-badge>\n   <div class="bottom_txt">\n   <p> {{item.name}} </p>\n     </div>\n\n  </div>\n\n<ion-fab right bottom>\n\n\n\n<button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>\n    <ion-fab-list side="top">\n       <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n       <button ion-fab color="light" [navPush]="addcategorypage"><ion-icon name="add"></ion-icon></button>\n    </ion-fab-list>\n\n\n</ion-fab>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\event\event.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
     ], EventPage);
     return EventPage;
 }());
@@ -4794,7 +4814,7 @@ var EventPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_servercon__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(144);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4842,9 +4862,9 @@ var AboutusPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-aboutus',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\aboutus\aboutus.html"*/'<ion-header>\n  <ion-navbar color="darkbule">\n    <a tappable ion-button  clear menuToggle >\n      <ion-icon name="menu"></ion-icon>\n<!-- <img tappable src="assets/BLS_35.png"  class="logo_head"/> -->\n    </a>\n\n    <ion-title>About Us</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div class="bg" padding [innerHTML]="htmlinfo"></div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\aboutus\aboutus.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
     ], AboutusPage);
     return AboutusPage;
 }());
@@ -4862,13 +4882,14 @@ var AboutusPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_earth_earth__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_earth_earth__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_event_event__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_topten_topten__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_fave_fave__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_banners_banners__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_topten_topten__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_fave_fave__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_banners_banners__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_aboutus_aboutus__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_servercon__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_screen_orientation__ = __webpack_require__(139);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4891,9 +4912,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 //import { GalleryPage } from '../pages/gallery/gallery';
 
+
 var MyApp = (function () {
-    function MyApp(platform, ss) {
+    function MyApp(platform, screenOrientation, ss) {
         this.platform = platform;
+        this.screenOrientation = screenOrientation;
         this.ss = ss;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */];
         this.rootPage = __WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */];
@@ -4923,6 +4946,13 @@ var MyApp = (function () {
     }
     MyApp.prototype.initializeApp = function () {
         this.platform.ready().then(function () {
+            // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT)
+            // .then((data) => {
+            //   alert(data);
+            // })
+            // .catch((error) => {
+            //   alert("Error " + error);
+            // })
             __WEBPACK_IMPORTED_MODULE_2_ionic_native__["l" /* StatusBar */].styleDefault();
             __WEBPACK_IMPORTED_MODULE_2_ionic_native__["k" /* Splashscreen */].hide();
         });
@@ -4944,13 +4974,15 @@ var MyApp = (function () {
         }
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Nav */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\app\app.html"*/'<ion-menu [content]="content" >\n  <ion-header >\n    <ion-toolbar color="darkcray">\n      <div padding>\n        <div class="topmenutitle">{{myname}}</div>\n     \n    </div> \n    </ion-toolbar>\n   \n  </ion-header>\n\n  <ion-content >\n    <ion-list>\n <div *ngFor="let p of pages">     \n<ion-item  menuClose  (click)="openPage(p)" *ngIf="adminonly(p.adminonly)" >\n       <ion-icon *ngIf="p.icon" [name]="p.icon" item-left></ion-icon>\n<img *ngIf="p.img" [src]="p.img" item-left width="27px" height="27px" [ngStyle]="mystyle"/>\n        {{p.title}}\n      </ion-item>\n </div>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_10__providers_servercon__["a" /* Servercon */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_11__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
+            __WEBPACK_IMPORTED_MODULE_10__providers_servercon__["a" /* Servercon */]])
     ], MyApp);
     return MyApp;
 }());
@@ -4993,7 +5025,7 @@ var TabtoptenPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-tabtopten',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\tabtopten\tabtopten.html"*/'\n<ion-tabs >\n  <ion-tab [root]="page" tabTitle="Home" tabIcon="contact"></ion-tab>\n  <ion-tab [root]="page1" tabTitle="About" tabIcon="compass"></ion-tab>\n  <ion-tab [root]="page2" tabTitle="Exit" tabIcon="analytics"></ion-tab>\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\tabtopten\tabtopten.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */]])
     ], TabtoptenPage);
     return TabtoptenPage;
 }());
@@ -5038,7 +5070,7 @@ var VideoPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-video',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\video\video.html"*/'<!--\n  Generated template for the Video page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>video</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\video\video.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */]])
     ], VideoPage);
     return VideoPage;
 }());
@@ -5083,7 +5115,7 @@ var AddvideoPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-addvideo',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\addvideo\addvideo.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>addvideo</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\addvideo\addvideo.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */]])
     ], AddvideoPage);
     return AddvideoPage;
 }());
@@ -5141,14 +5173,14 @@ var GalleryPage = (function () {
         //  this.viewCtrl.dismiss();
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* Slides */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* Slides */])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */])
     ], GalleryPage.prototype, "slides", void 0);
     GalleryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-gallery',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\gallery\gallery.html"*/'\n\n<ion-content >\n\n <ion-fab top right edge style="padding-top: 50px; padding-right: 20px">\n    <button ion-fab mini color="danger"  (click)="closePage()"  ><ion-icon  name="close"  ></ion-icon></button>\n    </ion-fab>\n\n<ion-slides #slides progress zoom>\n  <ion-slide  *ngFor="let pic of mygallery"   padding>\n    <img [src]="pic.src">\n     <ion-fab bottom right style="padding-right: 20px" >\n   <button ion-fab mini >info</button>\n   <ion-fab-list side="top" style="left: -250px; font-size: small; padding: 5px;">\n     <p  wrap>\nThere are a myriad of satellites in orbit of Earth with cameras that can send back amazing photos, but they can’t snap a photo of the entire planet at once. NASA’s Earth Polychromatic Imaging Camera (EPIC) camera can, though. It sends back thousands of amazing photos every year, and now you can peruse them more easily with the new website. It is, dare I say, epic.\n</p>\n   </ion-fab-list>\n  \n </ion-fab>\n   </ion-slide>\n </ion-slides>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\gallery\gallery.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* ViewController */]])
     ], GalleryPage);
     return GalleryPage;
 }());
@@ -5489,16 +5521,16 @@ var AddcategoryPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-addcategory',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\addcategory\addcategory.html"*/'\n<ion-header>\n\n  <ion-navbar color="darkbule">\n    <ion-title>Add Category</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n<ion-list>\n\n <ion-item>\n    <div>\n    <img [src]="image_path"  (click) ="presentActionSheet()"/>\n    </div>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>Category Name:</ion-label>\n    <ion-input type="text" [(ngModel)]="name"></ion-input>\n  </ion-item>\n\n<ion-item>\n    <ion-label>Type</ion-label>\n    <ion-select [(ngModel)]="type">\n     <ion-option value="1">Earth</ion-option>\n      <ion-option value="2">Location</ion-option>\n    </ion-select>\n  </ion-item>\n\n  <ion-item>\n    <ion-label stacked>Top</ion-label>\n    <ion-input  type="number" step="any" name="topRate" [(ngModel)]="rate" min="1"\n               max="20"></ion-input>\n  </ion-item>\n\n</ion-list>\n\n<button ion-button full color="secondary" (click)="save()">Save</button>\n <button ion-button full color="danger"  (click)="cancel()">Cancel</button>\n\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\addcategory\addcategory.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
             __WEBPACK_IMPORTED_MODULE_3__providers_servercon__["a" /* Servercon */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_image_picker__["a" /* ImagePicker */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ToastController */]])
     ], AddcategoryPage);
     return AddcategoryPage;
 }());

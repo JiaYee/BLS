@@ -277,6 +277,7 @@ events.subscribe('edition', (data) => {
 
 
   ionViewDidLoad() {
+    this.screenOrientation.unlock();
 this.item=this.navParams.data;
 // this.image_path=this.navParams.get("image_path");
 // this.title=this.navParams.get("content_name");
@@ -676,6 +677,7 @@ this.ss.dataList(param,"getContentPlay.php").then((response)=>{
 this.obj =response;
 this.vgallery=response;
 this.vgallery=this.obj.Data;
+console.log(this.vgallery);
 this.selectVideo(this.vgallery[0])
 //console.log(JSON.stringify(this.vgallery));
 loading.dismiss();
@@ -778,9 +780,13 @@ promptVideo()
 
 saveVideo()
 {
-  this.showaddvideopage = false;
-  if(this.vidpath !== undefined)
+  if(this.viddesc == undefined)
   {
+    this.viddesc = "";
+  }
+  if(this.vidpath !== undefined && this.vidtitle !== undefined)
+  {
+    this.showaddvideopage = false;
     this.insertData(this.vidpath, this.thumbpath, this.vidtitle, this.viddesc);
   }
 }

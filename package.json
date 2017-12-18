@@ -29,7 +29,7 @@
     "@ionic-native/image-picker": "^4.3.2",
     "@ionic-native/in-app-browser": "^4.3.2",
     "@ionic-native/media-capture": "^4.2.0",
-    "@ionic-native/screen-orientation": "^4.1.0",
+    "@ionic-native/screen-orientation": "^4.5.2",
     "@ionic-native/streaming-media": "^4.4.2",
     "@ionic-native/transfer": "^3.14.0",
     "@ionic-native/video-editor": "^4.2.1",

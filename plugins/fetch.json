@@ -106,7 +106,7 @@
   "cordova-plugin-screen-orientation": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-screen-orientation"
+      "id": "cordova-plugin-screen-orientation@latest"
     },
     "is_top_level": true,
     "variables": {}
