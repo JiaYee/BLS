@@ -4237,6 +4237,7 @@ var SublistPage = (function () {
     }
     SublistPage.prototype.ionViewDidLoad = function () {
         this.content.scrollToTop();
+        this.locations = [];
         var direct = this.navParams.get('locname');
         if (direct !== undefined) {
             console.log("Direct Wash: " + this.navParams.get("id"));
@@ -4372,6 +4373,7 @@ var SublistPage = (function () {
     SublistPage.prototype.washData = function (loc) {
         var _this = this;
         this.lokasi = loc;
+        this.start = 10;
         this.showlocpage = false;
         this.popo = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
         console.log(this.popo);
@@ -4380,6 +4382,8 @@ var SublistPage = (function () {
         });
         loading.present();
         this.ss.dataList(this.popo, "washDatabyLocation.php").then(function (response) {
+            _this.content.scrollToTop();
+            _this.items = undefined;
             _this.items = response;
             // this.total= this.items.total;
             //this.start=this.items.start;
@@ -4477,6 +4481,8 @@ var SublistPage = (function () {
     };
     SublistPage.prototype.filteritem = function (param) {
         var _this = this;
+        this.lokasi = undefined;
+        this.start = 10;
         var loading = this.loadingCtrl.create({
             content: 'Please wait...'
         });
@@ -4506,6 +4512,7 @@ var SublistPage = (function () {
         this.ss.dataList(param, "getSubCategoryById.php").then(function (response) {
             // console.log("Initialized item: ");
             // console.log(this.items);
+            _this.items = undefined;
             _this.items = response;
             _this.total = _this.items.total;
             //this.start=this.items.start;
@@ -4533,10 +4540,12 @@ var SublistPage = (function () {
                 _this.total = _this.limititem.total;
                 _this.start = parseInt(_this.limititem.start) + 10;
                 console.log(_this.limititem.Data);
-                _this.limititem.Data.forEach(function (element) {
-                    _this.items.push(element);
-                    //this.backup_items.push(element);
-                });
+                if (_this.limititem.Data != null) {
+                    _this.limititem.Data.forEach(function (element) {
+                        _this.items.push(element);
+                        //this.backup_items.push(element);
+                    });
+                }
                 _this.limititem = "";
                 infiniteScroll.complete();
             });
@@ -4658,7 +4667,7 @@ var SublistPage = (function () {
     ], SublistPage.prototype, "content", void 0);
     SublistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-sublist',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/'\n<ion-header>\n <ion-navbar color="darkbule" class="navbar">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button color="white" ion-button icon-only (click)="presentPopover($event)">\n        <ion-icon name="list"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-searchbar class="sb" *ngIf="showme" (search)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n  <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">\n    <ion-icon name="arrow-dropdown"></ion-icon>\n  </button>\n\n   <!-- <ion-select class="sbl" *ngIf="showme" placeholder="V" [(ngModel)]="loc" (ionChange)="washData(loc)" interface="action-sheet">\n     <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>\n   </ion-select> -->\n</ion-header>\n\n<div class="locpage" *ngIf="showlocpage">\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor="let location of locations" col-6>\n        <button ion-button block (click)="washData(location.name)">{{location.chinese}}<br>{{location.english}}</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</div>\n\n<ion-content >\n\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.content_name}} </p>\n     </div>\n\n  </div>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="Loading more data...">\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/
+            selector: 'page-sublist',template:/*ion-inline-start:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/'\n<ion-header>\n <ion-navbar color="darkbule" class="navbar">\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end>\n      <button *ngIf="!showlocpage" color="white" ion-button icon-only (click)="presentPopover($event)">\n        <ion-icon name="list"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n <ion-searchbar class="sb" *ngIf="showme" (search)="getItems($event)" [showCancelButton]="shouldShowCancel"  (ionCancel)="onCancel($event)">></ion-searchbar>\n  <button *ngIf="showme" ion-button icon-only class="sbl" (click)="showLP()">\n    <ion-icon name="arrow-dropdown"></ion-icon>\n  </button>\n\n   <!-- <ion-select class="sbl" *ngIf="showme" placeholder="V" [(ngModel)]="loc" (ionChange)="washData(loc)" interface="action-sheet">\n     <ion-option *ngFor="let location of locations" value="{{location.name}}">{{location.name}}</ion-option>\n   </ion-select> -->\n</ion-header>\n\n<div class="locpage" *ngIf="showlocpage">\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor="let location of locations" col-6>\n        <button ion-button block (click)="washData(location.name)">{{location.chinese}}<br>{{location.english}}</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</div>\n\n<ion-content >\n\n\n  <div class="img_item" *ngFor="let item of items" [ngStyle]="listimage(item.image_path)" style =" transform: translate3d(0px, 0px, 0px);" (click)="openPage(item)" (press)="presentAS(item)">\n\n   <div class="bottom_txt">\n   <p> {{item.content_name}} </p>\n     </div>\n\n  </div>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="Loading more data...">\n\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n\n<ion-fab right bottom>\n <button ion-fab color="light" (click)="seachshow()"><ion-icon name="search"></ion-icon></button>\n\n</ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\131216\Crappy\BLS\src\pages\sublist\sublist.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_servercon__["a" /* Servercon */]])
     ], SublistPage);

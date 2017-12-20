@@ -76,6 +76,7 @@ display: any;
 
   ionViewDidLoad() {
     this.content.scrollToTop();
+    this.locations = [];
     let direct = this.navParams.get('locname');
 
     if(direct !== undefined)
@@ -228,6 +229,7 @@ delContent(item)
   washData(loc)
   {
     this.lokasi = loc;
+    this.start = 10;
     this.showlocpage = false;
     this.popo = "main_category_id=" + this.navParams.get("id") + "&location=" + loc + "&start=0&end=10";
     console.log(this.popo);
@@ -237,7 +239,8 @@ delContent(item)
     loading.present();
      this.ss.dataList(this.popo,"washDatabyLocation.php").then((response)=>{
 
-
+       this.content.scrollToTop();
+       this.items = undefined;
     this.items =response;
     // this.total= this.items.total;
     //this.start=this.items.start;
@@ -361,6 +364,8 @@ delContent(item)
 
   filteritem(param)
   {
+    this.lokasi = undefined;
+    this.start = 10;
 
 
   let loading = this.loadingCtrl.create({
@@ -398,6 +403,7 @@ loading.present();
 
 // console.log("Initialized item: ");
 // console.log(this.items);
+this.items = undefined;
 this.items =response;
 this.total= this.items.total;
 //this.start=this.items.start;
@@ -431,10 +437,13 @@ this.limititem =response;
 this.total= this.limititem.total;
 this.start=parseInt(this.limititem.start)+10;
 console.log(this.limititem.Data);
-this.limititem.Data.forEach(element => {
-  this.items.push(element);
-//this.backup_items.push(element);
-});
+if(this.limititem.Data != null)
+{
+  this.limititem.Data.forEach(element => {
+    this.items.push(element);
+    //this.backup_items.push(element);
+  });
+}
 
 this.limititem="";
  infiniteScroll.complete();
