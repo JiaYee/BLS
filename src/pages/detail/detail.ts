@@ -107,7 +107,7 @@ loading.dismiss();
     <ion-list>
       <ion-list-header>Admin</ion-list-header>
       <button ion-item (click)="close()">Edit</button>
-      <button ion-item (click)="deleteItem()">Delete</button>
+      <button ion-item *ngIf="checkPermission()" (click)="deleteItem()">Delete</button>
     </ion-list>
   `
 })
@@ -123,6 +123,14 @@ export class PopoverEdit {
     public navParams: NavParams
   ) {
     this.getDetailItem = this.navParams.get('detailItem');
+  }
+
+  checkPermission()
+  {
+    if(this.ss.readData("delete_action") == 1)
+      return true;
+    else
+      return false;
   }
 
   deleteItem()

@@ -3492,6 +3492,12 @@ var PopoverEdit = (function () {
         this.navParams = navParams;
         this.getDetailItem = this.navParams.get('detailItem');
     }
+    PopoverEdit.prototype.checkPermission = function () {
+        if (this.ss.readData("delete_action") == 1)
+            return true;
+        else
+            return false;
+    };
     PopoverEdit.prototype.deleteItem = function () {
         var _this = this;
         var alert = this.alertCtrl.create({
@@ -3538,7 +3544,7 @@ var PopoverEdit = (function () {
     };
     PopoverEdit = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            template: "\n    <ion-list>\n      <ion-list-header>Admin</ion-list-header>\n      <button ion-item (click)=\"close()\">Edit</button>\n      <button ion-item (click)=\"deleteItem()\">Delete</button>\n    </ion-list>\n  "
+            template: "\n    <ion-list>\n      <ion-list-header>Admin</ion-list-header>\n      <button ion-item (click)=\"close()\">Edit</button>\n      <button ion-item *ngIf=\"checkPermission()\" (click)=\"deleteItem()\">Delete</button>\n    </ion-list>\n  "
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_13__providers_servercon__["a" /* Servercon */],
