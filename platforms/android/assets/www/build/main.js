@@ -218,8 +218,8 @@ var BannersPage = (function () {
         var _this = this;
         __WEBPACK_IMPORTED_MODULE_2_ionic_native__["a" /* Camera */].getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -321,7 +321,7 @@ var BannersPage = (function () {
                     text: 'Browser',
                     icon: 'image',
                     handler: function () {
-                        _this.chooseFile(__WEBPACK_IMPORTED_MODULE_2_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY);
+                        _this.browsePicture(__WEBPACK_IMPORTED_MODULE_2_ionic_native__["a" /* Camera */].PictureSourceType.PHOTOLIBRARY);
                     }
                 },
                 {
@@ -3229,6 +3229,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// import { SocialSharing } from '@ionic-native/social-sharing';
 
 
 
@@ -3345,7 +3346,6 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_18__providers_servercon__["a" /* Servercon */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_native__["i" /* PhotoViewer */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_native__["h" /* LaunchNavigator */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["j" /* SocialSharing */],
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
                 __WEBPACK_IMPORTED_MODULE_21__ionic_native_file_transfer__["a" /* FileTransfer */],
                 __WEBPACK_IMPORTED_MODULE_22__ionic_native_media_capture__["a" /* MediaCapture */],
@@ -3358,6 +3358,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_40__ionic_native_in_app_browser__["a" /* InAppBrowser */],
                 __WEBPACK_IMPORTED_MODULE_27__ionic_native_video_editor__["a" /* VideoEditor */],
                 __WEBPACK_IMPORTED_MODULE_28__ionic_native_image_picker__["a" /* ImagePicker */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_native__["j" /* SocialSharing */],
             ]
         })
     ], AppModule);

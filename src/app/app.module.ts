@@ -1,10 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { PhotoViewer,LaunchNavigator,SocialSharing} from 'ionic-native';
+import { PhotoViewer,LaunchNavigator, SocialSharing} from 'ionic-native';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { IonicStorageModule } from '@ionic/storage'
 import { HttpModule } from '@angular/http';
-
+// import { SocialSharing } from '@ionic-native/social-sharing';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { FilterPage } from '../pages/sublist/sublist';
@@ -129,7 +129,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     Servercon,
     PhotoViewer,
     LaunchNavigator,
-    SocialSharing,
     ScreenOrientation,
     FileTransfer,
     MediaCapture,
@@ -142,6 +141,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     InAppBrowser,
     VideoEditor,
     ImagePicker,
+    SocialSharing,
   ]
 })
 export class AppModule {}

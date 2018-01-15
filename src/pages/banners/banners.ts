@@ -252,8 +252,8 @@ browsePicture(sourceType)
 {
         Camera.getPicture({
             quality: 100,
-            targetWidth: 900,
-            targetHeight: 900,
+            // targetWidth: 900,
+            // targetHeight: 900,
             sourceType: sourceType,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -376,7 +376,7 @@ presentActionSheet() {
          text: 'Browser',
         icon:'image',
          handler: () => {
-           this.chooseFile(Camera.PictureSourceType.PHOTOLIBRARY);
+           this.browsePicture(Camera.PictureSourceType.PHOTOLIBRARY);
          }
        },
        {
