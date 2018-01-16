@@ -845,8 +845,8 @@ compressVideo(fullPath)
   outputFileName: "output_" + this.oriname,
   outputFileType: this.videoEditor.OutputFileType.MPEG4,
   maintainAspectRatio: true,
-  width: 640,
-  height: 640,
+  width: 1920,
+  height: 1200,
   }
 
   this.videoEditor.transcodeVideo(options)
